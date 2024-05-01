@@ -1,3 +1,7 @@
-#include <Couleurs.h>
+#include <Couleurs.h> //
 
-effacer_ecran();
+int main(){
+    effacer_ecran();
+
+    return 0;
+}
