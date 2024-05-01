@@ -2,13 +2,13 @@
 
 int main(){
     
-    clrscr();
+    clrscr();            // Efface tout du terminal
 
-    couleur("34");
+    couleur("44");       // Initialise la couleur
 
     printf("Salut");
 
-    couleur("0");
+    couleur("0");        // Couleur par defaut   /!\ Tres important
 
     return 0;
 }
