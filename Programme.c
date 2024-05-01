@@ -8,7 +8,7 @@ int main(){
 
     printf("Salut");
 
-    couleur(0);
+    couleur("0");
 
     return 0;
 }
