@@ -4,5 +4,11 @@ int main(){
     
     clrscr();
 
+    couleur("32");
+
+    printf("Salut");
+
+    couleur(0);
+
     return 0;
 }
