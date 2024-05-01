@@ -4,7 +4,7 @@ int main(){
     
     clrscr();
 
-    couleur("32");
+    couleur("33");
 
     printf("Salut");
 
