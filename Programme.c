@@ -14,6 +14,7 @@ int coefbi(int n,int p){
 
 int main(){
   printf("%d",coefbi(10,3));
+  printf("roms");
   return 0;
 }
 //caca prout
