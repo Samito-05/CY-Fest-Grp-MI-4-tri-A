@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-#define effacer_ecran() printf("\033[H\033[2J")
+#define clrscr() printf("\033[H\033[2J")
 
 #endif
