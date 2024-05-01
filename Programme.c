@@ -2,7 +2,7 @@
 
 int main(){
     
-    effacer_ecran();
+    clrscr();
 
     return 0;
 }
