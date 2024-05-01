@@ -13,7 +13,7 @@ int coefbi(int n,int p){
 }
 
 int main(){
-  printf("%d",coefbi(10,3));
+  printf("%d\n",coefbi(10,3));
   printf("roms");
   return 0;
 }
