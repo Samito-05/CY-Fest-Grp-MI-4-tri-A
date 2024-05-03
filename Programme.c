@@ -30,7 +30,7 @@ int scan(int d,float* f,char* c ,float min,float max){
     }
 
 
-}*/
+}*///
 
 
 
