@@ -14,11 +14,12 @@ int scand(int d,float min,float max){
     return d;
     
 }    
-float scan(int d,float min,float max){
-    scanf("%f",*f);
-    while(*f<min || *f>max){
+
+float scan(float f,float min,float max){
+    scanf("%f",&f);
+    while(f<min || f>max){
         printf("erreur la valeur saisie doit être entre %f et %f\n",min , max);
-        scanf("%f",*f);
+        scanf("%f",&f);
     }    
 }
 */
@@ -93,7 +94,7 @@ Salle creerSalle(){
     salle.nsiegeA*=salle.nsiege;//On fais rangée de Catégorie A * nombre de siège par rangée
     clrscr();
 
-    while(salle.nsiegeA<1){
+    while(salle.nsiegeA<0){
         printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
         scanf("%d",&salle.nsiegeA);
         salle.nsiegeA*=salle.nsiege;
@@ -105,24 +106,17 @@ Salle creerSalle(){
     salle.nsiegeB*=salle.nsiege;
     clrscr();
 
-    while(salle.nsiegeB<1){
+    while(salle.nsiegeB<0){
         printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
         scanf("%d",&salle.nsiegeB);
         salle.nsiegeB*=salle.nsiege;
         clrscr();
     } 
     
-    printf("Combien y a t-il de rangée de catégorie C ?\n");  
-    scanf("%d",&salle.nsiegeC);
-    salle.nsiegeC*=salle.nsiege;
-    clrscr();
     
-    while(salle.nsiegeC<1){
-        printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-        scanf("%d",&salle.nsiegeC);
-        salle.nsiegeC*=salle.nsiege;
-        clrscr();
-    } 
+    salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
+    printf("%d\n",salle.nsiegeC);
+    clrscr();
     
     while (salle.nsiegeA+salle.nsiegeB+salle.nsiegeC!=salle.nsiege*salle.nrangee){ //Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
         printf("Il y a une erreur dans l'affectation des sièges, veuillez réessayer\n");
@@ -151,22 +145,13 @@ Salle creerSalle(){
             clrscr();
         } 
         
-        printf("Combien y a t-il de rangée de catégorie C ?\n");  
-        scanf("%d",&salle.nsiegeC);
-        salle.nsiegeC*=salle.nsiege;
+        salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
         clrscr();
-
-        while(salle.nsiegeC<0){
-            printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-            scanf("%d",&salle.nsiegeC);
-            salle.nsiegeC*=salle.nsiege;
-            clrscr();
-        }
-    }
     
-    printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
-    scanf("%d",&salle.fosse);
-    clrscr();
+        printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
+        scanf("%d",&salle.fosse);
+        clrscr();
+    }
 
     while (salle.fosse!=1 && salle.fosse!=0){
         printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
@@ -229,6 +214,7 @@ void afficheSalle(Salle salle){
     int r=1;
 
     //Entête
+    clrscr();
     printf("       Plan de la salle :  \n");
     printf("            SCENE           \n");
     printf("-------------------------------\n");
@@ -265,6 +251,7 @@ void afficheSalle(Salle salle){
     printf("\n");
     r++;
     }
+    printf("-------------------------------\n");
 }
 
 
