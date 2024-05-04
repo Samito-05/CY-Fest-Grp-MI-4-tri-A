@@ -99,12 +99,11 @@ Salle creerSalle(){
     
         salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
         clrscr();
+        if(salle.nsiegeC<0){
+            salle.nsiegeC=0;
+        }
 
- int z,e;
-    printf("%d",salle.nsiegeC);
-    z=salle.nsiegeA+salle.nsiegeB+salle.nsiegeC;
-    e=salle.nsiege*salle.nrangee;
-    printf("%d\n%d\n",z,e);
+
 
     while ((salle.nsiegeA+salle.nsiegeB+salle.nsiegeC)!=(salle.nsiege*salle.nrangee)){ //Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
         printf("Il y a une erreur dans l'affectation des sièges, veuillez réessayer\n");
@@ -129,6 +128,10 @@ Salle creerSalle(){
         
         salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
         clrscr();
+          if(salle.nsiegeC<0){
+            salle.nsiegeC=0;
+        }
+
 
     }
     
