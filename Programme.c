@@ -4,33 +4,27 @@
 
 
 
-/* SCAN VERSION ROMAIN
-int scan(int d,float* f,char* c ,float min,float max){
-    // je sais pas faire tout en un seul donc faut qu on voit si c est possible 
-    //on est obliger d utiliser des pointeur sinon on peut que retourner du int 
-    if(d != -9){
-        scanf("%d",&d);
-        while (d<min || d>max){
+/*
+int scand(int d,float min,float max){
+    scanf("%d",&d);
+    while (d<min || d>max){
         printf("erreur la valeur saisie doit être entre %f et %f\n",min , max);
         scanf("%d",&d);
-        }
-        return d;
     }
-    if(*f !=-8){
+    return d;
+    
+}    
+float scan(int d,float min,float max){
+    scanf("%f",*f);
+    while(*f<min || *f>max){
+        printf("erreur la valeur saisie doit être entre %f et %f\n",min , max);
         scanf("%f",*f);
-            while(*f<min || *f>max){
-                printf("erreur la valeur saisie doit être entre %f et %f\n",min , max);
-                scanf("%f",*f);
-                
-            }
-        
-    }
-    if (*c != gabinleplusbo){
-        scanf("%s"*c);
-    }
+    }    
+}
+*/
 
 
-}*///
+
 
 
 
