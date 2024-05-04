@@ -79,7 +79,6 @@ Salle creerSalle(){
     }
     
     //On demande le nombre de siège par catégorie 
-    
     printf("Combien y a t-il de rangée de catégorie A ?\n");  
     scanf("%d",&salle.nsiegeA);
     salle.nsiegeA*=salle.nsiege;//On fais rangée de Catégorie A * nombre de siège par rangée
@@ -99,9 +98,14 @@ Salle creerSalle(){
     } 
     
         salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
+        if(salle.nsiege<0){
+            salle.nsiege=0;
+        }
         clrscr();
-    
-    while (salle.nsiegeA+salle.nsiegeB+salle.nsiegeC!=salle.nsiege*salle.nrangee){ //Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
+
+
+
+    while ((salle.nsiegeA+salle.nsiegeB+salle.nseigeC)!=(salle.nsiege*salle.nrangee)){ //Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
         printf("Il y a une erreur dans l'affectation des sièges, veuillez réessayer\n");
         
         printf("Combien y a t-il de rangée de catégorie A ?\n");  
@@ -175,6 +179,51 @@ Salle creerSalle(){
 }
 
 
+void afficheSalle(Salle salle){
+    int r=1;
+
+    //Entête
+    clrscr();
+    printf("       Plan de la salle :  \n");
+    printf("            SCENE           \n");
+    printf("-------------------------------\n");
+
+    for (int i=0; i<salle.nsiegeA/salle.nsiege /*on veut le nombre de rangée de cette catégorie et pas le nombre de siège */; i++){ //On affiche catégorie A
+        printf("R %d ",r);
+        for (int j=0; j<salle.nsiege; j++){
+            couleur("32");
+            printf("O ");
+            couleur("0");
+        }
+    printf("\n");
+    r++;
+    }
+
+    for (int i=0; i<salle.nsiegeB/salle.nsiege; i++){//On affiche catégorie B
+        printf("R %d ",r);
+        for (int j=0; j<salle.nsiege; j++){
+            couleur("33");
+            printf("O ");
+            couleur("0");
+        }
+    printf("\n");
+    r++;
+    }
+
+    for (int i=0; i<salle.nsiegeC/salle.nsiege; i++){//On affiche catégorie C
+        printf("R %d ",r);
+        for (int j=0; j<salle.nsiege; j++){
+            couleur("37");
+            printf("O ");
+            couleur("0");
+        }
+    printf("\n");
+    r++;
+    }
+    printf("-------------------------------\n");
+}
+
+
 
 int main(){
     
@@ -187,7 +236,8 @@ int main(){
     couleur("0");        // Couleur par defaut   /!\ Tres important
 
     Salle salle=creerSalle();
-    printf("%s",salle.nomsalle);
+    afficheSalle(salle);
+
     free(salle.nomsalle);
     return 0;
 }
