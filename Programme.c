@@ -132,7 +132,7 @@ Salle creerSalle(){
         salle.nsiegeA*=salle.nsiege;//On fais rangée de Catégorie A * nombre de siège par rangée
         clrscr();
 
-        while(salle.nsiegeA<1){
+        while(salle.nsiegeA<0){
             printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
             scanf("%d",&salle.nsiegeA);
             salle.nsiegeA*=salle.nsiege;
@@ -144,7 +144,7 @@ Salle creerSalle(){
         salle.nsiegeB*=salle.nsiege;
         clrscr();
 
-        while(salle.nsiegeB<1){
+        while(salle.nsiegeB<0){
             printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
             scanf("%d",&salle.nsiegeB);
             salle.nsiegeB*=salle.nsiege;
@@ -156,7 +156,7 @@ Salle creerSalle(){
         salle.nsiegeC*=salle.nsiege;
         clrscr();
 
-        while(salle.nsiegeC<1){
+        while(salle.nsiegeC<0){
             printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
             scanf("%d",&salle.nsiegeC);
             salle.nsiegeC*=salle.nsiege;
@@ -229,10 +229,12 @@ void afficheSalle(Salle salle){
     int r=1;
 
     //Entête
-    
+    printf("       Plan de la salle :  \n");
+    printf("            SCENE           \n");
+    printf("-------------------------------\n");
 
     for (int i=0; i<salle.nsiegeA/salle.nsiege /*on veut le nombre de rangée de cette catégorie et pas le nombre de siège */; i++){ //On affiche catégorie A
-        printf("R %d ",i);
+        printf("R %d ",r);
         for (int j=0; j<salle.nsiege; j++){
             couleur("32");
             printf("O ");
@@ -243,7 +245,7 @@ void afficheSalle(Salle salle){
     }
 
     for (int i=0; i<salle.nsiegeB/salle.nsiege; i++){//On affiche catégorie B
-        printf("R %d ",i);
+        printf("R %d ",r);
         for (int j=0; j<salle.nsiege; j++){
             couleur("33");
             printf("O ");
@@ -254,7 +256,7 @@ void afficheSalle(Salle salle){
     }
 
     for (int i=0; i<salle.nsiegeC/salle.nsiege; i++){//On affiche catégorie C
-        printf("R %d ",i);
+        printf("R %d ",r);
         for (int j=0; j<salle.nsiege; j++){
             couleur("37");
             printf("O ");
