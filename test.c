@@ -86,3 +86,15 @@ int main() {
     
     return 0;
 }
+
+int scan(int a, int b int c)(
+    scanf(%d,&ab)
+    wile a >( a<010)
+
+)
+return a;
+}
+
+
+a=scan(a,5,10)
+scanc()
