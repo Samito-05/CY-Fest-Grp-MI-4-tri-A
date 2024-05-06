@@ -4,30 +4,6 @@
 
 
 
-/*
-int scand(int d,float min,float max){
-    scanf("%d",&d);
-    while (d<min || d>max){
-        printf("erreur la valeur saisie doit être entre %f et %f\n",min , max);
-        scanf("%d",&d);
-    }
-    return d;
-    
-}    
-float scan(float min,float max){
-    scanf("%f",f);
-    while(f<min || f>max){
-        printf("erreur la valeur saisie doit être entre %f et %f\n",min , max);
-        scanf("%f",f);
-    }    
-}
-*/
-
-
-
-
-
-
 typedef struct{
     int concert; // 0 si la salle n'est pas utilisié, sinon 1
     char* nomsalle; 
@@ -54,6 +30,8 @@ Salle creerSalle(){
     
     printf("Combien de lettres contient le nom de la salle ?\n");
     scanf("%d",&n);
+    clrscr();
+
     salle.nomsalle=(char*)malloc(sizeof(char)*(n+1));
     if (salle.nomsalle==NULL){
         printf("Erreur de nom\n");
@@ -61,40 +39,48 @@ Salle creerSalle(){
     }
     printf("Quel est le nom de la salle ?\n");
     scanf("%s",salle.nomsalle);
+    clrscr();
     
     printf("Combien y a t-il de rangée ?\n");
     scanf("%d",&salle.nrangee);
+    clrscr();
     
     while(salle.nrangee<1){
         printf("Erreur, nombre de rangée non valide. Réessayez.\n");
         scanf("%d",&salle.nrangee);
+        clrscr();
     }
     
     printf("Combien y a t-il de siège par rangée ?\n");
     scanf("%d",&salle.nsiege);
+    clrscr();
     
     while(salle.nsiege<1){
         printf("Erreur, nombre de siege par rangée non valide. Réessayez.\n");
         scanf("%d",&salle.nsiege);
+        clrscr();
     }
     
     //On demande le nombre de siège par catégorie 
     printf("Combien y a t-il de rangée de catégorie A ?\n");  
     scanf("%d",&salle.nsiegeA);
     salle.nsiegeA*=salle.nsiege;//On fais rangée de Catégorie A * nombre de siège par rangée
-    while(salle.nsiegeA<1){
+    clrscr();
+    while(salle.nsiegeA<0){
         printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
         scanf("%d",&salle.nsiegeA);
         salle.nsiegeA*=salle.nsiege;
+        clrscr();
     } 
     
     printf("Combien y a t-il de rangée de catégorie B ?\n");  
     scanf("%d",&salle.nsiegeB);
     salle.nsiegeB*=salle.nsiege;
-    while(salle.nsiegeB<1){
+    while(salle.nsiegeB<0){
         printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
         scanf("%d",&salle.nsiegeB);
         salle.nsiegeB*=salle.nsiege;
+        clrscr();
     } 
     
         salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
@@ -110,20 +96,24 @@ Salle creerSalle(){
         
         printf("Combien y a t-il de rangée de catégorie A ?\n");  
         scanf("%d",&salle.nsiegeA);
+        clrscr();
         salle.nsiegeA*=salle.nsiege;//On fais rangée de Catégorie A * nombre de siège par rangée
-        while(salle.nsiegeA<1){
+        while(salle.nsiegeA<0){
             printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
             scanf("%d",&salle.nsiegeA);
             salle.nsiegeA*=salle.nsiege;
+            clrscr();
         } 
         
         printf("Combien y a t-il de rangée de catégorie B ?\n");  
         scanf("%d",&salle.nsiegeB);
         salle.nsiegeB*=salle.nsiege;
-        while(salle.nsiegeB<1){
+        clrscr();
+        while(salle.nsiegeB<0){
             printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
             scanf("%d",&salle.nsiegeB);
             salle.nsiegeB*=salle.nsiege;
+            clrscr();
         } 
         
         salle.nsiegeC=salle.nsiege*salle.nrangee-(salle.nsiegeA+salle.nsiegeB);
@@ -137,48 +127,82 @@ Salle creerSalle(){
     
     printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
     scanf("%d",&salle.fosse);
+    clrscr();
     while (salle.fosse!=1 && salle.fosse!=0){
         printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
         scanf("%d",&salle.fosse);
+        clrscr();
     }
 
     if (salle.fosse==1){ //Si il y a une fosse on double le nombre de place en catégorie A
+        salle.nrangee+=salle.nsiegeA/salle.nsiege;
         salle.nsiegeA+=salle.nsiegeA;
+        
         
         printf("Quel est le prix d'une place en fosse ?\n");
         scanf("%f",&salle.prixA);
+        clrscr();
         while (salle.prixA<0){
             printf("Quel est le prix d'une place en fosse ?\n");
             scanf("%f",&salle.prixA);
+            clrscr();
         }
     }
      //On demande le prix de chaque catégorie
     else{
         printf("Quel est le prix d'une place de catégorie A ?\n");
         scanf("%f",&salle.prixA);
+        clrscr();
         
         while (salle.prixA<0){
             printf("Quel est le prix d'une place de catégorie A ?\n");
             scanf("%f",&salle.prixA);
+            clrscr();
         }
     }
     
     printf("Quel est le prix d'une place de catégorie B ?\n");
     scanf("%f",&salle.prixB);
+    clrscr();
     
     while (salle.prixB<0){
             printf("Quel est le prix d'une place de catégorie B ?\n");
             scanf("%f",&salle.prixB);
+            clrscr();
     }
     
     printf("Quel est le prix d'une place de catégorie C ?\n");
     scanf("%f",&salle.prixC);
+    clrscr();
     
     while (salle.prixC<0){
             printf("Quel est le prix d'une place de catégorie C ?\n");
             scanf("%f",&salle.prixC);
+            clrscr();
     }
-   
+    
+    char* fichiersalle="salle.txt";
+    FILE* fichier =fopen(fichiersalle,"a+");
+    if(fichier==NULL){
+        printf("Erreur lors de l'ouverture du fichier %s\n", fichiersalle);
+        exit(1);
+    }
+
+    fprintf(fichier, "Est-ce que la salle est utilisée ?: %d\n", salle.concert);
+    fprintf(fichier, "Nom de la salle: %s\n", salle.nomsalle);
+    fprintf(fichier, "Nombre de rangée: %d\n", salle.nrangee);
+    fprintf(fichier, "Nombre de siège par rangée: %d\n", salle.nsiege);
+    fprintf(fichier, "Nombre de siège de catégorie A: %d\n", salle.nsiegeA);
+    fprintf(fichier, "Nombre de siège de catégorie B: %d\n", salle.nsiegeB);
+    fprintf(fichier, "Nombre de siège de catégorie C: %d\n", salle.nsiegeC);
+    fprintf(fichier, "Est-ce qu'il y a une fosse ?: %d\n", salle.fosse);
+    fprintf(fichier, "Prix de la catégorie A: %.2f\n", salle.prixA);
+    fprintf(fichier, "Prix de la catégorie B: %.2f\n", salle.prixB);
+    fprintf(fichier, "Prix de la catégorie C: %.2f\n", salle.prixC);
+    fprintf(fichier,"\n");
+
+    fclose(fichier);
+    free(salle.nomsalle);
     return salle;
 }
 
@@ -195,7 +219,7 @@ void afficheSalle(Salle salle){
     for (int i=0; i<salle.nsiegeA/salle.nsiege /*on veut le nombre de rangée de cette catégorie et pas le nombre de siège */; i++){ //On affiche catégorie A
         printf("R %d ",r);
         for (int j=0; j<salle.nsiege; j++){
-            couleur("32");
+            couleur("36");
             printf("O ");
             couleur("0");
         }
@@ -239,10 +263,22 @@ int main(){
 
     couleur("0");        // Couleur par defaut   /!\ Tres important
 
+    //On réinitialise tout les fichiers
+
+    char* fichiersalle="salle.txt";
+    FILE* fichier =fopen(fichiersalle,"w");
+    if(fichier==NULL){
+        printf("Erreur lors de l'ouverture du fichier %s\n", fichiersalle);
+        exit(1);
+    }
+
+    fclose(fichier);
+
+
+
     Salle salle=creerSalle();
     afficheSalle(salle);
 
-    free(salle.nomsalle);
 		
     return 0;
 }
