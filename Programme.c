@@ -243,8 +243,6 @@ int main(){
     afficheSalle(salle);
 
     free(salle.nomsalle);
-	
-	printf("prout");
-	
+		
     return 0;
 }
