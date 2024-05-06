@@ -1,12 +1,12 @@
 Est-ce que la salle est utilisée ?: 0
-Nom de la salle: test
+Nom de la salle: r
 Nombre de rangée: 10
 Nombre de siège par rangée: 10
 Nombre de siège de catégorie A: 50
 Nombre de siège de catégorie B: 40
 Nombre de siège de catégorie C: 10
 Est-ce qu'il y a une fosse ?: 0
-Prix de la catégorie A: 15.00
-Prix de la catégorie B: 10.00
-Prix de la catégorie C: 5.00
+Prix de la catégorie A: 10.00
+Prix de la catégorie B: 5.00
+Prix de la catégorie C: 1.00
 
