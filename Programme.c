@@ -187,9 +187,9 @@ Salle creerSalle(){
         printf("Erreur lors de l'ouverture du fichier %s\n", fichiersalle);
         exit(1);
     }
-
-    fprintf(fichier, "Est-ce que la salle est utilisée ?: %d\n", salle.concert);
+    
     fprintf(fichier, "Nom de la salle: %s\n", salle.nomsalle);
+    fprintf(fichier, "Est-ce que la salle est utilisée ?: %d\n", salle.concert);
     fprintf(fichier, "Nombre de rangée: %d\n", salle.nrangee);
     fprintf(fichier, "Nombre de siège par rangée: %d\n", salle.nsiege);
     fprintf(fichier, "Nombre de siège de catégorie A: %d\n", salle.nsiegeA);
