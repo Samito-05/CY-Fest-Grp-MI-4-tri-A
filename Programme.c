@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void choix();
+void afficheSalle();
+
 
 
 typedef struct{
@@ -205,7 +208,21 @@ Salle creerSalle(){
     free(salle.nomsalle);
     return salle;
 }
+void choix(){//oublier pas d apppeler la fonction a la fin de chaque action majeur 
+    int choix;
+    printf("que voulez vous faire ?\n1.ajouter une salle 2...\n");//ecris tout les choix de manageur et ne pas oublier 
+    scanf("%d",&choix);
+     while (choix<1 || choix>2){
+        printf("erreur la valeur saisie doit être entre 1 et 2\n");
+        scanf("%d",&choix);
+    }
+    if (choix==1){
+        Salle salle=creerSalle();
+        afficheSalle(salle);
+        choix=0;
+    }
 
+}
 
 void afficheSalle(Salle salle){
     int r=1;
@@ -252,21 +269,7 @@ void afficheSalle(Salle salle){
     choix();
 }
 
-void choix(){//oublier pas d apppeler la fonction a la fin de chaque action majeur 
-    int choix;
-    printf("que voulez vous faire ?\n1.ajouter une salle 2...1\n");//ecris tout les choix de manageur et ne pas oublier 
-    scanf("%d",&choix);
-     while (choix<1 || choix>2){
-        printf("erreur la valeur saisie doit être entre 1 et 2\n");
-        scanf("%d",&choix);
-    }
-    if (choix==1){
-        Salle salle=creerSalle();
-        afficheSalle(salle);
-        choix=0;
-    }
 
-}
 
 
 
