@@ -1,6 +1,7 @@
 #include "couleurs.h" /* Importation de la bibliotheque pour gerer le terminal */
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 void choix();
 void afficheSalle();
@@ -269,7 +270,59 @@ void afficheSalle(Salle salle){
     choix();
 }
 
+void afficheSalle2(char* nom_salle) {
+    char *nom = "salle.txt";
 
+    // ouvrir le fichier 
+    FILE* salles = fopen(nom, "r");
+    if (salles == NULL) {
+        exit(1);
+    }
+
+    char phrase[50];
+
+    // Lire ligne par ligne jusqu'à la fin du fichier
+    while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+        // Vérification de la bonne salle
+        if (strstr(phrase, nom_salle) != NULL) {
+            printf("Mot trouvé : %s", phrase);
+            break;
+        }
+        
+        for (int j = 0; j < 11; j++){
+
+        fgets(phrase, sizeof(phrase), salles);
+    }
+
+    // Vérifier si la fin du fichier est atteinte sans trouver la salle
+    if (feof(salles)) {
+        printf("La salle n'a pas été trouvée.\n");
+        exit(1);
+    }
+}
+
+
+
+
+
+/*  Mise en page du fichier txt
+
+Nom de la salle: ...
+Est-ce que la salle est utilisée ?: ...
+Nombre de rangée: ...
+Nombre de siège par rangée: ...
+Nombre de siège de catégorie A: ...
+Nombre de siège de catégorie B: ...
+Nombre de siège de catégorie C: ...
+Est-ce qu'il y a une fosse ?: ...
+Prix de la catégorie A: ...
+Prix de la catégorie B: ...
+Prix de la catégorie C: ...
+
+*/
+
+
+    }
 
 
 
@@ -296,7 +349,8 @@ int main(){
 
     choix();
 
-
+    Salle salle=creerSalle();
+    afficheSalle2("Test");
 
 		
     return 0;
