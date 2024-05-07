@@ -272,6 +272,7 @@ void afficheSalle(Salle salle){
 
 void afficheSalle2(char* nom_salle) {
     char *nom = "salle.txt";
+    int r = 1;
 
     // ouvrir le fichier 
     FILE* salles = fopen(nom, "r");
@@ -337,7 +338,39 @@ void afficheSalle2(char* nom_salle) {
     printf("            SCENE           \n");
     printf("-------------------------------\n");
 
+    for (int i=0; i<cat_a/nbr_places /*on veut le nombre de rangée de cette catégorie et pas le nombre de siège */; i++){ //On affiche catégorie A
+        printf("R %d ",r);
+        for (int j=0; j<nbr_places; j++){
+            couleur("36");
+            printf("O ");
+            couleur("0");
+        }
+    printf("\n");
+    r++;
+    }
 
+    for (int i=0; i<cat_b/nbr_places; i++){//On affiche catégorie B
+        printf("R %d ",r);
+        for (int j=0; j<nbr_places; j++){
+            couleur("33");
+            printf("O ");
+            couleur("0");
+        }
+    printf("\n");
+    r++;
+    }
+
+    for (int i=0; i<cat_c/nbr_places; i++){//On affiche catégorie C
+        printf("R %d ",r);
+        for (int j=0; j<nbr_places; j++){
+            couleur("37");
+            printf("O ");
+            couleur("0");
+        }
+    printf("\n");
+    r++;
+    }
+    printf("-------------------------------\n");
 
 
 
@@ -390,7 +423,7 @@ int main(){
     // choix();
 
     Salle salle=creerSalle();
-    Salle salle2=creerSalle();
+
     afficheSalle2("Test");
 
 		//alessio le goat
@@ -401,7 +434,7 @@ int main(){
 
 - Separer les fonctoin : Gabin
 - Mode/role : Romain
-- Affichage : Sam
+- Affichage : Sam 
 - Fichier de salles : Sam/Gabin
 - Fonction de modif de salle : Tous
 - Reservation de place : Tous
