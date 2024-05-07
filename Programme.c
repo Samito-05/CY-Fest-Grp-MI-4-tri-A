@@ -224,7 +224,7 @@ void choix(){//oublier pas d apppeler la fonction a la fin de chaque action maje
     }
 
 }
-//l'amour n'a pas d'age
+//l'amour n'a pas d'age ;)
 void afficheSalle(Salle salle){
     int r=1;
 
