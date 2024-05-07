@@ -347,7 +347,7 @@ int main(){
 
     fclose(fichier);
 
-    choix();
+    // choix();
 
     Salle salle=creerSalle();
     afficheSalle2("Test");

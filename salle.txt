@@ -1,0 +1,12 @@
+Nom de la salle: Test
+Est-ce que la salle est utilisée ?: 0
+Nombre de rangée: 5
+Nombre de siège par rangée: 5
+Nombre de siège de catégorie A: 25
+Nombre de siège de catégorie B: 0
+Nombre de siège de catégorie C: 0
+Est-ce qu'il y a une fosse ?: 0
+Prix de la catégorie A: 5.00
+Prix de la catégorie B: 5.00
+Prix de la catégorie C: 5.00
+
