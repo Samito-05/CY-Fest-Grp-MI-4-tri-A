@@ -76,7 +76,7 @@ Salle creerSalle(){
         salle.nsiegeA*=salle.nsiege;
         clrscr();
     } 
-    //alessio le goat
+    
     printf("Combien y a t-il de rangée de catégorie B ?\n");  
     scanf("%d",&salle.nsiegeB);
     salle.nsiegeB*=salle.nsiege;
