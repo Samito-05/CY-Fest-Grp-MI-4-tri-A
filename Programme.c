@@ -281,24 +281,32 @@ void afficheSalle2(char* nom_salle) {
 
     char phrase[50];
 
-    // Lire ligne par ligne jusqu'à la fin du fichier
+    
     while (fgets(phrase, sizeof(phrase), salles) != NULL) {
-        // Vérification de la bonne salle
+        
         if (strstr(phrase, nom_salle) != NULL) {
-            printf("Mot trouvé : %s", phrase);
             break;
         }
         
-        for (int j = 0; j < 11; j++){
+        for (int j = 0; j < 11; j++){ // Passage a la salle d'apres
 
         fgets(phrase, sizeof(phrase), salles);
     }
 
-    // Vérifier si la fin du fichier est atteinte sans trouver la salle
+    // Fin de fichier
     if (feof(salles)) {
         printf("La salle n'a pas été trouvée.\n");
         exit(1);
     }
+
+    // Reccuperation de données de la salle
+
+    int nbr_rangees, nbr_places, cat_a, cat_b, cat_c;
+
+    fgets(phrase, sizeof(phrase), salles);
+    fgets(phrase, sizeof(phrase), salles);
+
+    nbr_rangees = atoi(phrase);
 }
 
 
