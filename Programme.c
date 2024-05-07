@@ -371,10 +371,15 @@ void afficheSalle2(char* nom_salle) {
     r++;
     }
     printf("-------------------------------\n");
-
-
-
-
+    
+    printf("\nLégende\n");
+    couleur("36");
+    printf("O : Categorie 1 / Fosse\n");
+    couleur("33");
+    printf("O : Categorie 2\n");
+    couleur("37");
+    printf("O : Categorie 3\n");
+    couleur("0");
 
 
 /*  Mise en page du fichier txt
