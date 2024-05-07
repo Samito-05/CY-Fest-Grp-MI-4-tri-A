@@ -76,7 +76,7 @@ Salle creerSalle(){
         salle.nsiegeA*=salle.nsiege;
         clrscr();
     } 
-    
+    //alessio le goat
     printf("Combien y a t-il de rangée de catégorie B ?\n");  
     scanf("%d",&salle.nsiegeB);
     salle.nsiegeB*=salle.nsiege;
@@ -141,7 +141,7 @@ Salle creerSalle(){
     if (salle.fosse==1){ //Si il y a une fosse on double le nombre de place en catégorie A
         salle.nrangee+=salle.nsiegeA/salle.nsiege;
         salle.nsiegeA+=salle.nsiegeA;
-        
+    //merci julesssssssssss    
         
         printf("Quel est le prix d'une place en fosse ?\n");
         scanf("%f",&salle.prixA);
@@ -224,7 +224,7 @@ void choix(){//oublier pas d apppeler la fonction a la fin de chaque action maje
     }
 
 }
-
+//l'amour n'a pas d'age
 void afficheSalle(Salle salle){
     int r=1;
 
@@ -352,6 +352,6 @@ int main(){
     Salle salle=creerSalle();
     afficheSalle2("Test");
 
-		
+		//alessio le goat
     return 0;
 }
