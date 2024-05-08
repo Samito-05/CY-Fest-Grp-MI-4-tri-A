@@ -5,7 +5,14 @@ Projet 1ere annee CY Tech
     PROCOPPE Sam
     CALVANO Romain
 
-01/05/2024
+Semaine 29/04/2024
 
 - Creation grp
 - Creation lib couleurs.h
+- Struccture Salle
+- Constructeur Salle
+
+Semaine 06/05/2024
+
+- Affiche Salle
+
