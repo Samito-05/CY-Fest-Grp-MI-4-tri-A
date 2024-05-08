@@ -1,4 +1,5 @@
 #include "couleurs.h" /* Importation de la bibliotheque pour gerer le terminal */
+#include "mode.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
