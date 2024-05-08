@@ -214,6 +214,35 @@ Salle creerSalle(){
     return salle;
 }
 
+void salle_txt(Salle salle) {
+
+    char *nom = salle.nomsalle;
+
+    FILE *fichier = fopen(nom,"w");
+
+    if (fichier == NULL) {
+
+        printf("Erreur d'ouverture du fichier.");
+        return;
+
+    }
+
+    fprintf(fichier, "%s : Nom de la salle\n", salle.nomsalle);
+    fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", salle.concert);
+    fprintf(fichier, "%d : Nombre de rangée\n", salle.nrangee);
+    fprintf(fichier, "%d : Nombre de siège par rangée\n", salle.nsiege);
+    fprintf(fichier, "%d : Nombre de siège de catégorie A\n", salle.nsiegeA);
+    fprintf(fichier, "%d : Nombre de siège de catégorie B\n", salle.nsiegeB);
+    fprintf(fichier, "%d : Nombre de siège de catégorie C\n", salle.nsiegeC);
+    fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", salle.fosse);
+    fprintf(fichier, "%.2f : Prix de la catégorie A\n", salle.prixA);
+    fprintf(fichier, "%.2f : Prix de la catégorie B\n", salle.prixB);
+    fprintf(fichier, "%.2f : Prix de la catégorie C\n", salle.prixC);
+    fprintf(fichier,"\n");
+
+    fclose(fichier);
+
+}
 
 
 
@@ -283,6 +312,7 @@ void manage(){//oublier pas d apppeler la fonction a la fin de chaque action maj
     if (manageur==1){
         Salle salle=creerSalle();
         afficheSalle(salle);
+        salle_txt(salle);
         manage();
     }
     if(manageur==6){
@@ -468,34 +498,6 @@ Prix de la catégorie C: ...
     fclose(salles);
 
     }
-
-void salle_txt(Salle salle) {
-
-    char nom[25] = salle.nomsalle;
-
-    FILE *fichier = fopen(nom,"w");
-
-    if (fichier == NULL) {
-
-        printf("Erreur d'ouverture du fichier.");
-        return;
-
-    }
-
-    fprintf(fichier, "%s : Nom de la salle\n", salle.nomsalle);
-    fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", salle.concert);
-    fprintf(fichier, "%d : Nombre de rangée\n", salle.nrangee);
-    fprintf(fichier, "%d : Nombre de siège par rangée\n", salle.nsiege);
-    fprintf(fichier, "%d : Nombre de siège de catégorie A\n", salle.nsiegeA);
-    fprintf(fichier, "%d : Nombre de siège de catégorie B\n", salle.nsiegeB);
-    fprintf(fichier, "%d : Nombre de siège de catégorie C\n", salle.nsiegeC);
-    fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", salle.fosse);
-    fprintf(fichier, "%.2f : Prix de la catégorie A\n", salle.prixA);
-    fprintf(fichier, "%.2f : Prix de la catégorie B\n", salle.prixB);
-    fprintf(fichier, "%.2f : Prix de la catégorie C\n", salle.prixC);
-    fprintf(fichier,"\n");
-
-}
 
 
 int main(){

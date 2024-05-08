@@ -1,12 +1,12 @@
 Test : Nom de la salle
 0 : Est-ce que la salle est utilisée ?
-15 : Nombre de rangée
-15 : Nombre de siège par rangée
-75 : Nombre de siège de catégorie A
-75 : Nombre de siège de catégorie B
-75 : Nombre de siège de catégorie C
+4 : Nombre de rangée
+4 : Nombre de siège par rangée
+8 : Nombre de siège de catégorie A
+8 : Nombre de siège de catégorie B
+0 : Nombre de siège de catégorie C
 0 : Est-ce qu'il y a une fosse ?
-15.00 : Prix de la catégorie A
-15.00 : Prix de la catégorie B
-15.00 : Prix de la catégorie C
+1.00 : Prix de la catégorie A
+1.00 : Prix de la catégorie B
+1.00 : Prix de la catégorie C
 
