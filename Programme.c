@@ -3,9 +3,12 @@
 #include <stdlib.h>
 #include<string.h>
 
-void choix();
-void afficheSalle();
 
+
+void mode();
+void manageur();
+void afficheSalle();
+void festivalier();
 
 
 typedef struct{
@@ -209,18 +212,82 @@ Salle creerSalle(){
     free(salle.nomsalle);
     return salle;
 }
-void choix(){//oublier pas d apppeler la fonction a la fin de chaque action majeur 
-    int choix;
-    printf("que voulez vous faire ?\n1.ajouter une salle 2...\n");//ecris tout les choix de manageur et ne pas oublier 
-    scanf("%d",&choix);
-     while (choix<1 || choix>2){
-        printf("erreur la valeur saisie doit être entre 1 et 2\n");
-        scanf("%d",&choix);
+
+
+
+
+void mode() {// j ai mis des clear screen mais si vous trouver que y en a pas assez vous pouvez en rajouter 
+    int mode;
+    int cle;
+    int i = 0;
+
+    printf("Que voulez-vous faire ?\n1. Gérer le festival (mode manageur)\n2. Réserver des places (mode festivalier)\n");
+    scanf("%d", &mode);
+
+    while (mode < 1 || mode > 2) {
+        printf("Erreur : la valeur saisie doit être entre 1 et 2.\n");
+        scanf("%d", &mode);
     }
-    if (choix==1){
+
+    if (mode == 1) {
+        // Vérification de la clé d'accès pour le mode manageur
+        while (cle != 123456 && i < 3) {
+            printf("Entrez la clé d'accès : ");
+            scanf("%d", &cle);
+            if (cle != 123456) {
+                i++;
+                printf("Code erroné. Plus que %d tentative(s).\n", 3 - i);
+                if (i == 3) {
+                    printf("Nombre maximum de tentatives atteint. Sortie du programme.\n");
+                    clrscr();
+                    exit(1);// si on se troupe 3 fois on sort du programe
+                }
+            }
+        }
+        clrscr();
+        manage(); 
+    } 
+    else if (mode == 2) {
+        clrscr();
+        festival(); 
+    }
+}
+
+void festival(){
+    int festivalier;
+    printf("que voulez vous faire ?\n1.reserver une place\t2...\t6.retour au choix du mode\n");//ecris tout les choix de manageur 
+    scanf("%d",&festivalier);
+     while (festivalier<1 || festivalier>6){
+        printf("erreur la valeur saisie doit être entre 1 et 2\n");
+        scanf("%d",&festivalier);
+    }
+    if (festivalier==1){
+       printf("reserve");
+        festival();
+    }
+    if(festivalier==6){
+        clrscr();
+        mode();
+    }
+}
+
+
+void manage(){//oublier pas d apppeler la fonction a la fin de chaque action majeur 
+    int manageur;
+    printf("que voulez vous faire ?\n1.ajouter une salle\t2...\t6.retour au choix du mode\n");//ecris tout les choix de manageur 
+    scanf("%d",&manageur);
+     while (manageur<1 || manageur>6){
+        printf("erreur la valeur saisie doit être entre 1 et 2\n");
+        scanf("%d",&manageur);
+    }
+    if (manageur==1){
         Salle salle=creerSalle();
         afficheSalle(salle);
-        choix=0;
+        manage();
+    }
+    if(manageur==6){
+        clrscr();
+        mode();
     }
 
 }
@@ -267,7 +334,7 @@ void afficheSalle(Salle salle){
     r++;
     }
     printf("-------------------------------\n");
-    choix();
+    manage();
 }
 
 void afficheSalle2(char* nom_salle) {
@@ -425,11 +492,11 @@ int main(){
 
     fclose(fichier);
 
-    // choix();
+   mode();
 
-    Salle salle=creerSalle();
+    //Salle salle=creerSalle();
 
-    afficheSalle2("Test");
+    //afficheSalle2("Test");
 
     return 0;
 }
