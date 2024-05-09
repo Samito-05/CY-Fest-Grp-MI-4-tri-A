@@ -251,10 +251,10 @@ void mode() {// j ai mis des clear screen mais si vous trouver que y en a pas as
     int cle;
     int i = 0;
 
-    printf("Que voulez-vous faire ?\n1. Gérer le festival (mode manageur)\n2. Réserver des places (mode festivalier)\n");
+    printf("Que voulez-vous faire ?\n1. Gérer le festival (mode manageur)\t2. Réserver des places (mode festivalier)\t3.sortir du programme\n");
     scanf("%d", &mode);
 
-    while (mode < 1 || mode > 2) {
+    while (mode < 1 || mode > 3){
         printf("Erreur : la valeur saisie doit être entre 1 et 2.\n");
         scanf("%d", &mode);
     }
@@ -281,21 +281,28 @@ void mode() {// j ai mis des clear screen mais si vous trouver que y en a pas as
         clrscr();
         festival(); 
     }
+    else if (mode==3){
+        exit(1);
+    }
 }
 
 void festival(){
     int festivalier;
-    printf("que voulez vous faire ?\n1.reserver une place\t2...\t6.retour au choix du mode\n");//ecris tout les choix de manageur 
+    printf("que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.retour au choix du mode\n");//ecris tout les choix de manageur 
     scanf("%d",&festivalier);
      while (festivalier<1 || festivalier>6){
         printf("erreur la valeur saisie doit être entre 1 et 2\n");
         scanf("%d",&festivalier);
     }
     if (festivalier==1){
-       printf("reserve");
+        printf("reserve\n");
         festival();
     }
-    if(festivalier==6){
+    if (festivalier==1){
+       printf("remboursement\n");
+        festival();
+    }
+    if(festivalier==3){
         clrscr();
         mode();
     }
@@ -303,7 +310,7 @@ void festival(){
 
 void manage(){//oublier pas d apppeler la fonction a la fin de chaque action majeur 
     int manageur;
-    printf("que voulez vous faire ?\n1.ajouter une salle\t2...\t6.retour au choix du mode\n");//ecris tout les choix de manageur 
+    printf("que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle(pas encore créé)\t3.supprimer une salle(pas encore créé)\t4.retour au choix du mode\n");//ecris tout les choix de manageur 
     scanf("%d",&manageur);
      while (manageur<1 || manageur>6){
         printf("erreur la valeur saisie doit être entre 1 et 2\n");
@@ -315,7 +322,15 @@ void manage(){//oublier pas d apppeler la fonction a la fin de chaque action maj
         salle_txt(salle);
         manage();
     }
-    if(manageur==6){
+     else if(manageur==2){
+        printf("modifier\n");
+        manage();
+    }
+    else if(manageur==3){
+       printf("supprimer\n");
+       manage();
+    }
+    else if(manageur==4){
         clrscr();
         mode();
     }
