@@ -1,3 +1,6 @@
+#ifndef MANAGER_H
+#define MANAGER_H
+
 typedef struct{
     int concert; // 0 si la salle n'est pas utilisié, sinon 1
     char* nomsalle; 
@@ -22,3 +25,4 @@ void afficheSalle(Salle salle);
 
 void afficheSalle2(char* nom_salle);
 
+#endif
