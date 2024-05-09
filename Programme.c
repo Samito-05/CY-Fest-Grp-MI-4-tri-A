@@ -1,5 +1,7 @@
-#include "couleurs.h" /* Importation de la bibliotheque pour gerer le terminal */
+#include "couleurs.h" 
 #include "mode.h"
+#include "festivalier.h"
+#include "manageur.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -217,6 +219,8 @@ Salle creerSalle(){
 void salle_txt(Salle salle) {
 
     char *nom = salle.nomsalle;
+
+    nom[strcspn(nom, "\n")] = '\0';
 
     FILE *fichier = fopen(nom,"w");
 

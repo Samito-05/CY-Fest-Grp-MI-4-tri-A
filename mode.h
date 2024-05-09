@@ -1,6 +1,6 @@
-#include <stdio.h>
+void mode();
 
-void mode_manageur(void);
-void mode_festivalier(void);
+void festival();
 
+void manage();
 
