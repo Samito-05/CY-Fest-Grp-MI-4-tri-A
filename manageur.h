@@ -1,5 +1,5 @@
-#ifndef MANAGER_H
-#define MANAGER_H
+#ifndef MANAGEUR_H
+#define MANAGEUR_H
 
 typedef struct{
     int concert; // 0 si la salle n'est pas utilisié, sinon 1
@@ -9,7 +9,7 @@ typedef struct{
     //Les sièges par catégories
     int nsiegeA;
     int nsiegeB;
-    int nsiegeC;
+    int nsiegeC; 
     int fosse; // 0 si il n'y a pas de fosse, sinon 1
     // Prix par catégories
     float prixA;
