@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct{
     int concert; // 0 si la salle n'est pas utilisié, sinon 1
     char* nomsalle; 
@@ -87,7 +90,7 @@ void manage(){//oublier pas d apppeler la fonction a la fin de chaque action maj
         scanf("%d",&manageur);
     }
     if (manageur==1){
-        Salle salle=creerSalle();
+        creerSalle();
         afficheSalle(salle);
         salle_txt(salle);
         manage();
