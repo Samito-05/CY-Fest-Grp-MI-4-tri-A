@@ -547,7 +547,7 @@ int main(){
 
 /*
 
-- Separer les fonctoin : Gabin
+- Separer les fonctoin : Sam
 - Mode/role : Romain
 - Affichage : Sam 
 - Fichier de salles : Sam/Gabin
