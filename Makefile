@@ -1,17 +1,25 @@
-all : exec
+CFLAGS = -Wno-implicit-fuction-declaration
 
-main.o: Programme.c mode.h Couleurs.h
-	gcc -c main.c -o main.o
+Tout : prg 
+
+prg: main.o manageur.o festivalier.o
+	@echo "Creation de l'application finale"
+	gcc $(CFLAGS) main.o manageur.o festivalier.o -o prg
+
+Programme.o: Programme.c mode.h Couleurs.h
+	@echo "Compilation du programme principal"
+	gcc $(CFLAGS) -c Programme.c 
 
 manageur.o: manageur.c mode.h Couleurs.h
-	gcc -c manageur.c -o manageur.o
+	@echo "Compilation mode manageur"
+	gcc $(CFLAGS) -c manageur.c
 
 festivalier.o: festivalier.c mode.h Couleurs.h
-	gcc -c festivalier.c -o festivalier.o
+	@echo "Compilation du mode festivalier"
+	gcc $(CFLAGS) -c festivalier.c 
 
-exec: main.o manageur.o festivalier.o
-	gcc main.o manageur.o festivalier.o -o exec
-
+ 
 clean:
+	@echo "Supression des fichier supplementaires"
 	rm -f *.o
-	rm exec
+	rm prg
