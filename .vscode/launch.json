@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+    
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
@@ -8,8 +9,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/proco/Documents/GitHub/CY-Fest-Grp-MI-4-tri-A",
-      "program": "c:/Users/proco/Documents/GitHub/CY-Fest-Grp-MI-4-tri-A/build/Debug/outDebug",
+      "cwd": "${WorkspaceFolder}",
+      "program": "${WorkspaceFolder}/build/Debug/outDebug.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

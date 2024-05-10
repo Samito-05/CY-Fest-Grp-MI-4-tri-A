@@ -1,10 +1,10 @@
-CFLAGS = -Wno-implicit-fuction-declaration
+CFLAGS = -Wno-implicit-function-declaration
 
 Tout : prg 
 
-prg: main.o manageur.o festivalier.o
+prg: Programme.o manageur.o festivalier.o couleur.o
 	@echo "Creation de l'application finale"
-	gcc $(CFLAGS) main.o manageur.o festivalier.o -o prg
+	gcc $(CFLAGS) Programme.o manageur.o festivalier.o -o prg
 
 Programme.o: Programme.c mode.h Couleurs.h
 	@echo "Compilation du programme principal"
@@ -18,7 +18,10 @@ festivalier.o: festivalier.c mode.h Couleurs.h
 	@echo "Compilation du mode festivalier"
 	gcc $(CFLAGS) -c festivalier.c 
 
- 
+couleur.o: Couleurs.h
+	@echo "Compilation des couleurs"
+	gcc $(CFLAGS) -c Couleurs.h
+
 clean:
 	@echo "Supression des fichier supplementaires"
 	rm -f *.o

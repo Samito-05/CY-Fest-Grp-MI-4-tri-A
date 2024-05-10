@@ -1,7 +1,8 @@
 {
   "files.associations": {
     "couleurs.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "festivalier.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
