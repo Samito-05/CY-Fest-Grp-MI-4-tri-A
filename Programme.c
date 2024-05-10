@@ -216,6 +216,12 @@ Salle creerSalle(){
     return salle;
 }
 
+Salle modif_salle(Salle salle){
+
+
+
+}
+
 void salle_txt(Salle salle) {
 
     char *nom = salle.nomsalle;
