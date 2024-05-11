@@ -24,7 +24,6 @@ Salle creerSalle()
 {
     Salle salle;
     int n = 0;
-
     salle.concert = 0; // On initialise la salle comme non occupé
 
     printf("Combien de lettres contient le nom de la salle ?\n");
@@ -37,9 +36,16 @@ Salle creerSalle()
         printf("Erreur de nom\n");
         exit(1);
     }
+
     printf("Quel est le nom de la salle ?\n");
     scanf("%s", salle.nomsalle);
     clrscr();
+
+
+    while(salle.nomsalle == NULL){
+        printf("Erreur de nom\n");
+        scanf("%s", salle.nomsalle);
+    }
 
     printf("Combien y a t-il de rangée ?\n");
     scanf("%d", &salle.nrangee);
