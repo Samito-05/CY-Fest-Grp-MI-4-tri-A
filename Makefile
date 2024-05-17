@@ -22,7 +22,7 @@ couleur.o: Couleurs.h
 	@echo "Compilation des couleurs"
 	@gcc $(CFLAGS) -c Couleurs.h
 
-clean:
+vide:
 	@echo "Supression des fichier supplementaires"
 	@rm -f *.o
 	@rm prg
