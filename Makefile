@@ -24,5 +24,5 @@ couleur.o: Couleurs.h
 
 clean:
 	@echo "Supression des fichier supplementaires"
-	rm -f *.o
-	rm prg
+	@rm -f *.o
+	@rm prg
