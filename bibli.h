@@ -1,7 +1,9 @@
-#ifndef COULEURS
-#define COULEURS
+#ifndef BIBLI_H
+#define BIBLI_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Efface l'écran et replace le curseur en haut à gauche
 #define clrscr() printf("\033[H\033[2J")
@@ -19,5 +21,14 @@
     noir, rouge, vert, jaune, bleu, magenta, cyan et blanc 
 
 */
+
+void creerSalle();
+void afficheSalle(char* nom_salle);
+void reserverSalle(char *salle, int y, int x);
+void modifierSalle(char *nom_salle);
+void supprimerSalle(char *nom_salle);
+void choix();
+void festival();
+void manage();
 
 #endif
