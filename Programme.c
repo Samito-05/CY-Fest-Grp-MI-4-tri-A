@@ -3,7 +3,7 @@
 
 
 
-void choix()
+void mode()
 { // j ai mis des clear screen mais si vous trouver que y en a pas assez vous pouvez en rajouter
     int mode;
     int cle;
@@ -49,22 +49,21 @@ void choix()
     {
         exit(1);
     }
-    else {
-      printf("erreur dans la saisie");
-      choix();
-    }
 }
 
-void festival()
-{
+void festival(){
     int festivalier;
+    int verif=0, verif2=0;
+    char c;
     printf("que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.retour au choix du mode\n"); // ecris tout les choix de manageur
-    scanf("%d", &festivalier);
-    while (festivalier < 1 || festivalier > 6)
-    {
-        printf("erreur la valeur saisie doit être entre 1 et 2\n");
-        scanf("%d", &festivalier);
-    }
+    do{
+        verif=scanf("%d",&festivalier);
+        do{
+            verif2=scanf("%c",&c);
+        }while(verif2 == 1 && c!='\n');   
+    } while (verif != 1 || festivalier<0 || festivalier>3);
+    verif=0;
+    verif2=0;
     if (festivalier == 1)
     {
         int r,c,n;
@@ -99,7 +98,7 @@ void festival()
     if (festivalier == 3)
     {
         clrscr();
-        choix();
+        mode();
     }
         else {
       printf("erreur dans la saisie");
@@ -161,11 +160,7 @@ void manage()
     else if (manageur == 4)
     {
         clrscr();
-        choix();
-    }
-        else {
-      printf("erreur dans la saisie");
-      manage();
+        mode();
     }
 }
 
@@ -179,6 +174,6 @@ int main()
   }
   fclose(salles);*/
   clrscr();
-  choix();
+  mode();
   return 0;
 }
