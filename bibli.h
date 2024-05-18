@@ -27,8 +27,9 @@ void afficheSalle(char* nom_salle);
 void reserverSalle(char *salle, int y, int x);
 void modifierSalle(char *nom_salle);
 void supprimerSalle(char *nom_salle);
-void choix();
+void mode();
 void festival();
 void manage();
+void creerConcert();
 
 #endif

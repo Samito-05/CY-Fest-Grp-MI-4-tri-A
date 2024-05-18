@@ -1,11 +1,10 @@
 #include "bibli.h"
 
 void afficheSalle(char *nom_salle) {
-  char *nom = "salle.txt";
   int r = 1;
 
   // ouvrir le fichier
-  FILE *salles = fopen(nom, "r");
+  FILE *salles = fopen("salle.txt", "r");
   if (salles == NULL) {
     exit(1);
   }

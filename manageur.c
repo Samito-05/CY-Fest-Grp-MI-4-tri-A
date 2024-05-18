@@ -632,3 +632,52 @@ void supprimerSalle(char *nom_salle) {
   printf("Salle bien supprimer\n");
 }
 
+void creerConcert(){
+  //demander les infos du concert
+  char nom_concert[21];
+  char nom_salle[21];
+  float temps;
+  printf("Quelle est le nom du concert ? (maximum 20 caractères)\n");
+  scanf("%s",nom_concert);
+  printf("A quelle heure commence le concert ? (h.m)\n");
+  scanf("%f",&temps);
+  //demander dans quelle salle le mettre, changer la variable concert =1
+  printf("Le concert a lieu dans quelle salle ? (maximum 20 caractères)\n");
+  scanf("%s",nom_salle);
+
+  
+  
+  FILE *salles = fopen("salle.txt", "r");
+  if (salles == NULL) {
+    exit(1);
+  }
+
+  char phrase[50];
+  int trouve = 0;
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, nom_salle) != NULL) {
+      // printf("La salle existe.\n");
+      trouve = 1;
+      break;
+    }
+  }
+
+  // Vérifier si la fin du fichier est atteinte sans trouver la salle
+  if (!trouve) {
+    printf("La salle n'a pas été trouvée.\n");
+    fclose(salles);
+    return;
+  }
+
+  FILE *concert = fopen("concert.txt", "a+");
+  if (concert == NULL) {
+    printf("Erreur lors de l'ouverture du fichier %s\n", "concert.txt");
+    exit(1);
+  }
+  fprintf(concert, "%s : Nom du concert\n", nom_concert);
+  fprintf(concert, "%s : Nom de la salle\n", nom_salle);
+  fclose(concert);
+}
