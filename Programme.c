@@ -16,7 +16,8 @@ void mode()
         verif=scanf("%d",&mode);
         do{
             verif2=scanf("%c",&c);
-        }while(verif2 == 1 && c!='\n');   
+        }while(verif2 == 1 && c!='\n');
+        printf("erreur de la saisie\n");   
     } while (verif != 1 || mode<0 || mode>3);
     verif=0;
     verif2=0;
@@ -32,7 +33,8 @@ void mode()
                 verif=scanf("%d",&cle);
                 do{
                     verif2=scanf("%c",&c);
-                }while(verif2 == 1 && c!='\n');   
+                }while(verif2 == 1 && c!='\n');
+                printf("erreur de la saisie\n");
             } while (verif != 1 || cle<99999 || cle>1000000);
             verif=0;
              verif2=0;
@@ -70,7 +72,8 @@ void festival(){
         verif=scanf("%d",&festivalier);
         do{
             verif2=scanf("%c",&g);
-        }while(verif2 == 1 && g!='\n');   
+        }while(verif2 == 1 && g!='\n');
+        printf("erreur de la saisie\n");   
     } while (verif != 1 || festivalier<0 || festivalier>4);
     verif=0;
     verif2=0; 
@@ -83,7 +86,8 @@ void festival(){
             verif=scanf("%d",&n);
             do{
                 verif2=scanf("%c",&g);
-            }while(verif2 == 1 && g!='\n');   
+            }while(verif2 == 1 && g!='\n');
+            printf("erreur de la saisie\n");   
         } while (verif != 1 || n<0);
         verif=0;
         verif2=0; 
@@ -101,7 +105,8 @@ void festival(){
             verif=scanf("%d",&r);
             do{
                 verif2=scanf("%c",&g);
-            }while(verif2 == 1 && g!='\n');   
+            }while(verif2 == 1 && g!='\n');  
+            printf("erreur de la saisie\n"); 
         } while (verif != 1 ||r<0);
         verif=0;
         verif2=0; 
@@ -111,7 +116,8 @@ void festival(){
             verif=scanf("%d",&c);
             do{
                 verif2=scanf("%c",&g);
-            }while(verif2 == 1 && g!='\n');   
+            }while(verif2 == 1 && g!='\n');
+            printf("erreur de la saisie\n");  
         } while (verif != 1 ||c<0);
         verif=0;
         verif2=0; 
@@ -147,7 +153,8 @@ void manage()
         verif=scanf("%d",&manageur);
         do{
             verif2=scanf("%c",&c);
-        }while(verif2 == 1 && c!='\n');   
+        }while(verif2 == 1 && c!='\n');
+        printf("erreur de la saisie\n");   
     } while (verif != 1 || manageur<0 || manageur>5);
     verif=0;
     verif2=0;
@@ -165,7 +172,8 @@ void manage()
             verif=scanf("%d",&n);
             do{
                 verif2=scanf("%c",&c);
-            }while(verif2 == 1 && c!='\n');   
+            }while(verif2 == 1 && c!='\n');
+            printf("erreur de la saisie\n");   
         } while (verif != 1 ||n<0);
         verif=0;
         verif2=0; 
@@ -190,7 +198,8 @@ void manage()
             verif=scanf("%d",&r);
             do{
                 verif2=scanf("%c",&c);
-            }while(verif2 == 1 && c!='\n');   
+            }while(verif2 == 1 && c!='\n');
+            printf("erreur de la saisie\n");  
         } while (verif != 1 ||r<0);
         verif=0;
         verif2=0; 
