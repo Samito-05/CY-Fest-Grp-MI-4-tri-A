@@ -29,11 +29,11 @@ void mode()
         while (cle != 123456 && i < 3){
             printf("Entrez la clé d'accès : ");
             do{
-                verif=scanf("%d",&festivalier);
+                verif=scanf("%d",&cle);
                 do{
-                    erif2=scanf("%c",&c);
+                    verif2=scanf("%c",&c);
                 }while(verif2 == 1 && c!='\n');   
-            } while (verif != 1 || festivalier<99999 || festivalier>1000000);
+            } while (verif != 1 || cle<99999 || cle>1000000);
             verif=0;
              verif2=0;
             if (cle != 123456){
