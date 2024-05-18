@@ -10,23 +10,33 @@ void mode()
     int i = 0;
 
     printf("Que voulez-vous faire ?\n1. Gérer le festival (mode manageur)\t2. Réserver des places (mode festivalier)\t3.sortir du programme\n");
-    scanf("%d", &mode);
+    int verif=0, verif2=0;
+    char c;
+    do{
+        verif=scanf("%d",&mode);
+        do{
+            verif2=scanf("%c",&c);
+        }while(verif2 == 1 && c!='\n');   
+    } while (verif != 1 || mode<0 || mode>3);
+    verif=0;
+    verif2=0;
 
-    while (mode < 1 || mode > 3)
-    {
-        printf("Erreur : la valeur saisie doit être entre 1 et 3.\n");
-        scanf("%d", &mode);
-    }
+    
 
     if (mode == 1)
     {
         // Vérification de la clé d'accès pour le mode manageur
-        while (cle != 123456 && i < 3)
-        {
+        while (cle != 123456 && i < 3){
             printf("Entrez la clé d'accès : ");
-            scanf("%d", &cle);
-            if (cle != 123456)
-            {
+            do{
+                verif=scanf("%d",&festivalier);
+                do{
+                    erif2=scanf("%c",&c);
+                }while(verif2 == 1 && c!='\n');   
+            } while (verif != 1 || festivalier<99999 || festivalier>1000000);
+            verif=0;
+             verif2=0;
+            if (cle != 123456){
                 i++;
                 printf("Code erroné. Plus que %d tentative(s).\n", 3 - i);
                 if (i == 3)
@@ -53,24 +63,30 @@ void mode()
 
 void festival(){
     int festivalier;
-    int verif=0, verif2=0;
-    char c;
     printf("que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.retour au choix du mode\n"); // ecris tout les choix de manageur
+    int verif=0, verif2=0;
+    char g;
     do{
         verif=scanf("%d",&festivalier);
         do{
-            verif2=scanf("%c",&c);
-        }while(verif2 == 1 && c!='\n');   
-    } while (verif != 1 || festivalier<0 || festivalier>3);
+            verif2=scanf("%c",&g);
+        }while(verif2 == 1 && g!='\n');   
+    } while (verif != 1 || festivalier<0 || festivalier>4);
     verif=0;
-    verif2=0;
-    if (festivalier == 1)
-    {
+    verif2=0; 
+    if (festivalier == 1){
         int r,c,n;
         char* salle;
           
         printf("Combien de lettres contient le nom de la salle ?\n");
-        scanf("%d", &n);
+        do{
+            verif=scanf("%d",&n);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');   
+        } while (verif != 1 || n<0);
+        verif=0;
+        verif2=0; 
         clrscr();
         salle = (char *)malloc(sizeof(char) * (n + 1));
         if (salle == NULL) {
@@ -81,10 +97,24 @@ void festival(){
         scanf("%s", salle);
         clrscr();
         printf("Quelle rangée ?\n");
-        scanf("%d",&r);
+        do{
+            verif=scanf("%d",&r);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');   
+        } while (verif != 1 ||r<0);
+        verif=0;
+        verif2=0; 
         clrscr();
         printf("Quelle colonne ?\n");
-        scanf("%d",&c);
+        do{
+            verif=scanf("%d",&c);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');   
+        } while (verif != 1 ||c<0);
+        verif=0;
+        verif2=0; 
         clrscr();
         reserverSalle(salle,r,c);
         afficheSalle(salle);
@@ -110,12 +140,17 @@ void manage()
 { // oublier pas d apppeler la fonction a la fin de chaque action majeur
     int manageur;
     printf("que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.retour au choix du mode\n"); // ecris tout les choix de manageur
-    scanf("%d", &manageur);
-    while (manageur < 1 || manageur > 6)
-    {
-        printf("erreur la valeur saisie doit être entre 1 et 2\n");
-        scanf("%d", &manageur);
-    }
+    int verif=0, verif2=0;
+    char c;
+    
+    do{
+        verif=scanf("%d",&manageur);
+        do{
+            verif2=scanf("%c",&c);
+        }while(verif2 == 1 && c!='\n');   
+    } while (verif != 1 || manageur<0 || manageur>5);
+    verif=0;
+    verif2=0;
     if (manageur == 1)
     {
         creerSalle();
@@ -126,7 +161,14 @@ void manage()
       int n;
       char* salle;
       printf("Combien de lettres contient le nom de la salle ?\n");
-      scanf("%d", &n);
+      do{
+            verif=scanf("%d",&n);
+            do{
+                verif2=scanf("%c",&c);
+            }while(verif2 == 1 && c!='\n');   
+        } while (verif != 1 ||n<0);
+        verif=0;
+        verif2=0; 
       clrscr();
       salle = (char *)malloc(sizeof(char) * (n + 1));
       if (salle == NULL) {
@@ -141,12 +183,19 @@ void manage()
     }
     else if (manageur == 3)
     {
-      int n;
+      int r;
       char* salle;
       printf("Combien de lettres contient le nom de la salle ?\n");
-      scanf("%d", &n);
+      do{
+            verif=scanf("%d",&r);
+            do{
+                verif2=scanf("%c",&c);
+            }while(verif2 == 1 && c!='\n');   
+        } while (verif != 1 ||r<0);
+        verif=0;
+        verif2=0; 
       clrscr();
-      salle = (char *)malloc(sizeof(char) * (n + 1));
+      salle = (char *)malloc(sizeof(char) * (r + 1));
       if (salle == NULL) {
         printf("Erreur de nom\n");
         exit(1);
