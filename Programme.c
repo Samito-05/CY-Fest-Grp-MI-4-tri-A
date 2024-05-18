@@ -3,8 +3,7 @@
 
 
 
-void mode()
-{ // j ai mis des clear screen mais si vous trouver que y en a pas assez vous pouvez en rajouter
+void mode(){ // j ai mis des clear screen mais si vous trouver que y en a pas assez vous pouvez en rajouter
     int mode;
     int cle;
     int i = 0;
@@ -17,7 +16,10 @@ void mode()
         do{
             verif2=scanf("%c",&c);
         }while(verif2 == 1 && c!='\n');
-        printf("erreur de la saisie\n");   
+        if (verif != 1 || mode<0 || mode>3){
+            printf("saisie invalide\n");
+        }
+
     } while (verif != 1 || mode<0 || mode>3);
     verif=0;
     verif2=0;
@@ -34,7 +36,9 @@ void mode()
                 do{
                     verif2=scanf("%c",&c);
                 }while(verif2 == 1 && c!='\n');
-                printf("erreur de la saisie\n");
+                if (verif != 1 || cle<99999 || cle>1000000){
+                printf("saisie invalide\n");
+                }
             } while (verif != 1 || cle<99999 || cle>1000000);
             verif=0;
              verif2=0;
@@ -47,11 +51,11 @@ void mode()
                     clrscr();
                     exit(1); // si on se troupe 3 fois on sort du programe
                 }
-            }
-        }
+            }    
+        }        
         clrscr();
-        manage();
-    }
+        manage();   
+    }   
     else if (mode == 2)
     {
         clrscr();
@@ -63,6 +67,7 @@ void mode()
     }
 }
 
+
 void festival(){
     int festivalier;
     printf("que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.retour au choix du mode\n"); // ecris tout les choix de manageur
@@ -73,7 +78,9 @@ void festival(){
         do{
             verif2=scanf("%c",&g);
         }while(verif2 == 1 && g!='\n');
-        printf("erreur de la saisie\n");   
+        if (verif != 1 || festivalier<0 || festivalier>4){
+            printf("saisie invalide\n");
+        }
     } while (verif != 1 || festivalier<0 || festivalier>4);
     verif=0;
     verif2=0; 
@@ -87,7 +94,10 @@ void festival(){
             do{
                 verif2=scanf("%c",&g);
             }while(verif2 == 1 && g!='\n');
-            printf("erreur de la saisie\n");   
+            if (verif != 1 || n<0){
+            printf("saisie invalide\n");    
+            }
+  
         } while (verif != 1 || n<0);
         verif=0;
         verif2=0; 
@@ -106,7 +116,10 @@ void festival(){
             do{
                 verif2=scanf("%c",&g);
             }while(verif2 == 1 && g!='\n');  
-            printf("erreur de la saisie\n"); 
+            if (verif != 1 || r<0 ){
+            printf("saisie invalide\n");
+            }
+
         } while (verif != 1 ||r<0);
         verif=0;
         verif2=0; 
@@ -117,7 +130,10 @@ void festival(){
             do{
                 verif2=scanf("%c",&g);
             }while(verif2 == 1 && g!='\n');
-            printf("erreur de la saisie\n");  
+            if (verif != 1 || c<0 ){
+            printf("saisie invalide\n");
+            }
+
         } while (verif != 1 ||c<0);
         verif=0;
         verif2=0; 
@@ -154,7 +170,10 @@ void manage()
         do{
             verif2=scanf("%c",&c);
         }while(verif2 == 1 && c!='\n');
-        printf("erreur de la saisie\n");   
+        if (verif != 1 || manageur<0 || manageur>5){
+            printf("saisie invalide\n");
+        }
+  
     } while (verif != 1 || manageur<0 || manageur>5);
     verif=0;
     verif2=0;
@@ -173,7 +192,10 @@ void manage()
             do{
                 verif2=scanf("%c",&c);
             }while(verif2 == 1 && c!='\n');
-            printf("erreur de la saisie\n");   
+            if (verif != 1 ||n<0){
+            printf("saisie invalide\n");    
+            }   
+ 
         } while (verif != 1 ||n<0);
         verif=0;
         verif2=0; 
@@ -199,7 +221,10 @@ void manage()
             do{
                 verif2=scanf("%c",&c);
             }while(verif2 == 1 && c!='\n');
-            printf("erreur de la saisie\n");  
+            if (verif != 1 ||r<0){
+            printf("saisie invalide\n");
+            }
+ 
         } while (verif != 1 ||r<0);
         verif=0;
         verif2=0; 
