@@ -84,31 +84,15 @@ void festival(){
     } while (verif != 1 || festivalier<1 || festivalier>4);
     verif=0;
     verif2=0;
+    clrscr();
     if (festivalier == 1){
         int r,c,n;
-        char* salle; 
-        printf("Combien de lettres contient le nom de la salle ?\n");
-        do{
-            verif=scanf("%d",&n);
-            do{
-                verif2=scanf("%c",&g);
-            }while(verif2 == 1 && g!='\n');
-            if (verif != 1 || n<0){
-            printf("saisie invalide\n");    
-            }
-  
-        } while (verif != 1 || n<0);
-        verif=0;
-        verif2=0; 
+        char salle[21];
+        listeSalle(); 
+        printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
+        scanf("%s", salle);//A securiser !
         clrscr();
-        salle = (char *)malloc(sizeof(char) * (n + 1));
-        if (salle == NULL) {
-          printf("Erreur de nom\n");
-          exit(1);
-        }
-        printf("Quel est le nom de la salle ?\n");
-        scanf("%s", salle);
-        clrscr();
+        afficheSalle(salle);
         printf("Quelle rangée ?\n");
         do{
             verif=scanf("%d",&r);
@@ -123,6 +107,7 @@ void festival(){
         verif=0;
         verif2=0; 
         clrscr();
+        afficheSalle(salle);
         printf("Quelle colonne ?\n");
         do{
             verif=scanf("%d",&c);
@@ -141,7 +126,8 @@ void festival(){
         afficheSalle(salle);
         festival();
     }
-    if (festivalier == 1)
+    clrscr();
+    if (festivalier == 2)
     {
         printf("remboursement\n");
         festival();
@@ -180,28 +166,10 @@ void manage()
     else if (manageur == 2)
     {
       int n;
-      char* salle;
-      printf("Combien de lettres contient le nom de la salle ?\n");
-      do{
-            verif=scanf("%d",&n);
-            do{
-                verif2=scanf("%c",&c);
-            }while(verif2 == 1 && c!='\n');
-            if (verif != 1 ||n<0){
-            printf("saisie invalide\n");    
-            }   
- 
-        } while (verif != 1 ||n<0);
-        verif=0;
-        verif2=0; 
-      clrscr();
-      salle = (char *)malloc(sizeof(char) * (n + 1));
-      if (salle == NULL) {
-        printf("Erreur de nom\n");
-        exit(1);
-      }
-      printf("Quel est le nom de la salle ?\n");
-      scanf("%s", salle);
+      char salle[21];
+      listeSalle();
+      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
+      scanf("%s", salle);//A securiser !
       clrscr();
       modifierSalle(salle);
       manage();
@@ -209,28 +177,10 @@ void manage()
     else if (manageur == 3)
     {
       int r;
-      char* salle;
-      printf("Combien de lettres contient le nom de la salle ?\n");
-      do{
-            verif=scanf("%d",&r);
-            do{
-                verif2=scanf("%c",&c);
-            }while(verif2 == 1 && c!='\n');
-            if (verif != 1 ||r<0){
-            printf("saisie invalide\n");
-            }
- 
-        } while (verif != 1 ||r<0);
-        verif=0;
-        verif2=0; 
-      clrscr();
-      salle = (char *)malloc(sizeof(char) * (r + 1));
-      if (salle == NULL) {
-        printf("Erreur de nom\n");
-        exit(1);
-      }
-      printf("Quel est le nom de la salle ?\n");
-      scanf("%s", salle);
+      char salle[21];
+      listeSalle();
+      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
+      scanf("%s", salle);//A securiser !
       clrscr();
       supprimerSalle(salle);
       manage();
@@ -244,9 +194,8 @@ void manage()
 
 
 
-int main()
-{
-/*FILE* salles = fopen("salle.txt", "w");
+int main(){
+    /*FILE* salles = fopen("salle.txt", "w");
     if (salles == NULL) {
         exit(1);
     }

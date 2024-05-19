@@ -31,7 +31,8 @@ void supprimerSalle(char *nom_salle);
 void mode();
 void festival();
 void manage();
-void creerConcert();
-int debut();
+void listeSalle();
+//void creerConcert();
+//int debut();
 
 #endif

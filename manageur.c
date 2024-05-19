@@ -2,24 +2,15 @@
 
 
 void creerSalle() {
-  int concert, nrangee, nsiege, nsiegeA, nsiegeB, nsiegeC, fosse, n = 0;
-  char* nomsalle= NULL;
+  int concert, nrangee, nsiege, nsiegeA, nsiegeB, nsiegeC, fosse;
+  char nomsalle[21];
   float prixA, prixB, prixC;
   int verif=0, verif2=0;
   char c;
 
   concert = 0; // On initialise la salle comme non occupé
-
-  printf("Combien de lettres contient le nom de la salle ?\n");
-  scanf("%d", &n);
-  clrscr();
-
-  nomsalle = (char *)malloc(sizeof(char) * (n + 1));
-  if (nomsalle == NULL) {
-    printf("Erreur de nom\n");
-    exit(1);
-  }
-  printf("Quel est le nom de la salle ?\n");
+  listeSalle();
+  printf("Quel est le nom de la salle ? (20 caractères maximum)\n");//A securiser !
   scanf("%s", nomsalle);
   clrscr();
 
@@ -279,7 +270,6 @@ if(nsiegeB >0){
   }
 
   fclose(fichier);
-  free(nomsalle);
   printf("La salle a bien été créé.\n");
 }
 
@@ -745,6 +735,40 @@ void supprimerSalle(char *nom_salle) {
   fclose(modif);
   printf("Salle bien supprimer\n");
 }
+
+void listeSalle(){
+  FILE * salles= fopen("salle.txt","r");
+  if (salles==NULL){
+    printf("Erreur fichier");
+    exit(1);
+  }
+  char phrase[50];
+  char nomsalle[21];
+  int a, i=0,nr;
+  printf("Voici les salles créée\n");
+  printf("\n");
+  while((a = fgetc(salles)) != EOF){
+    while (a != ' ' && a != EOF && i < 20) {
+      nomsalle[i] = (char)a;
+      i++;
+      a = fgetc(salles);
+    }
+    nomsalle[i] = '\0'; 
+    printf("%s\n",nomsalle);
+    i=0;
+    for (i=1;i<=3;i++){
+      fgets(phrase, sizeof(phrase), salles);
+    }
+    nr=atoi(phrase);
+    for (i=1;i<=8+nr;i++){
+      fgets(phrase, sizeof(phrase), salles);
+    }
+    i=0;
+  }
+  printf("\n");
+  fclose(salles);
+}
+
 
 /*void creerConcert(){
   //demander les infos du concert

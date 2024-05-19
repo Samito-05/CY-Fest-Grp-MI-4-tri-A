@@ -1,6 +1,37 @@
-iop : Nom de la salle
+iopp : Nom de la salle
 0 : Est-ce que la salle est utilisée ?
-5 : Nombre de rangée
+20 : Nombre de rangée
+20 : Nombre de siège par rangée
+120 : Nombre de siège de catégorie A
+180 : Nombre de siège de catégorie B
+100 : Nombre de siège de catégorie C
+0 : Est-ce qu'il y a une fosse ?
+1.00 : Prix de la catégorie A
+1.00 : Prix de la catégorie B
+1.00 : Prix de la catégorie C
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+O O O O O O O O O O O O O O O O O O O O
+dop : Nom de la salle
+0 : Est-ce que la salle est utilisée ?
+10 : Nombre de rangée
 5 : Nombre de siège par rangée
 10 : Nombre de siège de catégorie A
 10 : Nombre de siège de catégorie B
@@ -9,6 +40,11 @@ iop : Nom de la salle
 1.00 : Prix de la catégorie A
 1.00 : Prix de la catégorie B
 1.00 : Prix de la catégorie C
+O O O O O
+O O O O O
+O O O O O
+O O O O O
+O O O O O
 O O O O O
 O O O O O
 O O O O O
