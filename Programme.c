@@ -251,13 +251,12 @@ void manage()
 
 int main()
 {
-FILE* salles = fopen("salle.txt", "w");
-  if (salles == NULL) {
-      exit(1);
-  }
-  fclose(salles);
-  clrscr();
-  creerSalle();
-  creerConcert();
-  return 0;
+/*FILE* salles = fopen("salle.txt", "w");
+    if (salles == NULL) {
+        exit(1);
+    }
+    fclose(salles);*/
+    clrscr();
+    mode();
+    return 0;
 }

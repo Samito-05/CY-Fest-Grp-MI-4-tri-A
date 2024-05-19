@@ -632,18 +632,22 @@ void supprimerSalle(char *nom_salle) {
   printf("Salle bien supprimer\n");
 }
 
-void creerConcert(){
+/*void creerConcert(){
   //demander les infos du concert
   char nom_concert[21];
   char nom_salle[21];
-  float temps;
+  float debut,temps,fin;
   printf("Quelle est le nom du concert ? (maximum 20 caractères)\n");
   scanf("%s",nom_concert);
   printf("A quelle heure commence le concert ? (h.m)\n");
-  scanf("%f",&temps);
+  scanf("%f",&debut);
   //demander dans quelle salle le mettre, changer la variable concert =1
   printf("Le concert a lieu dans quelle salle ? (maximum 20 caractères)\n");
   scanf("%s",nom_salle);
+  printf("Combien de temps dure le concert (h.m)?\n");
+  scanf("%f",&temps);
+
+
 
   
   
@@ -680,4 +684,48 @@ void creerConcert(){
   fprintf(concert, "%s : Nom du concert\n", nom_concert);
   fprintf(concert, "%s : Nom de la salle\n", nom_salle);
   fclose(concert);
+  
+  salles= fopen("salle.txt", "r+");
+  if (salles == NULL) {
+    exit(1);
+  }
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, nom_salle) != NULL) {
+      // printf("La salle existe.\n");
+      trouve = 1;
+      break;
+    }
+  }
+  if (!trouve) {
+    printf("La salle n'a pas été trouvée.\n");
+    fclose(salles);
+  return;
+  }
+  fseek(salles, 0, SEEK_CUR);
+  fputc('1', salles);
+  fclose(salles);
 }
+
+int debut(){
+  int j,mois,a,h,min;
+  long s;
+  printf("En quelle année a lieu le concert ?\n");
+  scanf("%d",&a);
+  printf("Quel mois a lieu le concert ?\n");
+  scanf("%d",&mois);
+  printf("Quel jour a lieu le concert (numériquement) ?\n");
+  scanf("%d",&j);
+  printf("A quelle heure a lieu le concert ?\n");
+  scanf("%d",&h);
+  printf("A quel minute a lieu le concert ?\n");
+  scanf("%d",&min);
+
+  s=((31557600*a+2629800*mois+86400*j+3600*h+60*min)-62168472000);
+  printf("%ld\n",s);
+  printf("%ld",time(NULL));
+}*/
+
+//Pas fini donc a pas utiliser 

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 // Efface l'écran et replace le curseur en haut à gauche
 #define clrscr() printf("\033[H\033[2J")
@@ -31,5 +32,6 @@ void mode();
 void festival();
 void manage();
 void creerConcert();
+int debut();
 
 #endif

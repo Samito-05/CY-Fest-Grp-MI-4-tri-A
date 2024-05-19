@@ -1,2 +1,0 @@
-y : Nom du concert
-test : Nom de la salle
