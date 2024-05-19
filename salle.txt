@@ -1,34 +1,3 @@
-test : Nom de la salle
-0 : Est-ce que la salle est utilisée ?
-20 : Nombre de rangée
-20 : Nombre de siège par rangée
-100 : Nombre de siège de catégorie A
-100 : Nombre de siège de catégorie B
-200 : Nombre de siège de catégorie C
-0 : Est-ce qu'il y a une fosse ?
-1.00 : Prix de la catégorie A
-1.00 : Prix de la catégorie B
-1.00 : Prix de la catégorie C
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
-O O O O O O O O O O O O O O O O O O O O
 iop : Nom de la salle
 0 : Est-ce que la salle est utilisée ?
 5 : Nombre de rangée

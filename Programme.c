@@ -16,11 +16,11 @@ void mode(){ // j ai mis des clear screen mais si vous trouver que y en a pas as
         do{
             verif2=scanf("%c",&c);
         }while(verif2 == 1 && c!='\n');
-        if (verif != 1 || mode<0 || mode>3){
+        if (verif != 1 || mode<1 || mode>3){
             printf("saisie invalide\n");
         }
 
-    } while (verif != 1 || mode<0 || mode>3);
+    } while (verif != 1 || mode<1 || mode>3);
     verif=0;
     verif2=0;
 
@@ -78,16 +78,15 @@ void festival(){
         do{
             verif2=scanf("%c",&g);
         }while(verif2 == 1 && g!='\n');
-        if (verif != 1 || festivalier<0 || festivalier>4){
+        if (verif != 1 || festivalier<1 || festivalier>4){
             printf("saisie invalide\n");
         }
-    } while (verif != 1 || festivalier<0 || festivalier>4);
+    } while (verif != 1 || festivalier<1 || festivalier>4);
     verif=0;
-    verif2=0; 
+    verif2=0;
     if (festivalier == 1){
         int r,c,n;
-        char* salle;
-          
+        char* salle; 
         printf("Combien de lettres contient le nom de la salle ?\n");
         do{
             verif=scanf("%d",&n);
@@ -152,10 +151,6 @@ void festival(){
         clrscr();
         mode();
     }
-        else {
-      printf("erreur dans la saisie");
-      festival();
-    }
 }
 
 void manage()
@@ -170,11 +165,11 @@ void manage()
         do{
             verif2=scanf("%c",&c);
         }while(verif2 == 1 && c!='\n');
-        if (verif != 1 || manageur<0 || manageur>5){
+        if (verif != 1 || manageur<1 || manageur>5){
             printf("saisie invalide\n");
         }
   
-    } while (verif != 1 || manageur<0 || manageur>5);
+    } while (verif != 1 || manageur<1 || manageur>5);
     verif=0;
     verif2=0;
     if (manageur == 1)

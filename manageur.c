@@ -5,6 +5,8 @@ void creerSalle() {
   int concert, nrangee, nsiege, nsiegeA, nsiegeB, nsiegeC, fosse, n = 0;
   char* nomsalle= NULL;
   float prixA, prixB, prixC;
+  int verif=0, verif2=0;
+  char c;
 
   concert = 0; // On initialise la salle comme non occupé
 
@@ -40,48 +42,66 @@ void creerSalle() {
 
 
   printf("Combien y a t-il de rangée ?\n");
-  scanf("%d", &nrangee);
+  do{
+    verif=scanf("%d",&nrangee);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nrangee<1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nrangee<1);
+  verif=0;
+  verif2=0;
   clrscr();
-
-  while (nrangee < 1) {
-    printf("Erreur, nombre de rangée non valide. Réessayez.\n");
-    scanf("%d", &nrangee);
-    clrscr();
-  }
 
   printf("Combien y a t-il de siège par rangée ?\n");
-  scanf("%d", &nsiege);
+  do{
+    verif=scanf("%d",&nsiege);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiege<1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiege<1);
+  verif=0;
+  verif2=0;
   clrscr();
 
-  while (nsiege < 1) {
-    printf("Erreur, nombre de siege par rangée non valide. Réessayez.\n");
-    scanf("%d", &nsiege);
-    clrscr();
-  }
 
   // On demande le nombre de siège par catégorie
   printf("Combien y a t-il de rangée de catégorie A ?\n");
-  scanf("%d", &nsiegeA);
+  do{
+    verif=scanf("%d",&nsiegeA);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiegeA<1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiegeA<1);
+  verif=0;
+  verif2=0;
   nsiegeA *=nsiege; // On fait ranger de Catégorie A * nombre de siège par rangée
   clrscr();
 
-  while (nsiegeA < 0) {
-    printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-    scanf("%d", &nsiegeA);
-    nsiegeA *= nsiege;
-    clrscr();
-  }
+
 
   printf("Combien y a t-il de rangée de catégorie B ?\n");
-  scanf("%d", &nsiegeB);
+  do{
+    verif=scanf("%d",&nsiegeB);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiegeB<0){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiegeB<0);
+  verif=0;
+  verif2=0;
   nsiegeB *= nsiege;
 
-  while (nsiegeB < 0) {
-    printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-    scanf("%d", &nsiegeB);
-    nsiegeB *= nsiege;
-    clrscr();
-  }
 
   nsiegeC =nsiege * nrangee - (nsiegeA + nsiegeB);
   clrscr();
@@ -94,28 +114,37 @@ void creerSalle() {
            "réessayer\n");
 
     printf("Combien y a t-il de rangée de catégorie A ?\n");
-    scanf("%d", &nsiegeA);
+    do{
+      verif=scanf("%d",&nsiegeA);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || nsiegeA<1){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || nsiegeA<1);
+  verif=0;
+  verif2=0;
     clrscr();
     nsiegeA *= nsiege; // On fais rangée de Catégorie A * nombre de
                                    // siège par rangée
-    while (nsiegeA < 0) {
-      printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-      scanf("%d", &nsiegeA);
-      nsiegeA *= nsiege;
-      clrscr();
-    }
+
 
     printf("Combien y a t-il de rangée de catégorie B ?\n");
-    scanf("%d", &nsiegeB);
+    do{
+    verif=scanf("%d",&nsiegeB);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiegeB<0){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiegeB<0);
+  verif=0;
+  verif2=0;
     nsiegeB *= nsiege;
     clrscr();
-    while (nsiegeB < 0) {
-      printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-      scanf("%d", &nsiegeB);
-      nsiegeB *= nsiege;
-      clrscr();
-    }
-
+    
     nsiegeC = nsiege * nrangee - (nsiegeA + nsiegeB);
     clrscr();
     if (nsiegeC < 0) {
@@ -124,57 +153,85 @@ void creerSalle() {
   }
 
   printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
-  scanf("%d", &fosse);
+  do{
+    verif=scanf("%d",&fosse);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || fosse !=0 || fosse !=1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 ||  fosse !=0 && fosse !=1);
+  verif=0;
+  verif2=0;
   clrscr();
-  while (fosse != 1 && fosse != 0) {
-    printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
-    scanf("%d", &fosse);
-    clrscr();
-  }
+
 
   if (fosse ==1) { // Si il y a une fosse on double le nombre de place en catégorie A
     nrangee += nsiegeA / nsiege;
     nsiegeA += nsiegeA;
 
     printf("Quel est le prix d'une place en fosse ?\n");
-    scanf("%f", &prixA);
-    clrscr();
-    while (prixA < 0) {
-      printf("Quel est le prix d'une place en fosse ?\n");
-      scanf("%f", &prixA);
-      clrscr();
+    do{
+    verif=scanf("%f",&prixA);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixA>1){
+      printf("saisie invalide\n");
     }
+  } while (verif != 1 || prixA>1);
+  verif=0;
+  verif2=0;
+    clrscr();
   }
   // On demande le prix de chaque catégorie
   else {
     printf("Quel est le prix d'une place de catégorie A ?\n");
-    scanf("%f", &prixA);
-    clrscr();
-
-    while (prixA < 0) {
-      printf("Quel est le prix d'une place de catégorie A ?\n");
-      scanf("%f", &prixA);
-      clrscr();
+    do{
+    verif=scanf("%f",&prixA);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixA>1){
+      printf("saisie invalide\n");
     }
-  }
-
-  printf("Quel est le prix d'une place de catégorie B ?\n");
-  scanf("%f", &prixB);
-  clrscr();
-
-  while (prixB < 0) {
-    printf("Quel est le prix d'une place de catégorie B ?\n");
-    scanf("%f", &prixB);
+  } while (verif != 1 || prixA>1);
+  verif=0;
+  verif2=0;
     clrscr();
   }
-
-  printf("Quel est le prix d'une place de catégorie C ?\n");
-  scanf("%f", &prixC);
+if(nsiegeB >0){
+  printf("Quel est le prix d'une place de catégorie B ?\n");
+  do{
+    verif=scanf("%f",&prixB);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixB>1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || prixB>1);
+  verif=0;
+  verif2=0;
   clrscr();
+}
 
-  while (prixC < 0) {
+
+ 
+  if(nsiegeC >0){  
     printf("Quel est le prix d'une place de catégorie C ?\n");
-    scanf("%f", &prixC);
+    do{
+    verif=scanf("%f",&prixC);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixC>1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || prixC>1);
+  verif=0;
+  verif2=0;
     clrscr();
   }
 
@@ -260,6 +317,8 @@ void creerSalle() {
 
 void modifierSalle(char *nom_salle) {
   // ouvrir le fichier
+  int verif=0, verif2=0;
+  char c;
   FILE *salles = fopen("salle.txt", "r");
   if (salles == NULL) {
     exit(1);
@@ -337,49 +396,67 @@ void modifierSalle(char *nom_salle) {
 
   concert = 0; // On initialise la salle comme non occupé
 
-  printf("Combien y a t-il de rangée ?\n");
-  scanf("%d", &nrangee);
+     printf("Combien y a t-il de rangée ?\n");
+  do{
+    verif=scanf("%d",&nrangee);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nrangee<1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nrangee<1);
+  verif=0;
+  verif2=0;
   clrscr();
-
-  while (nrangee < 1) {
-    printf("Erreur, nombre de rangée non valide. Réessayez.\n");
-    scanf("%d", &nrangee);
-    clrscr();
-  }
 
   printf("Combien y a t-il de siège par rangée ?\n");
-  scanf("%d", &nsiege);
+  do{
+    verif=scanf("%d",&nsiege);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiege<1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiege<1);
+  verif=0;
+  verif2=0;
   clrscr();
 
-  while (nsiege < 1) {
-    printf("Erreur, nombre de siege par rangée non valide. Réessayez.\n");
-    scanf("%d", &nsiege);
-    clrscr();
-  }
 
   // On demande le nombre de siège par catégorie
   printf("Combien y a t-il de rangée de catégorie A ?\n");
-  scanf("%d", &nsiegeA);
+  do{
+    verif=scanf("%d",&nsiegeA);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiegeA<1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiegeA<1);
+  verif=0;
+  verif2=0;
   nsiegeA *=nsiege; // On fait ranger de Catégorie A * nombre de siège par rangée
   clrscr();
 
-  while (nsiegeA < 0) {
-    printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-    scanf("%d", &nsiegeA);
-    nsiegeA *= nsiege;
-    clrscr();
-  }
+
 
   printf("Combien y a t-il de rangée de catégorie B ?\n");
-  scanf("%d", &nsiegeB);
+  do{
+    verif=scanf("%d",&nsiegeB);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiegeB<0){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiegeB<0);
+  verif=0;
+  verif2=0;
   nsiegeB *= nsiege;
 
-  while (nsiegeB < 0) {
-    printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-    scanf("%d", &nsiegeB);
-    nsiegeB *= nsiege;
-    clrscr();
-  }
 
   nsiegeC =nsiege * nrangee - (nsiegeA + nsiegeB);
   clrscr();
@@ -392,28 +469,37 @@ void modifierSalle(char *nom_salle) {
            "réessayer\n");
 
     printf("Combien y a t-il de rangée de catégorie A ?\n");
-    scanf("%d", &nsiegeA);
+    do{
+      verif=scanf("%d",&nsiegeA);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || nsiegeA<1){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || nsiegeA<1);
+  verif=0;
+  verif2=0;
     clrscr();
     nsiegeA *= nsiege; // On fais rangée de Catégorie A * nombre de
                                    // siège par rangée
-    while (nsiegeA < 0) {
-      printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-      scanf("%d", &nsiegeA);
-      nsiegeA *= nsiege;
-      clrscr();
-    }
+
 
     printf("Combien y a t-il de rangée de catégorie B ?\n");
-    scanf("%d", &nsiegeB);
+    do{
+    verif=scanf("%d",&nsiegeB);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || nsiegeB<0){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || nsiegeB<0);
+  verif=0;
+  verif2=0;
     nsiegeB *= nsiege;
     clrscr();
-    while (nsiegeB < 0) {
-      printf("Erreur, nombre de rangée pour cette catégorie. Réessayez.\n");
-      scanf("%d", &nsiegeB);
-      nsiegeB *= nsiege;
-      clrscr();
-    }
-
+    
     nsiegeC = nsiege * nrangee - (nsiegeA + nsiegeB);
     clrscr();
     if (nsiegeC < 0) {
@@ -422,57 +508,85 @@ void modifierSalle(char *nom_salle) {
   }
 
   printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
-  scanf("%d", &fosse);
+  do{
+    verif=scanf("%d",&fosse);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || fosse !=0 || fosse !=1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 ||  fosse !=0 && fosse !=1);
+  verif=0;
+  verif2=0;
   clrscr();
-  while (fosse != 1 && fosse != 0) {
-    printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
-    scanf("%d", &fosse);
-    clrscr();
-  }
+
 
   if (fosse ==1) { // Si il y a une fosse on double le nombre de place en catégorie A
     nrangee += nsiegeA / nsiege;
     nsiegeA += nsiegeA;
 
     printf("Quel est le prix d'une place en fosse ?\n");
-    scanf("%f", &prixA);
-    clrscr();
-    while (prixA < 0) {
-      printf("Quel est le prix d'une place en fosse ?\n");
-      scanf("%f", &prixA);
-      clrscr();
+    do{
+    verif=scanf("%f",&prixA);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixA>1){
+      printf("saisie invalide\n");
     }
+  } while (verif != 1 || prixA>1);
+  verif=0;
+  verif2=0;
+    clrscr();
   }
   // On demande le prix de chaque catégorie
   else {
     printf("Quel est le prix d'une place de catégorie A ?\n");
-    scanf("%f", &prixA);
-    clrscr();
-
-    while (prixA < 0) {
-      printf("Quel est le prix d'une place de catégorie A ?\n");
-      scanf("%f", &prixA);
-      clrscr();
+    do{
+    verif=scanf("%f",&prixA);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixA>1){
+      printf("saisie invalide\n");
     }
-  }
-
-  printf("Quel est le prix d'une place de catégorie B ?\n");
-  scanf("%f", &prixB);
-  clrscr();
-
-  while (prixB < 0) {
-    printf("Quel est le prix d'une place de catégorie B ?\n");
-    scanf("%f", &prixB);
+  } while (verif != 1 || prixA>1);
+  verif=0;
+  verif2=0;
     clrscr();
   }
-
-  printf("Quel est le prix d'une place de catégorie C ?\n");
-  scanf("%f", &prixC);
+  if(nsiegeB>0){
+  printf("Quel est le prix d'une place de catégorie B ?\n");
+  do{
+    verif=scanf("%f",&prixB);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixB>1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || prixB>1);
+  verif=0;
+  verif2=0;
   clrscr();
+}
 
-  while (prixC < 0) {
+
+ 
+  if(nsiegeC >0){  
     printf("Quel est le prix d'une place de catégorie C ?\n");
-    scanf("%f", &prixC);
+    do{
+    verif=scanf("%f",&prixC);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || prixC>1){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || prixC>1);
+  verif=0;
+  verif2=0;
     clrscr();
   }
 
