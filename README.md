@@ -19,8 +19,11 @@ Semaine 06/05/2024
 
 prochaine etape :
 
+Ne pas pouvoir faire de concert dans une salle si la salle est deja occupé:
+Regler le problème du temps:
+Verifier quand un concert est fini (si oui libérer la salle):
 faire une procedure listeSalle(): fait
-faire une version de listeSalle() avec les salles avec un concert programmé:
+faire une version de listeSalle() avec les salles avec un concert programmé: fait
 verfier que les chaines de caractères ne dépasse pas 20:
 verifier que le nombre de rangées et de places ne dépasse pas 20:
 ne pas pouvoir reserver une place si c'est deja un X:

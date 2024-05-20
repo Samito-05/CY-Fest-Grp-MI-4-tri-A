@@ -206,3 +206,37 @@ void reserverSalle(char *salle, int y, int x) {
   fclose(salles);
 }
 
+void listeSallef(){
+  FILE * salles= fopen("salle.txt","r");
+  if (salles==NULL){
+    printf("Erreur fichier");
+    exit(1);
+  }
+  char phrase[50];
+  char nomsalle[21];
+  int a, i=0,nr;
+  printf("Voici les salles disponibles\n");
+  printf("\n");
+  while((a = fgetc(salles)) != EOF){
+    while (a != ' ' && a != EOF && i < 20) {
+      nomsalle[i] = (char)a;
+      i++;
+      a = fgetc(salles);
+    }
+    nomsalle[i] = '\0';
+    fgets(phrase, sizeof(phrase), salles);
+    fgets(phrase, sizeof(phrase), salles);
+    if (atoi(phrase)){
+      printf("%s\n",nomsalle); 
+    }
+    i=0;
+    fgets(phrase, sizeof(phrase), salles);
+    nr=atoi(phrase);
+    for (i=1;i<=8+nr;i++){
+      fgets(phrase, sizeof(phrase), salles);
+    }
+    i=0;
+  }
+  printf("\n");
+  fclose(salles);
+}

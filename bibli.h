@@ -32,6 +32,7 @@ void mode();
 void festival();
 void manage();
 void listeSalle();
+void listeSallef();
 //void creerConcert();
 //int debut();
 

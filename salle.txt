@@ -30,7 +30,7 @@ O O O O O O O O O O O O O O O O O O O O
 O O O O O O O O O O O O O O O O O O O O
 O O O O O O O O O O O O O O O O O O O O
 dop : Nom de la salle
-0 : Est-ce que la salle est utilisée ?
+1 : Est-ce que la salle est utilisée ?
 10 : Nombre de rangée
 5 : Nombre de siège par rangée
 10 : Nombre de siège de catégorie A

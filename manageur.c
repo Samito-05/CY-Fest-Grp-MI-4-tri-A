@@ -770,21 +770,18 @@ void listeSalle(){
 }
 
 
-/*void creerConcert(){
+void creerConcert(){
   //demander les infos du concert
   char nom_concert[21];
   char nom_salle[21];
-  float debut,temps,fin;
+  int tdebut,temps,tfin;
   printf("Quelle est le nom du concert ? (maximum 20 caractères)\n");
   scanf("%s",nom_concert);
-  printf("A quelle heure commence le concert ? (h.m)\n");
-  scanf("%f",&debut);
   //demander dans quelle salle le mettre, changer la variable concert =1
   printf("Le concert a lieu dans quelle salle ? (maximum 20 caractères)\n");
   scanf("%s",nom_salle);
-  printf("Combien de temps dure le concert (h.m)?\n");
-  scanf("%f",&temps);
-
+  tdebut=debut();
+  temps=duree();
 
 
   
@@ -821,6 +818,9 @@ void listeSalle(){
   }
   fprintf(concert, "%s : Nom du concert\n", nom_concert);
   fprintf(concert, "%s : Nom de la salle\n", nom_salle);
+  fprintf(concert, "%d : Heure du debut du concert\n", tdebut);
+  fprintf(concert, "%d : Longueur du concert\n", temps);
+  fprintf(concert, "%d : Heure de fin du concert\n", tdebut+temps);
   fclose(concert);
   
   salles= fopen("salle.txt", "r+");
@@ -862,8 +862,21 @@ int debut(){
   scanf("%d",&min);
 
   s=((31557600*a+2629800*mois+86400*j+3600*h+60*min)-62168472000);
-  printf("%ld\n",s);
-  printf("%ld",time(NULL));
-}*/
+  //printf("%ld\n",s);
+  //printf("%ld",time(NULL));
+  return s;
+}
+
+int duree(){
+  int h,min;
+  long s;
+  printf("Combien d'heure dure le concert ?\n");
+  scanf("%d",&h);
+  printf("Combien de minute dure le concert ?\n");
+  scanf("%d",&min);
+
+  s=h*3600+min*60;
+  return s;
+}
 
 //Pas fini donc a pas utiliser 

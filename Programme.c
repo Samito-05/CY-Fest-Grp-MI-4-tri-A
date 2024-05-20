@@ -88,7 +88,7 @@ void festival(){
     if (festivalier == 1){
         int r,c,n;
         char salle[21];
-        listeSalle(); 
+        listeSallef(); 
         printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
         scanf("%s", salle);//A securiser !
         clrscr();
@@ -201,6 +201,6 @@ int main(){
     }
     fclose(salles);*/
     clrscr();
-    mode();
+    creerConcert();
     return 0;
 }
