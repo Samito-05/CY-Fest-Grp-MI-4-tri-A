@@ -1,4 +1,3 @@
-
 i : Nom du concert
 dop : Nom de la salle
 1717709700 : Heure du debut du concert

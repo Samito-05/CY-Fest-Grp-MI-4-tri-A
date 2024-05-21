@@ -201,6 +201,6 @@ int main(){
     }
     fclose(salles);*/
     clrscr();
-    creerConcert();
+    mode();
     return 0;
 }

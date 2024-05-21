@@ -184,10 +184,10 @@ void creerSalle() {
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixA>1){
+    if (verif != 1 || prixA<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixA>1);
+  } while (verif != 1 || prixA<1);
   verif=0;
   verif2=0;
     clrscr();
@@ -199,10 +199,10 @@ if(nsiegeB >0){
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixB>1){
+    if (verif != 1 || prixB<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixB>1);
+  } while (verif != 1 || prixB<1);
   verif=0;
   verif2=0;
   clrscr();
@@ -217,10 +217,10 @@ if(nsiegeB >0){
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixC>1){
+    if (verif != 1 || prixC<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixC>1);
+  } while (verif != 1 || prixC<1);
   verif=0;
   verif2=0;
     clrscr();
@@ -522,10 +522,10 @@ void modifierSalle(char *nom_salle) {
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixA>1){
+    if (verif != 1 || prixA<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixA>1);
+  } while (verif != 1 || prixA<1);
   verif=0;
   verif2=0;
     clrscr();
@@ -538,10 +538,10 @@ void modifierSalle(char *nom_salle) {
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixA>1){
+    if (verif != 1 || prixA<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixA>1);
+  } while (verif != 1 || prixA<1);
   verif=0;
   verif2=0;
     clrscr();
@@ -553,10 +553,10 @@ void modifierSalle(char *nom_salle) {
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixB>1){
+    if (verif != 1 || prixB<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixB>1);
+  } while (verif != 1 || prixB<1);
   verif=0;
   verif2=0;
   clrscr();
@@ -571,10 +571,10 @@ void modifierSalle(char *nom_salle) {
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || prixC>1){
+    if (verif != 1 || prixC<1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixC>1);
+  } while (verif != 1 || prixC<1);
   verif=0;
   verif2=0;
     clrscr();
