@@ -50,21 +50,3 @@ O O O O O
 O O O O O
 O O O O O
 O O O O O
-ikj,yt : Nom de la salle
-0 : Est-ce que la salle est utilisée ?
-7 : Nombre de rangée
-6 : Nombre de siège par rangée
-24 : Nombre de siège de catégorie A
-12 : Nombre de siège de catégorie B
-6 : Nombre de siège de catégorie C
-1 : Est-ce qu'il y a une fosse ?
--1.00 : Prix de la catégorie A
--1.00 : Prix de la catégorie B
--1.00 : Prix de la catégorie C
-O O O O O O
-O O O O O O
-O O O O O O
-O O O O O O
-O O O O O O
-O O O O O O
-O O O O O O

@@ -817,10 +817,10 @@ void creerConcert(){
     exit(1);
   }
   fprintf(concert, "%s : Nom du concert\n", nom_concert);
-  fprintf(concert, "%s : Nom de la salle\n", nom_salle);
   fprintf(concert, "%d : Heure du debut du concert\n", tdebut);
   fprintf(concert, "%d : Longueur du concert\n", temps);
   fprintf(concert, "%d : Heure de fin du concert\n", tdebut+temps);
+  fprintf(concert, "%s : Nom de la salle\n", nom_salle);
   fclose(concert);
   
   salles= fopen("salle.txt", "r+");
@@ -861,9 +861,19 @@ int debut(){
   printf("A quel minute a lieu le concert ?\n");
   scanf("%d",&min);
 
-  s=((31557600*a+2629800*mois+86400*j+3600*h+60*min)-62168472000);
-  //printf("%ld\n",s);
-  //printf("%ld",time(NULL));
+  struct tm date;
+  date.tm_sec = 0;
+  date.tm_min = min;
+  date.tm_hour= h;
+  date.tm_mday= j;
+  date.tm_mon = mois-1;
+  date.tm_year= a-1900;
+  date.tm_wday=0;
+  date.tm_yday=0;
+  date.tm_isdst=0;
+  
+  s=mktime(&date);
+  printf("%ld\n",s);
   return s;
 }
 
@@ -879,4 +889,41 @@ int duree(){
   return s;
 }
 
-//Pas fini donc a pas utiliser 
+void listeSallem(){
+  FILE * salles= fopen("salle.txt","r");
+  if (salles==NULL){
+    printf("Erreur fichier");
+    exit(1);
+  }
+  char phrase[50];
+  char nomsalle[21];
+  int a, i=0,nr;
+  printf("Voici les salles disponibles\n");
+  printf("\n");
+  while((a = fgetc(salles)) != EOF){
+    while (a != ' ' && a != EOF && i < 20) {
+      nomsalle[i] = (char)a;
+      i++;
+      a = fgetc(salles);
+    }
+    nomsalle[i] = '\0';
+    fgets(phrase, sizeof(phrase), salles);
+    fgets(phrase, sizeof(phrase), salles);
+    if (!atoi(phrase)){
+      printf("%s\n",nomsalle); 
+    }
+    i=0;
+    fgets(phrase, sizeof(phrase), salles);
+    nr=atoi(phrase);
+    for (i=1;i<=8+nr;i++){
+      fgets(phrase, sizeof(phrase), salles);
+    }
+    i=0;
+  }
+  printf("\n");
+  fclose(salles);
+}
+
+
+//mktime()
+//localtime()

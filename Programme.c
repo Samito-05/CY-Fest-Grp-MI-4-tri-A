@@ -142,7 +142,7 @@ void festival(){
 void manage()
 { // oublier pas d apppeler la fonction a la fin de chaque action majeur
     int manageur;
-    printf("que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.retour au choix du mode\n"); // ecris tout les choix de manageur
+    printf("que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.creer un concert\t5.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
     char c;
     
@@ -151,7 +151,7 @@ void manage()
         do{
             verif2=scanf("%c",&c);
         }while(verif2 == 1 && c!='\n');
-        if (verif != 1 || manageur<1 || manageur>5){
+        if (verif != 1 || manageur<1 || manageur>6){
             printf("saisie invalide\n");
         }
   
@@ -188,11 +188,51 @@ void manage()
     else if (manageur == 4)
     {
         clrscr();
+        listeSallem();
+        creerConcert();
+        manage();
+    }
+    else if (manageur == 5)
+    {
+        clrscr();
         mode();
     }
 }
 
+/*void libererSalle(){
 
+-Parcourir tout le fichier et regarder si le temps de fin est dépassé;
+-Parchanger la salle : utilsation = 0;
+-Supprimer le concert;
+
+	FILE * concert=fopen("concert.txt","r");
+	if (concert==NULL){
+		printf("Erreur fichier\n");
+		exit(1);
+	}
+	char phrase[50];
+	char nomsalle[21];
+	int a, i=0;
+	while((a = fgetc(concert)) != EOF){
+	  while (a != ' ' && a != EOF && i < 20) {
+	      nomsalle[i] = (char)a;
+	      i++;
+	      a = fgetc(concert);
+	    }
+	    nomsalle[i] = '\0'; 
+	    printf("%s\n",nomsalle);
+	    i=0;
+	    for (i=1;i<=3;i++){
+	      fgets(phrase, sizeof(phrase), concert);
+	    }
+	    for (i=1;i<=8+nr;i++){
+	      fgets(phrase, sizeof(phrase), concert);
+	    }
+	    i=0;
+	  }
+	  fclose(concert);
+	}
+}*/
 
 int main(){
     /*FILE* salles = fopen("salle.txt", "w");
@@ -201,6 +241,6 @@ int main(){
     }
     fclose(salles);*/
     clrscr();
-    mode();
+    libererSalle();
     return 0;
 }

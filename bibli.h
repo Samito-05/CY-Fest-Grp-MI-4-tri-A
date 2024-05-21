@@ -33,7 +33,9 @@ void festival();
 void manage();
 void listeSalle();
 void listeSallef();
-//void creerConcert();
-//int debut();
+void listeSallem();
+void creerConcert();
+int debut();
+void libererSalle();
 
 #endif
