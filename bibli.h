@@ -37,5 +37,7 @@ void listeSallem();
 void creerConcert();
 int debut();
 void libererSalle();
+void libererPlace(char* nomsalle);
+void supprimerConcert(char* nom_concert);
 
 #endif

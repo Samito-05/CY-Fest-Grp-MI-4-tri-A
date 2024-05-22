@@ -4,6 +4,7 @@
 
 
 void mode(){ // j ai mis des clear screen mais si vous trouver que y en a pas assez vous pouvez en rajouter
+    libererSalle();
     int mode;
     int cle;
     int i = 0;
@@ -69,6 +70,7 @@ void mode(){ // j ai mis des clear screen mais si vous trouver que y en a pas as
 
 
 void festival(){
+    libererSalle();
     int festivalier;
     printf("que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
@@ -141,6 +143,7 @@ void festival(){
 
 void manage()
 { // oublier pas d apppeler la fonction a la fin de chaque action majeur
+    libererSalle();
     int manageur;
     printf("que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.creer un concert\t5.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
@@ -199,40 +202,7 @@ void manage()
     }
 }
 
-/*void libererSalle(){
 
--Parcourir tout le fichier et regarder si le temps de fin est dépassé;
--Parchanger la salle : utilsation = 0;
--Supprimer le concert;
-
-	FILE * concert=fopen("concert.txt","r");
-	if (concert==NULL){
-		printf("Erreur fichier\n");
-		exit(1);
-	}
-	char phrase[50];
-	char nomsalle[21];
-	int a, i=0;
-	while((a = fgetc(concert)) != EOF){
-	  while (a != ' ' && a != EOF && i < 20) {
-	      nomsalle[i] = (char)a;
-	      i++;
-	      a = fgetc(concert);
-	    }
-	    nomsalle[i] = '\0'; 
-	    printf("%s\n",nomsalle);
-	    i=0;
-	    for (i=1;i<=3;i++){
-	      fgets(phrase, sizeof(phrase), concert);
-	    }
-	    for (i=1;i<=8+nr;i++){
-	      fgets(phrase, sizeof(phrase), concert);
-	    }
-	    i=0;
-	  }
-	  fclose(concert);
-	}
-}*/
 
 int main(){
     /*FILE* salles = fopen("salle.txt", "w");
@@ -241,6 +211,6 @@ int main(){
     }
     fclose(salles);*/
     clrscr();
-    libererSalle();
+    mode();
     return 0;
 }

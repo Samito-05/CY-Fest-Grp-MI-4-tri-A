@@ -32,6 +32,7 @@ void afficheSalle(char *nom_salle) {
   // Reccuperation de données de la salle
 
   int nbr_places, cat_a, cat_b, cat_c;
+  float pA,pB,pC;
 
   fgets(phrase, sizeof(phrase), salles);
 
@@ -55,8 +56,11 @@ void afficheSalle(char *nom_salle) {
   // %d\nCatégorie B: %d\nCatégorie C: %d\nFosse: %d\n", nbr_rangees,
   // nbr_places, cat_a, cat_b, cat_c, fosse);
   fgets(phrase, sizeof(phrase), salles);
+  pA=atof(phrase);
   fgets(phrase, sizeof(phrase), salles);
+  pB=atof(phrase);
   fgets(phrase, sizeof(phrase), salles);
+  pC=atof(phrase);
 
   // Entête
   // clrscr();
@@ -127,11 +131,11 @@ void afficheSalle(char *nom_salle) {
 
   printf("\nLégende\n");
   couleur("36");
-  printf("O : Categorie 1 / Fosse\n");
+  printf("O : Categorie 1 / Fosse (%.2f EURO)\n",pA);
   couleur("33");
-  printf("O : Categorie 2\n");
+  printf("O : Categorie 2 (%.2f EURO)\n",pB);
   couleur("37");
-  printf("O : Categorie 3\n");
+  printf("O : Categorie 3 (%.2f EURO)\n",pC);
   couleur("0");
 
   /*  Mise en page du fichier txt
@@ -183,16 +187,10 @@ void reserverSalle(char *salle, int y, int x) {
 
   // Reccuperation de données de la salle
 
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
-  fgets(phrase, sizeof(phrase), salles);
+  for (int i=1; i<=10; i++){
+    fgets(phrase, sizeof(phrase), salles);
+  }
+  
 
   for (int i = 1; i < y; i++) {
     fgets(phrase, sizeof(phrase), salles);

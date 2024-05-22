@@ -1,5 +1,0 @@
-oip : Nom du concert
-1714881900 : Heure du debut du concert
-18300 : Longueur du concert
-1714900200 : Heure de fin du concert
-dop : Nom de la salle

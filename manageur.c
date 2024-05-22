@@ -633,7 +633,7 @@ void modifierSalle(char *nom_salle) {
   }
 
   modif = fopen("modif.txt", "r");
-  if (salles == NULL) {
+  if (modif == NULL) {
     exit(1);
   }
 
@@ -769,7 +769,6 @@ void listeSalle(){
   fclose(salles);
 }
 
-
 void creerConcert(){
   //demander les infos du concert
   char nom_concert[21];
@@ -853,13 +852,13 @@ int debut(){
   printf("En quelle année a lieu le concert ?\n");
   scanf("%d",&a);
   printf("Quel mois a lieu le concert ?\n");
-  scanf("%d",&mois);
+  scanf("%d",&mois);//entre 0 et 11
   printf("Quel jour a lieu le concert (numériquement) ?\n");
-  scanf("%d",&j);
+  scanf("%d",&j);//entre 1 et 31
   printf("A quelle heure a lieu le concert ?\n");
-  scanf("%d",&h);
+  scanf("%d",&h);//entre 0 et 23 
   printf("A quel minute a lieu le concert ?\n");
-  scanf("%d",&min);
+  scanf("%d",&min);//entre 0 et 59
 
   struct tm date;
   date.tm_sec = 0;
@@ -873,7 +872,6 @@ int debut(){
   date.tm_isdst=0;
   
   s=mktime(&date);
-  printf("%ld\n",s);
   return s;
 }
 
@@ -923,6 +921,387 @@ void listeSallem(){
   printf("\n");
   fclose(salles);
 }
+
+void libererSalle(){
+
+/*-Parcourir tout le fichier et regarder si le temps de fin est dépassé;
+-changer la salle : utilsation = 0;
+-Supprimer le concert;*/
+
+	FILE * concert=fopen("concert.txt","r");
+	if (concert==NULL){
+		printf("Erreur fichier\n");
+		exit(1);
+	}
+
+    int a=0,b=0,c=0,i=0,j=0,trouve=0, nr=0, ns=0;
+    char phrase[50];
+    char nomsalle[21];
+    char nomconcert[21];
+    while (a!=EOF){
+        while (b != ' ' && b != EOF && i < 20){
+          b=fgetc(concert);
+          nomconcert[i]=b;
+          i++;
+        }
+        nomconcert[i]='\0';  
+        for (int i=1;i<=4;i++){
+            fgets(phrase,sizeof(phrase),concert);
+        }
+        if(atoi(phrase)-time(NULL)<=0){
+            
+            FILE * salles=fopen("salle.txt","r+");// On réouvre fichier salle a chaque fois
+	        if (salles==NULL){
+		        printf("Erreur fichier\n");
+		        exit(1);
+	        }
+            
+            while (c != ' ' && c != EOF && j < 20){
+                c=fgetc(concert);
+                nomsalle[j]=c;
+                j++;
+            }
+            nomsalle[j]='\0';
+
+            //On change le "est utilisé de la salle"
+
+            //On recherche la salle dans le fichier salle.txt
+            while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+                // Vérification de la bonne salle
+                if (strstr(phrase, nomsalle) != NULL) {
+                // printf("La salle existe.\n");
+                trouve = 1;
+                break;
+                }
+            }
+
+            // Vérifier si la fin du fichier est atteinte sans trouver la salle
+            if (!trouve) {
+                printf("La salle n'a pas été trouvée.\n");
+                fclose(salles);
+                return;
+            }
+
+            // On change la valeur 1 par 0
+            
+            fseek(salles, 0, SEEK_CUR);
+            fputc('0', salles);
+        
+            fclose(salles);
+
+            //On libère les places
+
+            libererPlace(nomsalle);
+            supprimerConcert(nomconcert);
+
+        }
+        j=0;
+        fgets(phrase,sizeof(phrase),concert);
+      a=fgetc(concert);
+    }
+    fclose(concert);
+}
+
+void libererPlace(char* nom_salle){
+   // ouvrir le fichier
+  int verif=0, verif2=0;
+  char c;
+  FILE *salles = fopen("salle.txt", "r");
+  if (salles == NULL) {
+    exit(1);
+  }
+
+  FILE *place = fopen("place.txt", "w");
+  if (place == NULL) {
+    exit(1);
+  }
+
+  char phrase[50];
+  int trouve = 0;
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, nom_salle) != NULL) {
+      // printf("La salle existe.\n");
+      trouve = 1;
+      break;
+    }
+  }
+
+  // Vérifier si la fin du fichier est atteinte sans trouver la salle
+  if (!trouve) {
+    printf("La salle n'a pas été trouvée.\n");
+    fclose(salles);
+    return;
+  }
+
+  rewind(salles);
+
+  while (strstr(fgets(phrase, sizeof(phrase), salles), nom_salle) == NULL) {
+    fprintf(place, "%s", phrase);
+  }
+
+  // Reccuperation de données de la salle
+
+  int nr,ns,nsA,nsB,nsC,f;
+  float pA,pB,pC;
+
+  fgets(phrase, sizeof(phrase), salles);
+
+  fgets(phrase, sizeof(phrase), salles);
+  nr = atoi(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  ns = atoi(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  nsA = atoi(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  nsB = atoi(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  nsC = atoi(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  f = atoi(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  pA = atof(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  pB = atof(phrase);
+
+  fgets(phrase, sizeof(phrase), salles);
+  pC = atof(phrase);
+
+  for (int i=1;i<=nr; i++){
+    fgets(phrase, sizeof(phrase), salles);
+  }
+
+  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+    fprintf(place, "%s", phrase);
+  }
+  fclose(salles);
+  fclose(place);
+  ///////////////////////////////////
+
+  int concert = 0; // On initialise la salle comme non occupé
+
+  FILE *fichier = fopen("salle.txt", "w");
+  if (fichier == NULL) {
+    printf("Erreur lors de l'ouverture du fichier\n" );
+    exit(1);
+  }
+  fprintf(fichier, "%s : Nom de la salle\n", nom_salle);
+  fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", concert);
+  fprintf(fichier, "%d : Nombre de rangée\n", nr);
+  fprintf(fichier, "%d : Nombre de siège par rangée\n", ns);
+  fprintf(fichier, "%d : Nombre de siège de catégorie A\n", nsA);
+  fprintf(fichier, "%d : Nombre de siège de catégorie B\n", nsB);
+  fprintf(fichier, "%d : Nombre de siège de catégorie C\n", nsC);
+  fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", f);
+  fprintf(fichier, "%.2f : Prix de la catégorie A\n", pA);
+  fprintf(fichier, "%.2f : Prix de la catégorie B\n", pB);
+  fprintf(fichier, "%.2f : Prix de la catégorie C\n", pC);
+
+  for (int i = 0; i < nsA / ns; i++) {
+    for (int j = 0; j < ns - 1; j++) {
+      fprintf(fichier, "O");
+      fprintf(fichier, " ");
+    }
+    fprintf(fichier, "O");
+    fprintf(fichier, "\n");
+  }
+  for (int i = 0; i < nsB / ns; i++) {
+    for (int j = 0; j < ns - 1; j++) {
+      fprintf(fichier, "O");
+      fprintf(fichier, " ");
+    }
+    fprintf(fichier, "O");
+    fprintf(fichier, "\n");
+  }
+  for (int i = 0; i < nsC / ns; i++) {
+    for (int j = 0; j < ns - 1; j++) {
+      fprintf(fichier, "O");
+      fprintf(fichier, " ");
+    }
+    fprintf(fichier, "O");
+    fprintf(fichier, "\n");
+  }
+
+  fclose(fichier);
+
+  salles = fopen("salle.txt", "a+");
+  if (salles == NULL) {
+    printf("Erreur lors de l'ouverture du fichier %s\n", "salle.txt");
+    exit(1);
+  }
+
+  place = fopen("place.txt", "r");
+  if (salles == NULL) {
+    exit(1);
+  }
+
+  while (fgets(phrase, sizeof(phrase), place)!= NULL) {
+    fprintf(salles, "%s", phrase);
+  }
+  fclose(salles);
+  fclose(place);
+
+}
+
+void supprimerConcert(char* nom_concert){
+     // ouvrir le fichier
+  int verif=0, verif2=0;
+  char c;
+  FILE *concert = fopen("concert.txt", "r");
+  if (concert == NULL) {
+    exit(1);
+  }
+
+  FILE *mconcert = fopen("mconcert.txt", "w");
+  if (mconcert == NULL) {
+    exit(1);
+  }
+
+  char phrase[50];
+  int trouve = 0;
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), concert) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, nom_concert) != NULL) {
+      // printf("La salle existe.\n");
+      trouve = 1;
+      break;
+    }
+  }
+
+  // Vérifier si la fin du fichier est atteinte sans trouver la salle
+  if (!trouve) {
+    printf("La salle n'a pas été trouvée.\n");
+    fclose(concert);
+    return;
+  }
+
+  rewind(concert);
+
+  while (strstr(fgets(phrase, sizeof(phrase), concert), nom_concert) == NULL) {
+    fprintf(mconcert, "%s", phrase);
+  }
+
+  for (int i=1; i<=4;i++){
+    fgets(phrase,sizeof(phrase),concert);
+  }
+
+  while (fgets(phrase, sizeof(phrase), concert) != NULL) {
+    fprintf(mconcert, "%s", phrase);
+  }
+
+  fclose(concert);
+  fclose(mconcert);
+  ///////////////////////////////////
+
+
+  concert = fopen("concert.txt", "w");
+  if (concert == NULL) {
+    printf("Erreur lors de l'ouverture du fichier %s\n", "salle.txt");
+    exit(1);
+  }
+
+  mconcert = fopen("mconcert.txt", "r");
+  if (mconcert == NULL) {
+    exit(1);
+  }
+
+  while (fgets(phrase, sizeof(phrase), mconcert)!=NULL) {
+    fprintf(concert, "%s", phrase);
+  }
+  fclose(concert);
+  fclose(mconcert);
+
+
+}
+
+/*void supprimerSalle(){
+  // ouvrir le fichier
+  char nomsalle[21];
+  print("Quelle salle voulez-vous supprimer ?\n");
+  listeSallem();
+  scanf("%s",nomsalle[21]);
+
+  int verif=0, verif2=0;
+  char c;
+  FILE *salle = fopen("salle.txt", "r");
+  if (salle == NULL) {
+    exit(1);
+  }
+
+  FILE *modif = fopen("modif.txt", "w");
+  if (modif == NULL) {
+    exit(1);
+  }
+
+  char phrase[50];
+  int trouve = 0;
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), salle) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, salle) != NULL) {
+      // printf("La salle existe.\n");
+      trouve = 1;
+      break;
+    }
+  }
+
+  // Vérifier si la fin du fichier est atteinte sans trouver la salle
+  if (!trouve) {
+    printf("La salle n'a pas été trouvée.\n");
+    fclose(salle);
+    return;
+  }
+
+  rewind(salle);
+
+  while (strstr(fgets(phrase, sizeof(phrase), salle), nomsalle) == NULL) {
+    fprintf(modif, "%s", phrase);
+  }
+
+  for (int i=1; i<=4;i++){
+    fgets(phrase,sizeof(phrase),salle);
+  }
+
+  while (fgets(phrase, sizeof(phrase), salle) != NULL) {
+    fprintf(modif, "%s", phrase);
+  }
+
+  fclose(salle);
+  fclose(modif);
+  ///////////////////////////////////
+
+
+  salle = fopen("concert.txt", "w");
+  if (salle == NULL) {
+    printf("Erreur lors de l'ouverture du fichier %s\n", "salle.txt");
+    exit(1);
+  }
+
+  modif = fopen("mconcert.txt", "r");
+  if (modif == NULL) {
+    exit(1);
+  }
+
+  while (fgets(phrase, sizeof(phrase), modif)!=NULL) {
+    fprintf(salle, "%s", phrase);
+  }
+  fclose(salle);
+  fclose(modif);
+
+
+}*/
 
 
 //mktime()
