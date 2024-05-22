@@ -849,16 +849,112 @@ void creerConcert(){
 int debut(){
   int j,mois,a,h,min;
   long s;
+  int verif=0, verif2=0;
+  char c;
   printf("En quelle année a lieu le concert ?\n");
-  scanf("%d",&a);
+  do{
+      verif=scanf("%d",&a);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || a<2024){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || a<2024);
+  verif=0;
+  verif2=0;
   printf("Quel mois a lieu le concert ?\n");
-  scanf("%d",&mois);//entre 0 et 11
+  do{
+    verif=scanf("%d",&mois);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || mois<0|| mois <13){
+      printf("saisie invalide\n");
+    }
+  }while (verif != 1 || mois<0|| mois >11);
+  verif=0;
+  verif2=0;//entre 0 et 11    a revoir je suis pas sur de lui !!!!!!!!!!!!!!!!!!!!
   printf("Quel jour a lieu le concert (numériquement) ?\n");
-  scanf("%d",&j);//entre 1 et 31
+ 
+  if (mois == 2 && a%4 != 0){
+    do{
+      verif=scanf("%d",&j);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || j<0 || j>29){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || j<0|| j >29);
+    verif=0;
+    verif2=0;//entre 1 et 31
+  }
+  if (mois == 2 && a%4 == 0){
+    do{
+      verif=scanf("%d",&j);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || j<0 || j>30){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || j<0|| j >30);
+    verif=0;
+    verif2=0;//entre 1 et 31
+  }
+  if (mois == 1|| mois == 3||mois == 5||mois == 7||mois == 8||mois == 10||mois == 12){
+    do{
+      verif=scanf("%d",&j);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || j<0 || j>32){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || j<0|| j >32);
+    verif=0;
+    verif2=0;//entre 1 et 31
+  }
+ 
+ if (mois == 4|| mois == 6||mois == 9||mois == 11){
+    do{
+      verif=scanf("%d",&j);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if (verif != 1 || j<0 || j>31){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || j<0|| j >31);
+    verif=0;
+    verif2=0;//entre 1 et 31
+  }//entre 1 et 31
+
   printf("A quelle heure a lieu le concert ?\n");
-  scanf("%d",&h);//entre 0 et 23 
+  do{
+    verif=scanf("%d",&h);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || h<-1 || h>24){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || h<-1|| h >24);
+  verif=0;
+  verif2=0;//entre 0 et 23 
   printf("A quel minute a lieu le concert ?\n");
-  scanf("%d",&min);//entre 0 et 59
+  do{
+    verif=scanf("%d",&min);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || min<-1 || min>60){
+      printf("saisie invalide\n");
+    }
+  } while (verif != 1 || min<-1|| min>60);
+  verif=0;
+  verif2=0;("%d",&min);//entre 0 et 59
 
   struct tm date;
   date.tm_sec = 0;
@@ -878,8 +974,20 @@ int debut(){
 int duree(){
   int h,min;
   long s;
+  int verif=0, verif2=0;
+  char c;
   printf("Combien d'heure dure le concert ?\n");
-  scanf("%d",&h);
+    do{
+    verif=scanf("%d",&h);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || h<-1 || h>24){
+      printf("saisie invalide\n");
+    }
+    } while (verif != 1 || h<-1|| h >24);
+    verif=0;
+    verif2=0;
   printf("Combien de minute dure le concert ?\n");
   scanf("%d",&min);
 
@@ -977,7 +1085,6 @@ void libererSalle(){
 
             // Vérifier si la fin du fichier est atteinte sans trouver la salle
             if (!trouve) {
-                printf("La salle n'a pas été trouvée.\n");
                 fclose(salles);
                 return;
             }
@@ -1031,7 +1138,6 @@ void libererPlace(char* nom_salle){
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(salles);
     return;
   }
@@ -1224,6 +1330,9 @@ void supprimerConcert(char* nom_concert){
 
 
 }
+
+
+
 
 //mktime()
 //localtime()

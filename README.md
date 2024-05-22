@@ -18,6 +18,8 @@ Semaine 06/05/2024
 
 
 prochaine etape :
+tout renforce 
+si possible ameliorer la presision du temps
 
 Ne pas pouvoir faire de concert dans une salle si la salle est deja occupé:
 verfier que les chaines de caractères ne dépasse pas 20:

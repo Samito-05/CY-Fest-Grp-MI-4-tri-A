@@ -87,6 +87,8 @@ void festival(){
     verif=0;
     verif2=0;
     clrscr();
+    
+    
     if (festivalier == 1){
         int r,c,n;
         char salle[21];
@@ -129,9 +131,51 @@ void festival(){
         festival();
     }
     clrscr();
+    
+    
+    
     if (festivalier == 2)
     {
-        printf("remboursement\n");
+        int r,c,n;
+        char salle[21];
+        listeSallef(); 
+        printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
+        scanf("%s", salle);//A securiser !
+        clrscr();
+        afficheSalle(salle);
+        printf("Quelle rangée ?\n");
+        do{
+            verif=scanf("%d",&r);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');  
+            if (verif != 1 || r<0 ){
+            printf("saisie invalide\n");
+            }
+
+        } while (verif != 1 ||r<0);
+        verif=0;
+        verif2=0; 
+        clrscr();
+        afficheSalle(salle);
+        printf("Quelle colonne ?\n");
+        do{
+            verif=scanf("%d",&c);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');
+            if (verif != 1 || c<0 ){
+            printf("saisie invalide\n");
+            }
+
+        } while (verif != 1 ||c<0);
+        verif=0;
+        verif2=0; 
+        clrscr();
+        remboursement(salle,r,c);
+        afficheSalle(salle);
+        festival();
+    
         festival();
     }
     if (festivalier == 3)

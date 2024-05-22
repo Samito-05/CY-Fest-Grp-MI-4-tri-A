@@ -238,3 +238,61 @@ void listeSallef(){
   printf("\n");
   fclose(salles);
 }
+
+void remboursement(char *salle, int y, int x) {
+  char *nom = "salle.txt";
+
+  // ouvrir le fichier
+  FILE *salles = fopen(nom, "r+");
+  if (salles == NULL) {
+    exit(1);
+  }
+
+  char phrase[50];
+  int trouve = 0;
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, salle) != NULL) {
+      trouve = 1;
+      break;
+    }
+  }
+
+  // Vérifier si la fin du fichier est atteinte sans trouver la salle
+  if (!trouve) {
+    printf("La salle n'a pas été trouvée.\n");
+    fclose(salles);
+    return;
+  }
+
+  // Reccuperation de données de la salle
+
+  for (int i=1; i<=10; i++){
+    fgets(phrase, sizeof(phrase), salles);
+  }
+  
+
+  for (int i = 1; i < y; i++) {
+    fgets(phrase, sizeof(phrase), salles);
+  }
+  int position = (x - 1) * 2;
+
+  // Se déplacer à la position désirée dans le fichier
+  //fseek(salles, position, SEEK_CUR);
+  /*int ascii;
+  fseek(salles, position, SEEK_CUR);
+  ascii=fgetc(salles);    //verifie que la place est reservé grace au X
+*/
+  // Écrire 'X' à la position désirée dans le fichier
+  fseek(salles, position, SEEK_CUR);
+  fputc('O', salles);
+  
+  /*if (ascii !=88){
+    printf("\nla place est deja libre\n");
+  }*/
+  fclose(salles);
+
+}
+//88
