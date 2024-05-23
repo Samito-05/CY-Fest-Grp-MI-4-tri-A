@@ -40,5 +40,8 @@ int debut();
 void libererSalle();
 void libererPlace(char* nomsalle);
 void supprimerConcert(char* nom_concert);
+void verifm();
+void veriff();
+void verif();
 
 #endif

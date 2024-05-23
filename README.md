@@ -19,17 +19,9 @@ Semaine 06/05/2024
 
 prochaine etape :
 tout renforce 
-si possible ameliorer la presision du temps
-
-Ne pas pouvoir faire de concert dans une salle si la salle est deja occupé:
 verfier que les chaines de caractères ne dépasse pas 20:
 verifier que le nombre de rangées et de places ne dépasse pas 20:
-ne pas pouvoir reserver une place si c'est pas un O (possible de regarder par date ? ):
-pouvoir annuler une reservation :
-ne pas pouvoir annuler une place pas reservé:
 renforcer manageur :
-faire un clrscr(); apres chque entré de l'utilisateur:
-le manageur peut voir l'etat des salles a tt moment et voire le ratio de plage occupée et de place libre: 
 Commenter toutes les lignes de codes compliquée et faire les docstrings:
 ( revoir ça on peut le tranformer en do while pour faire plus jollie "while ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)) { // Si la somme des sièges des 3 catégories ": )
 

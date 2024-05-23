@@ -1,5 +1,36 @@
-test : Nom de la salle
+truc  : Nom de la salle
 1 : Est-ce que la salle est utilisée ?
+3 : Nombre de rangée
+3 : Nombre de siège par rangée
+9 : Nombre de siège de catégorie A
+0 : Nombre de siège de catégorie B
+0 : Nombre de siège de catégorie C
+0 : Est-ce qu'il y a une fosse ?
+1.00 : Prix de la catégorie A
+0.00 : Prix de la catégorie B
+0.00 : Prix de la catégorie C
+O O O
+O O O
+O O O
+dop  : Nom de la salle
+0 : Est-ce que la salle est utilisée ?
+6 : Nombre de rangée
+5 : Nombre de siège par rangée
+10 : Nombre de siège de catégorie A
+5 : Nombre de siège de catégorie B
+15 : Nombre de siège de catégorie C
+1 : Est-ce qu'il y a une fosse ?
+-1.00 : Prix de la catégorie A
+1.00 : Prix de la catégorie B
+1.00 : Prix de la catégorie C
+O O O O O
+O O O O O
+O O O O O
+O O O O O
+O O O O O
+O O O O O
+test  : Nom de la salle
+0 : Est-ce que la salle est utilisée ?
 10 : Nombre de rangée
 10 : Nombre de siège par rangée
 50 : Nombre de siège de catégorie A
@@ -19,3 +50,19 @@ O O O O O O O O O O
 O O O O O O O O O O
 O O O O O O O O O O
 O O O O O O O O O O
+tess : Nom de la salle
+0 : Est-ce que la salle est utilisée ?
+5 : Nombre de rangée
+5 : Nombre de siège par rangée
+15 : Nombre de siège de catégorie A
+10 : Nombre de siège de catégorie B
+0 : Nombre de siège de catégorie C
+0 : Est-ce qu'il y a une fosse ?
+1.00 : Prix de la catégorie A
+1.00 : Prix de la catégorie B
+0.00 : Prix de la catégorie C
+O O O O O
+O O O O O
+O O O O O
+O O O O O
+O O O O O

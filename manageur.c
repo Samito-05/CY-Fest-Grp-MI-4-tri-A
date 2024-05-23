@@ -171,7 +171,7 @@ void creerSalle() {
     if (verif != 1 || prixA>1){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || prixA>1);
+  } while (verif != 1 || prixA<1);
   verif=0;
   verif2=0;
     clrscr();
@@ -334,7 +334,6 @@ void modifierSalle(char *nom_salle) {
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(salles);
     return;
   }
@@ -671,7 +670,6 @@ void supprimerSalle(char *nom_salle) {
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(salles);
     return;
   }
@@ -779,6 +777,8 @@ void creerConcert(){
   //demander dans quelle salle le mettre, changer la variable concert =1
   printf("Le concert a lieu dans quelle salle ? (maximum 20 caractères)\n");
   scanf("%s",nom_salle);
+  clrscr();
+  verifm(nom_salle);
   tdebut=debut();
   temps=duree();
 
@@ -805,7 +805,6 @@ void creerConcert(){
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(salles);
     return;
   }
@@ -837,7 +836,6 @@ void creerConcert(){
     }
   }
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(salles);
   return;
   }
@@ -869,7 +867,7 @@ int debut(){
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || mois<1|| mois <12){
+    if (verif != 1 || mois<1|| mois >12){
       printf("saisie invalide\n");
     }
   }while (verif != 1 || mois<1|| mois >12);
@@ -1015,31 +1013,46 @@ void listeSallem(){
     printf("Erreur fichier");
     exit(1);
   }
-  char phrase[50];
-  char nomsalle[21];
-  int a, i=0,nr;
-  printf("Voici les salles disponibles\n");
-  printf("\n");
-  while((a = fgetc(salles)) != EOF){
-    while (a != ' ' && a != EOF && i < 20) {
-      nomsalle[i] = (char)a;
-      i++;
-      a = fgetc(salles);
-    }
-    nomsalle[i] = '\0';
-    fgets(phrase, sizeof(phrase), salles);
-    fgets(phrase, sizeof(phrase), salles);
-    if (!atoi(phrase)){
-      printf("%s\n",nomsalle); 
-    }
-    i=0;
-    fgets(phrase, sizeof(phrase), salles);
-    nr=atoi(phrase);
-    for (i=1;i<=8+nr;i++){
-      fgets(phrase, sizeof(phrase), salles);
-    }
-    i=0;
+
+  FILE * verifm= fopen("verifm.txt","r");
+  if (verifm==NULL){
+    printf("Erreur fichier");
+    exit(1);
   }
+
+  if (fgetc(verifm)==EOF){
+    printf("Toute les salles sont utilisées\n");
+    manage();
+  }
+
+  else{
+    char phrase[50];
+    char nomsalle[21];
+    int a, i=0,nr;
+    printf("Voici les salles disponibles\n");
+    printf("\n");
+    while((a = fgetc(salles)) != EOF){
+      while (a != ' ' && a != EOF && i < 20) {
+        nomsalle[i] = (char)a;
+        i++;
+        a = fgetc(salles);
+      }
+      nomsalle[i] = '\0';
+      fgets(phrase, sizeof(phrase), salles);
+      fgets(phrase, sizeof(phrase), salles);
+      if (!atoi(phrase)){
+        printf("%s\n",nomsalle); 
+      }
+      i=0;
+      fgets(phrase, sizeof(phrase), salles);
+      nr=atoi(phrase);
+      for (i=1;i<=8+nr;i++){
+        fgets(phrase, sizeof(phrase), salles);
+      }
+      i=0;
+    }
+  }
+  
   printf("\n");
   fclose(salles);
 }
@@ -1049,13 +1062,12 @@ void libererSalle(){
 /*-Parcourir tout le fichier et regarder si le temps de fin est dépassé;
 -changer la salle : utilsation = 0;
 -Supprimer le concert;*/
-
 	FILE * concert=fopen("concert.txt","r");
 	if (concert==NULL){
 		printf("Erreur fichier\n");
 		exit(1);
 	}
-
+    verif();
     int a=0,b=0,c=0,i=0,j=0,trouve=0, nr=0, ns=0;
     char phrase[50];
     char nomsalle[21];
@@ -1121,6 +1133,7 @@ void libererSalle(){
       a=fgetc(concert);
     }
     fclose(concert);
+    verif();
 }
 
 void libererPlace(char* nom_salle){
@@ -1301,7 +1314,6 @@ void supprimerConcert(char* nom_concert){
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(concert);
     return;
   }
@@ -1345,6 +1357,67 @@ void supprimerConcert(char* nom_concert){
 
 }
 
+void verif(){
+  FILE * salles= fopen("salle.txt","r");
+  FILE * verifm= fopen("verifm.txt","w");
+  FILE * veriff= fopen("veriff.txt","w");
+  if (salles==NULL){
+    printf("Erreur fichier");
+    exit(1);
+  }
+  char phrase[50];
+  char nomsalle[21];
+  int a, i=0,nr;
+  while((a = fgetc(salles)) != EOF){
+    while (a != ' ' && a != EOF && i < 20) {
+      nomsalle[i] = (char)a;
+      i++;
+      a = fgetc(salles);
+    }
+    nomsalle[i] = '\0';
+    fgets(phrase, sizeof(phrase), salles);
+    fgets(phrase, sizeof(phrase), salles);
+    if (!atoi(phrase)){
+      fprintf(verifm, "%s\n", nomsalle); 
+    }
+    else{
+      fprintf(veriff, "%s\n", nomsalle); 
+    }
+    i=0;
+    fgets(phrase, sizeof(phrase), salles);
+    nr=atoi(phrase);
+    for (i=1;i<=8+nr;i++){
+      fgets(phrase, sizeof(phrase), salles);
+    }
+    i=0;
+  }
+  fclose(verifm);
+  fclose(veriff);
+  fclose(salles);
+}
+
+void verifm(char *salle){
+  FILE* verifm=fopen("verifm.txt","r");
+  if (verifm==NULL){
+    printf("Erreur de fichier\n");
+    exit(1);
+  }
+  
+  char phrase[50];
+  int trouve=0;
+
+  while(fgets(phrase,sizeof(phrase),verifm)!=NULL){
+    if (strstr(phrase,salle)!=NULL){
+      trouve=1;
+      break;
+    }
+  }
+  fclose(verifm);
+  if (!trouve){
+    printf("Cette salle est occupé ou n'existe pas\n");
+    manage();
+  }
+}
 
 
 

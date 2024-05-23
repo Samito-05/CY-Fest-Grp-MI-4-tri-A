@@ -72,7 +72,7 @@ void mode(){
 void festival(){
     libererSalle();
     int festivalier;
-    printf("que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.retour au choix du mode\n"); // ecris tout les choix de manageur
+    printf("Que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.afficher les salles de concert\t4.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
     char g;
     do{
@@ -80,10 +80,10 @@ void festival(){
         do{
             verif2=scanf("%c",&g);
         }while(verif2 == 1 && g!='\n');
-        if (verif != 1 || festivalier<1 || festivalier>3){
+        if (verif != 1 || festivalier<1 || festivalier>4){
             printf("saisie invalide\n");
         }
-    } while (verif != 1 || festivalier<1 || festivalier>3);
+    } while (verif != 1 || festivalier<1 || festivalier>4);
     verif=0;
     verif2=0;
     clrscr();
@@ -95,6 +95,8 @@ void festival(){
         listeSallef(); 
         printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
         scanf("%s", salle);//A securiser !
+        clrscr();
+        veriff(salle);
         clrscr();
         afficheSalle(salle);
         printf("Quelle rangée ?\n");
@@ -142,6 +144,8 @@ void festival(){
         printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
         scanf("%s", salle);//A securiser !
         clrscr();
+        veriff(salle);
+        clrscr();
         afficheSalle(salle);
         printf("Quelle rangée ?\n");
         do{
@@ -178,7 +182,19 @@ void festival(){
     
         festival();
     }
-    if (festivalier == 3)
+
+    if (festivalier==3){
+      char salle[21];
+      listeSallef();
+      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
+      scanf("%s", salle);//A securiser !
+      clrscr();
+      veriff(salle);
+      afficheSalle(salle);
+      festival();
+    }
+
+    if (festivalier == 4)
     {
         clrscr();
         mode();
@@ -189,7 +205,7 @@ void manage()
 { // oublier pas d apppeler la fonction a la fin de chaque action majeur
     libererSalle();
     int manageur;
-    printf("que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.creer un concert\t5.retour au choix du mode\n"); // ecris tout les choix de manageur
+    printf("Que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.creer un concert\t5.afficher une salle\t6.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
     char c;
     
@@ -202,7 +218,7 @@ void manage()
             printf("saisie invalide\n");
         }
   
-    } while (verif != 1 || manageur<1 || manageur>5);
+    } while (verif != 1 || manageur<1 || manageur>6);
     verif=0;
     verif2=0;
     if (manageur == 1)
@@ -214,20 +230,23 @@ void manage()
     {
       int n;
       char salle[21];
-      listeSalle();
+      listeSallem();
       printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
       scanf("%s", salle);//A securiser !
+      clrscr();
+      verifm(salle);
       clrscr();
       modifierSalle(salle);
       manage();
     }
     else if (manageur == 3)
     {
-      int r;
       char salle[21];
       listeSalle();
       printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
       scanf("%s", salle);//A securiser !
+      clrscr();
+      verifm(salle);
       clrscr();
       supprimerSalle(salle);
       manage();
@@ -239,7 +258,17 @@ void manage()
         creerConcert();
         manage();
     }
-    else if (manageur == 5)
+    else if (manageur==5){
+      char salle[21];
+      listeSalle();
+      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
+      scanf("%s", salle);//A securiser !
+      clrscr();
+      afficheSalle(salle);
+      manage();
+    }
+
+    else if (manageur == 6)
     {
         clrscr();
         mode();

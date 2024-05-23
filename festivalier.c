@@ -24,7 +24,7 @@ void afficheSalle(char *nom_salle) {
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
+    printf("La salle n'a pas été trouvée\n");
     fclose(salles);
     return;
   }
@@ -167,7 +167,7 @@ void reserverSalle(char *salle, int y, int x) {
   }
 
   char phrase[50];
-  int trouve = 0;
+  int trouve = 0, a;
 
   // Lire ligne par ligne jusqu'à la fin du fichier
   while (fgets(phrase, sizeof(phrase), salles) != NULL) {
@@ -180,7 +180,6 @@ void reserverSalle(char *salle, int y, int x) {
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
     fclose(salles);
     return;
   }
@@ -197,98 +196,17 @@ void reserverSalle(char *salle, int y, int x) {
   }
   int position = (x - 1) * 2;
 
-  // Se déplacer à la position désirée dans le fichier
-  fseek(salles, position, SEEK_CUR);
-  // Écrire 'X' à la position désirée dans le fichier
-  fputc('X', salles);
-  fclose(salles);
-}
-
-void listeSallef(){
-  FILE * salles= fopen("salle.txt","r");
-  if (salles==NULL){
-    printf("Erreur fichier");
-    exit(1);
-  }
-  char phrase[50];
-  char nomsalle[21];
-  int a, i=0,nr;
-  printf("Voici les salles disponibles\n");
-  printf("\n");
-  while((a = fgetc(salles)) != EOF){
-    while (a != ' ' && a != EOF && i < 20) {
-      nomsalle[i] = (char)a;
-      i++;
-      a = fgetc(salles);
-    }
-    nomsalle[i] = '\0';
-    fgets(phrase, sizeof(phrase), salles);
-    fgets(phrase, sizeof(phrase), salles);
-    if (atoi(phrase)){
-      printf("%s\n",nomsalle); 
-    }
-    i=0;
-    fgets(phrase, sizeof(phrase), salles);
-    nr=atoi(phrase);
-    for (i=1;i<=8+nr;i++){
-      fgets(phrase, sizeof(phrase), salles);
-    }
-    i=0;
-  }
-  printf("\n");
-  fclose(salles);
-}
-
-void remboursement(char *salle, int y, int x) {
-  char *nom = "salle.txt";
-
-  // ouvrir le fichier
-  FILE *salles = fopen(nom, "r+");
-  if (salles == NULL) {
-    exit(1);
-  }
-
-  char phrase[50];
-  int trouve = 0;
-  int a;
-
-  // Lire ligne par ligne jusqu'à la fin du fichier
-  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
-    // Vérification de la bonne salle
-    if (strstr(phrase, salle) != NULL) {
-      trouve = 1;
-      break;
-    }
-  }
-
-  // Vérifier si la fin du fichier est atteinte sans trouver la salle
-  if (!trouve) {
-    printf("La salle n'a pas été trouvée.\n");
-    fclose(salles);
-    return;
-  }
-
-  // Reccuperation de données de la salle
-
-  for (int i=1; i<=10; i++){
-    fgets(phrase, sizeof(phrase), salles);
-  }
-  
-
-  for (int i = 1; i < y; i++) {
-    fgets(phrase, sizeof(phrase), salles);
-  }
-  int position = (x - 1) * 2;
-
-  // Se déplacer à la position désirée dans le fichier
   fseek(salles, position, SEEK_CUR);
   a=fgetc(salles);
   fseek(salles, -1, SEEK_CUR);
-  if (a=='X'){
-  	fputc('O',salles);
+  if (a=='O'){
+  	fputc('X',salles);
+    fclose(salles);
   }
   else{
-  	printf("Erreur, la place n'est pas reservée\n");
+    printf("%c",a);
+    afficheSalle(salle);
+  	printf("Erreur, la place est déjà reservée\n");
   	int r=0,c=0, verif=0, verif2=0;
   	char g=0;
   	printf("Quelle rangée ?\n");
@@ -320,9 +238,169 @@ void remboursement(char *salle, int y, int x) {
         verif=0;
         verif2=0; 
         clrscr();
+        fclose(salles);
+        reserverSalle(salle,r,c);
+  }
+}
+
+void listeSallef(){
+  FILE * salles= fopen("salle.txt","r");
+  if (salles==NULL){
+    printf("Erreur fichier");
+    exit(1);
+  }
+
+  FILE * veriff= fopen("veriff.txt","r");
+  if (veriff==NULL){
+    printf("Erreur fichier");
+    exit(1);
+  }
+
+  if (fgetc(veriff)==EOF){
+    printf("Aucun concert pour l'instant revenez plus tard\n");
+    festival();
+  }
+
+  else{
+    char phrase[50];
+  char nomsalle[21];
+  int a, i=0,nr;
+  printf("Voici les salles disponibles\n");
+  printf("\n");
+  while((a = fgetc(salles)) != EOF){
+    while (a != ' ' && a != EOF && i < 20) {
+      nomsalle[i] = (char)a;
+      i++;
+      a = fgetc(salles);
+    }
+    nomsalle[i] = '\0';
+    fgets(phrase, sizeof(phrase), salles);
+    fgets(phrase, sizeof(phrase), salles);
+    if (atoi(phrase)){
+      printf("%s\n",nomsalle); 
+    }
+    i=0;
+    fgets(phrase, sizeof(phrase), salles);
+    nr=atoi(phrase);
+    for (i=1;i<=8+nr;i++){
+      fgets(phrase, sizeof(phrase), salles);
+    }
+    i=0;
+  }
+  printf("\n");
+  }
+  
+  fclose(salles);
+  fclose(veriff);
+}
+
+void remboursement(char *salle, int y, int x) {
+  char *nom = "salle.txt";
+
+  // ouvrir le fichier
+  FILE *salles = fopen(nom, "r+");
+  if (salles == NULL) {
+    exit(1);
+  }
+
+  char phrase[50];
+  int trouve = 0;
+  int a;
+
+  // Lire ligne par ligne jusqu'à la fin du fichier
+  while (fgets(phrase, sizeof(phrase), salles) != NULL) {
+    // Vérification de la bonne salle
+    if (strstr(phrase, salle) != NULL) {
+      trouve = 1;
+      break;
+    }
+  }
+
+  // Vérifier si la fin du fichier est atteinte sans trouver la salle
+  if (!trouve) {
+    fclose(salles);
+    return;
+  }
+
+  // Reccuperation de données de la salle
+
+  for (int i=1; i<=10; i++){
+    fgets(phrase, sizeof(phrase), salles);
+  }
+  
+
+  for (int i = 1; i < y; i++) {
+    fgets(phrase, sizeof(phrase), salles);
+  }
+  int position = (x - 1) * 2;
+
+  // Se déplacer à la position désirée dans le fichier
+  fseek(salles, position, SEEK_CUR);
+  a=fgetc(salles);
+  fseek(salles, -1, SEEK_CUR);
+  if (a=='X'){
+  	fputc('O',salles);
+    fclose(salles);
+  }
+  else{
+    afficheSalle(salle);
+  	printf("Erreur, la place n'est pas reservée\n");
+  	int r=0,c=0, verif=0, verif2=0;
+  	char g=0;
+    afficheSalle(salle);
+  	printf("Quelle rangée ?\n");
+        do{
+            verif=scanf("%d",&r);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');  
+            if (verif != 1 || r<0 ){
+            printf("saisie invalide\n");
+            }
+
+        } while (verif != 1 ||r<0);
+        verif=0;
+        verif2=0; 
+        clrscr();
+        afficheSalle(salle);
+        printf("Quelle colonne ?\n");
+        do{
+            verif=scanf("%d",&c);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');
+            if (verif != 1 || c<0 ){
+            printf("saisie invalide\n");
+            }
+
+        } while (verif != 1 ||c<0);
+        verif=0;
+        verif2=0; 
+        clrscr();
+        fclose(salles);
         remboursement(salle,r,c);
   }
-  fclose(salles);
-
 }
-//88
+
+void veriff(char *salle){
+  FILE* veriff=fopen("veriff.txt","r");
+  if (veriff==NULL){
+    printf("Erreur de fichier\n");
+    exit(1);
+  }
+  
+  char phrase[50];
+  int trouve=0;
+
+  while(fgets(phrase,sizeof(phrase),veriff)!=NULL){
+    if (strstr(phrase,salle)!=NULL){
+      trouve=1;
+      break;
+    }
+  }
+  fclose(veriff);
+  if (!trouve){
+    printf("Cette salle n'est pas programmé pour un concert\n");
+    festival();
+  }
+}
