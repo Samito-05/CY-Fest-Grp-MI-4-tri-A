@@ -869,10 +869,10 @@ int debut(){
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || mois<0|| mois <13){
+    if (verif != 1 || mois<1|| mois <12){
       printf("saisie invalide\n");
     }
-  }while (verif != 1 || mois<0|| mois >11);
+  }while (verif != 1 || mois<1|| mois >12);
   verif=0;
   verif2=0;//entre 0 et 11    a revoir je suis pas sur de lui !!!!!!!!!!!!!!!!!!!!
   printf("Quel jour a lieu le concert (numériquement) ?\n");
@@ -883,10 +883,10 @@ int debut(){
       do{
         verif2=scanf("%c",&c);
       }while(verif2 == 1 && c!='\n');
-      if (verif != 1 || j<0 || j>29){
+      if (verif != 1 || j<1 || j>28){
         printf("saisie invalide\n");
       }
-    } while (verif != 1 || j<0|| j >29);
+    } while (verif != 1 || j<1|| j >28);
     verif=0;
     verif2=0;//entre 1 et 31
   }
@@ -896,10 +896,10 @@ int debut(){
       do{
         verif2=scanf("%c",&c);
       }while(verif2 == 1 && c!='\n');
-      if (verif != 1 || j<0 || j>30){
+      if (verif != 1 || j<1 || j>29){
         printf("saisie invalide\n");
       }
-    } while (verif != 1 || j<0|| j >30);
+    } while (verif != 1 || j<1|| j >29);
     verif=0;
     verif2=0;//entre 1 et 31
   }
@@ -909,10 +909,10 @@ int debut(){
       do{
         verif2=scanf("%c",&c);
       }while(verif2 == 1 && c!='\n');
-      if (verif != 1 || j<0 || j>32){
+      if (verif != 1 || j<1 || j>31){
         printf("saisie invalide\n");
       }
-    } while (verif != 1 || j<0|| j >32);
+    } while (verif != 1 || j<1|| j >31);
     verif=0;
     verif2=0;//entre 1 et 31
   }
@@ -923,10 +923,10 @@ int debut(){
       do{
         verif2=scanf("%c",&c);
       }while(verif2 == 1 && c!='\n');
-      if (verif != 1 || j<0 || j>31){
+      if (verif != 1 || j<1 || j>30){
         printf("saisie invalide\n");
       }
-    } while (verif != 1 || j<0|| j >31);
+    } while (verif != 1 || j<1|| j >30);
     verif=0;
     verif2=0;//entre 1 et 31
   }//entre 1 et 31
@@ -965,7 +965,7 @@ int debut(){
   date.tm_year= a-1900;
   date.tm_wday=0;
   date.tm_yday=0;
-  date.tm_isdst=0;
+  date.tm_isdst=-1;
   
   s=mktime(&date);
   return s;

@@ -80,10 +80,10 @@ void festival(){
         do{
             verif2=scanf("%c",&g);
         }while(verif2 == 1 && g!='\n');
-        if (verif != 1 || festivalier<1 || festivalier>4){
+        if (verif != 1 || festivalier<1 || festivalier>3){
             printf("saisie invalide\n");
         }
-    } while (verif != 1 || festivalier<1 || festivalier>4);
+    } while (verif != 1 || festivalier<1 || festivalier>3);
     verif=0;
     verif2=0;
     clrscr();

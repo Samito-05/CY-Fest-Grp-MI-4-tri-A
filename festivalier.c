@@ -250,6 +250,7 @@ void remboursement(char *salle, int y, int x) {
 
   char phrase[50];
   int trouve = 0;
+  int a;
 
   // Lire ligne par ligne jusqu'à la fin du fichier
   while (fgets(phrase, sizeof(phrase), salles) != NULL) {
@@ -280,18 +281,47 @@ void remboursement(char *salle, int y, int x) {
   int position = (x - 1) * 2;
 
   // Se déplacer à la position désirée dans le fichier
-  //fseek(salles, position, SEEK_CUR);
-  /*int ascii;
   fseek(salles, position, SEEK_CUR);
-  ascii=fgetc(salles);    //verifie que la place est reservé grace au X
-*/
-  // Écrire 'X' à la position désirée dans le fichier
-  fseek(salles, position, SEEK_CUR);
-  fputc('O', salles);
-  
-  /*if (ascii !=88){
-    printf("\nla place est deja libre\n");
-  }*/
+  a=fgetc(salles);
+  fseek(salles, -1, SEEK_CUR);
+  if (a=='X'){
+  	fputc('O',salles);
+  }
+  else{
+  	printf("Erreur, la place n'est pas reservée\n");
+  	int r=0,c=0, verif=0, verif2=0;
+  	char g=0;
+  	printf("Quelle rangée ?\n");
+        do{
+            verif=scanf("%d",&r);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');  
+            if (verif != 1 || r<0 ){
+            printf("saisie invalide\n");
+            }
+
+        } while (verif != 1 ||r<0);
+        verif=0;
+        verif2=0; 
+        clrscr();
+        afficheSalle(salle);
+        printf("Quelle colonne ?\n");
+        do{
+            verif=scanf("%d",&c);
+            do{
+                verif2=scanf("%c",&g);
+            }while(verif2 == 1 && g!='\n');
+            if (verif != 1 || c<0 ){
+            printf("saisie invalide\n");
+            }
+
+        } while (verif != 1 ||c<0);
+        verif=0;
+        verif2=0; 
+        clrscr();
+        remboursement(salle,r,c);
+  }
   fclose(salles);
 
 }
