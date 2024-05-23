@@ -29,6 +29,7 @@ pouvoir annuler une reservation :
 ne pas pouvoir annuler une place pas reservé:
 renforcer manageur :
 faire un clrscr(); apres chque entré de l'utilisateur:
+le manageur peut voir l'etat des salles a tt moment et voire le ratio de plage occupée et de place libre: 
 Commenter toutes les lignes de codes compliquée et faire les docstrings:
 ( revoir ça on peut le tranformer en do while pour faire plus jollie "while ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)) { // Si la somme des sièges des 3 catégories ": )
 
