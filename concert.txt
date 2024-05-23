@@ -1,0 +1,15 @@
+petascle : Nom du concert
+1717106400 : Heure du debut du concert
+-60 : Longueur du concert
+1717106340 : Heure de fin du concert
+test : Nom de la salle
+pestacle : Nom du concert
+1735671600 : Heure du debut du concert
+0 : Longueur du concert
+1735671600 : Heure de fin du concert
+test : Nom de la salle
+bbbbbbbbbbbb : Nom du concert
+1717620240 : Heure du debut du concert
+3600 : Longueur du concert
+1717623840 : Heure de fin du concert
+test : Nom de la salle

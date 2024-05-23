@@ -937,10 +937,10 @@ int debut(){
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || h<-1 || h>24){
+    if (verif != 1 || h<0 || h>23){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || h<-1|| h >24);
+  } while (verif != 1 || h<0|| h >23);
   verif=0;
   verif2=0;//entre 0 et 23 
   printf("A quel minute a lieu le concert ?\n");
@@ -949,10 +949,10 @@ int debut(){
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || min<-1 || min>60){
+    if (verif != 1 || min<0 || min>59){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || min<-1|| min>60);
+  } while (verif != 1 || min<0|| min>59);
   verif=0;
   verif2=0;("%d",&min);//entre 0 et 59
 
@@ -976,21 +976,35 @@ int duree(){
   long s;
   int verif=0, verif2=0;
   char c;
-  printf("Combien d'heure dure le concert ?\n");
+  do{
+    printf("Combien d'heure dure le concert ?\n");
     do{
     verif=scanf("%d",&h);
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || h<-1 || h>24){
+    if (verif != 1 || h<0 || h>23){
       printf("saisie invalide\n");
     }
-    } while (verif != 1 || h<-1|| h >24);
+      } while (verif != 1 || h<0|| h >23);
+      verif=0;
+      verif2=0;
+    printf("Combien de minute dure le concert ?\n");
+    do{
+    verif=scanf("%d",&min);
+    do{
+      verif2=scanf("%c",&c);
+    }while(verif2 == 1 && c!='\n');
+    if (verif != 1 || min<0 || min>59){
+      printf("saisie invalide\n");
+    }
+    } while (verif != 1 || min<0|| min>59);
     verif=0;
-    verif2=0;
-  printf("Combien de minute dure le concert ?\n");
-  scanf("%d",&min);
-
+    verif2=0;("%d",&min);
+    if(h<=0 && min<=0){
+      printf("le concert doit durée au moins 1 min\n");
+    }
+}while(h<=0 && min<=0);
   s=h*3600+min*60;
   return s;
 }
