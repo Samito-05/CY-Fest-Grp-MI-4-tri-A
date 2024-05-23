@@ -3,7 +3,7 @@
 
 
 
-void mode(){ // j ai mis des clear screen mais si vous trouver que y en a pas assez vous pouvez en rajouter
+void mode(){ 
     libererSalle();
     int mode;
     int cle;
