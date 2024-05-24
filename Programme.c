@@ -9,7 +9,7 @@ void mode(){
     int cle;
     int i = 0;
 
-    printf("Que voulez-vous faire ?\n1. Gérer le festival (mode manageur)\t2. Réserver des places (mode festivalier)\t3.sortir du programme\n");
+    printf("Que voulez-vous faire ?\n1. Gerer le festival (mode manageur)\t2. Reserver des places (mode festivalier)\t3.sortir du programme\n");
     int verif=0, verif2=0;
     char c;
     do{
@@ -31,7 +31,7 @@ void mode(){
     {
         // Vérification de la clé d'accès pour le mode manageur
         while (cle != 123456 && i < 3){
-            printf("Entrez la clé d'accès : ");
+            printf("Entrez la cle d'acces : ");
             do{
                 verif=scanf("%d",&cle);
                 do{
@@ -45,7 +45,7 @@ void mode(){
              verif2=0;
             if (cle != 123456){
                 i++;
-                printf("Code erroné. Plus que %d tentative(s).\n", 3 - i);
+                printf("Code errone. Plus que %d tentative(s).\n", 3 - i);
                 if (i == 3)
                 {
                     printf("Nombre maximum de tentatives atteint. Sortie du programme.\n");
@@ -93,13 +93,13 @@ void festival(){
         int r,c,n;
         char salle[21];
         listeSallef(); 
-        printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
-        scanf("%s", salle);//A securiser !
+        printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
+        scanf("%20s", salle);
         clrscr();
         veriff(salle);
         clrscr();
         afficheSalle(salle);
-        printf("Quelle rangée ?\n");
+        printf("Quelle rangee ?\n");
         do{
             verif=scanf("%d",&r);
             do{
@@ -141,13 +141,13 @@ void festival(){
         int r,c,n;
         char salle[21];
         listeSallef(); 
-        printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
-        scanf("%s", salle);//A securiser !
+        printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
+        scanf("%20s", salle);
         clrscr();
         veriff(salle);
         clrscr();
         afficheSalle(salle);
-        printf("Quelle rangée ?\n");
+        printf("Quelle rangee ?\n");
         do{
             verif=scanf("%d",&r);
             do{
@@ -186,8 +186,8 @@ void festival(){
     if (festivalier==3){
       char salle[21];
       listeSallef();
-      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
-      scanf("%s", salle);//A securiser !
+      printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
+      scanf("%20s", salle);
       clrscr();
       veriff(salle);
       afficheSalle(salle);
@@ -231,8 +231,8 @@ void manage()
       int n;
       char salle[21];
       listeSallem();
-      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
-      scanf("%s", salle);//A securiser !
+      printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
+      scanf("%20s", salle);
       clrscr();
       verifm(salle);
       clrscr();
@@ -243,8 +243,8 @@ void manage()
     {
       char salle[21];
       listeSalle();
-      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
-      scanf("%s", salle);//A securiser !
+      printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
+      scanf("%20s", salle);
       clrscr();
       verifm(salle);
       clrscr();
@@ -261,8 +261,8 @@ void manage()
     else if (manageur==5){
       char salle[21];
       listeSalle();
-      printf("Quel est le nom de la salle ? (20 caractères maximum)\n");
-      scanf("%s", salle);//A securiser !
+      printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
+      scanf("%20s", salle);
       clrscr();
       afficheSalle(salle);
       manage();
@@ -278,11 +278,6 @@ void manage()
 
 
 int main(){
-    /*FILE* salles = fopen("salle.txt", "w");
-    if (salles == NULL) {
-        exit(1);
-    }
-    fclose(salles);*/
     clrscr();
     mode();
     return 0;

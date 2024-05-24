@@ -10,8 +10,8 @@ void creerSalle() {
 
   concert = 0; // On initialise la salle comme non occupé
   listeSalle();
-  printf("Quel est le nom de la salle ? (20 caractères maximum)\n");//A securiser !
-  scanf("%s", nomsalle);
+  printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");//A securiser !
+  scanf("%20s", nomsalle);
   clrscr();
 
 
@@ -26,85 +26,44 @@ void creerSalle() {
   while (fgets(phrase, sizeof(phrase), salles) != NULL) {
     // Vérification de la bonne salle
     if (strstr(phrase, nomsalle) != NULL) {
-      printf("La salle existe déjà.\n");
+      printf("La salle existe dejà.\n");
       return;
     }
   }
 
 
-  printf("Combien y a t-il de rangée ?\n");
+  printf("Combien y a t-il de rangee ?\n");
   do{
     verif=scanf("%d",&nrangee);
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nrangee<1){
+    if (verif != 1 || nrangee<1|| nrangee>20){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || nrangee<1);
+  } while (verif != 1 || nrangee<1|| nrangee >20);
   verif=0;
   verif2=0;
   clrscr();
 
-  printf("Combien y a t-il de siège par rangée ?\n");
+  printf("Combien y a t-il de siege par rangee ?\n");
   do{
     verif=scanf("%d",&nsiege);
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nsiege<1){
+    if (verif != 1 || nsiege<1|| nsiege>20){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || nsiege<1);
+  } while (verif != 1 || nsiege<1||nsiege >20);
   verif=0;
   verif2=0;
   clrscr();
 
 
   // On demande le nombre de siège par catégorie
-  printf("Combien y a t-il de rangée de catégorie A ?\n");
-  do{
-    verif=scanf("%d",&nsiegeA);
-    do{
-      verif2=scanf("%c",&c);
-    }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nsiegeA<1){
-      printf("saisie invalide\n");
-    }
-  } while (verif != 1 || nsiegeA<1);
-  verif=0;
-  verif2=0;
-  nsiegeA *=nsiege; // On fait ranger de Catégorie A * nombre de siège par rangée
-  clrscr();
-
-
-
-  printf("Combien y a t-il de rangée de catégorie B ?\n");
-  do{
-    verif=scanf("%d",&nsiegeB);
-    do{
-      verif2=scanf("%c",&c);
-    }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nsiegeB<0){
-      printf("saisie invalide\n");
-    }
-  } while (verif != 1 || nsiegeB<0);
-  verif=0;
-  verif2=0;
-  nsiegeB *= nsiege;
-
-
-  nsiegeC =nsiege * nrangee - (nsiegeA + nsiegeB);
-  clrscr();
-  if (nsiegeC < 0) {
-    nsiegeC = 0;
-  }
-
-  while ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)) { // Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
-    printf("Il y a une erreur dans l'affectation des sièges, veuillez "
-           "réessayer\n");
-
-    printf("Combien y a t-il de rangée de catégorie A ?\n");
+  do{  
+    printf("Combien y a t-il de rangee de categorie A ?\n");
     do{
       verif=scanf("%d",&nsiegeA);
       do{
@@ -114,34 +73,37 @@ void creerSalle() {
         printf("saisie invalide\n");
       }
     } while (verif != 1 || nsiegeA<1);
-  verif=0;
-  verif2=0;
+    verif=0;
+    verif2=0;
+    nsiegeA *=nsiege; // On fait ranger de Catégorie A * nombre de siège par rangée
     clrscr();
-    nsiegeA *= nsiege; // On fais rangée de Catégorie A * nombre de
-                                   // siège par rangée
 
 
-    printf("Combien y a t-il de rangée de catégorie B ?\n");
+
+    printf("Combien y a t-il de rangee de categorie B ?\n");
     do{
-    verif=scanf("%d",&nsiegeB);
-    do{
-      verif2=scanf("%c",&c);
-    }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nsiegeB<0){
-      printf("saisie invalide\n");
-    }
-  } while (verif != 1 || nsiegeB<0);
-  verif=0;
-  verif2=0;
+      verif=scanf("%d",&nsiegeB);
+      do{
+        verif2=scanf("%c",&c);
+      }while(verif2 == 1 && c!='\n');
+      if(verif != 1 || nsiegeB<0){
+        printf("saisie invalide\n");
+      }
+    } while (verif != 1 || nsiegeB<0);
+    verif=0;
+    verif2=0;
     nsiegeB *= nsiege;
-    clrscr();
-    
-    nsiegeC = nsiege * nrangee - (nsiegeA + nsiegeB);
+
+
+    nsiegeC =nsiege * nrangee - (nsiegeA + nsiegeB);
     clrscr();
     if (nsiegeC < 0) {
       nsiegeC = 0;
     }
-  }
+    if ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)) {
+      printf("Il y a une erreur dans l'affectation des sieges, veuillez reessayer\n");
+    } 
+  }while ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)); // Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
 
   printf("Y'a t-il une fosse ? (1 si oui, 0 si non)\n");
   do{
@@ -178,7 +140,7 @@ void creerSalle() {
   }
   // On demande le prix de chaque catégorie
   else {
-    printf("Quel est le prix d'une place de catégorie A ?\n");
+    printf("Quel est le prix d'une place de categorie A ?\n");
     do{
     verif=scanf("%f",&prixA);
     do{
@@ -193,7 +155,7 @@ void creerSalle() {
     clrscr();
   }
 if(nsiegeB >0){
-  printf("Quel est le prix d'une place de catégorie B ?\n");
+  printf("Quel est le prix d'une place de categorie B ?\n");
   do{
     verif=scanf("%f",&prixB);
     do{
@@ -211,7 +173,7 @@ if(nsiegeB >0){
 
  
   if(nsiegeC >0){  
-    printf("Quel est le prix d'une place de catégorie C ?\n");
+    printf("Quel est le prix d'une place de categorie C ?\n");
     do{
     verif=scanf("%f",&prixC);
     do{
@@ -233,16 +195,18 @@ if(nsiegeB >0){
     exit(1);
   }
   fprintf(fichier, "%s : Nom de la salle\n", nomsalle);
-  fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", concert);
+  fprintf(fichier, "%d : Est-ce que la salle est utilise ?\n", concert);
   fprintf(fichier, "%d : Nombre de rangée\n", nrangee);
-  fprintf(fichier, "%d : Nombre de siège par rangée\n", nsiege);
-  fprintf(fichier, "%d : Nombre de siège de catégorie A\n", nsiegeA);
-  fprintf(fichier, "%d : Nombre de siège de catégorie B\n", nsiegeB);
-  fprintf(fichier, "%d : Nombre de siège de catégorie C\n", nsiegeC);
+  fprintf(fichier, "%d : Nombre de siege par rangée\n", nsiege);
+  fprintf(fichier, "%d : Nombre de siege de catégorie A\n", nsiegeA);
+  fprintf(fichier, "%d : Nombre de siege de catégorie B\n", nsiegeB);
+  fprintf(fichier, "%d : Nombre de siege de catégorie C\n", nsiegeC);
   fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", fosse);
   fprintf(fichier, "%.2f : Prix de la catégorie A\n", prixA);
   fprintf(fichier, "%.2f : Prix de la catégorie B\n", prixB);
   fprintf(fichier, "%.2f : Prix de la catégorie C\n", prixC);
+
+  
 
   for (int i = 0; i < nsiegeA / nsiege; i++) {
     for (int j = 0; j < nsiege - 1; j++) {
@@ -270,40 +234,10 @@ if(nsiegeB >0){
   }
 
   fclose(fichier);
-  printf("La salle a bien été créé.\n");
+  printf("La salle a bien ete cree.\n");
 }
 
-/*void salle_txt(char* salle)
-{
 
-    char *nom = salle.nomsalle;
-
-    nom[strcspn(nom, "\n")] = '\0';
-
-    FILE *fichier = fopen(nom, "w");
-
-    if (fichier == NULL)
-    {
-
-        printf("Erreur d'ouverture du fichier.");
-        return;
-    }
-
-    fprintf(fichier, "%s : Nom de la salle\n", salle.nomsalle);
-    fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", salle.concert);
-    fprintf(fichier, "%d : Nombre de rangée\n", salle.nrangee);
-    fprintf(fichier, "%d : Nombre de siège par rangée\n", salle.nsiege);
-    fprintf(fichier, "%d : Nombre de siège de catégorie A\n", salle.nsiegeA);
-    fprintf(fichier, "%d : Nombre de siège de catégorie B\n", salle.nsiegeB);
-    fprintf(fichier, "%d : Nombre de siège de catégorie C\n", salle.nsiegeC);
-    fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", salle.fosse);
-    fprintf(fichier, "%.2f : Prix de la catégorie A\n", salle.prixA);
-    fprintf(fichier, "%.2f : Prix de la catégorie B\n", salle.prixB);
-    fprintf(fichier, "%.2f : Prix de la catégorie C\n", salle.prixC);
-    fprintf(fichier, "\n");
-
-    fclose(fichier);
-}*/
 
 void modifierSalle(char *nom_salle) {
   // ouvrir le fichier
@@ -385,37 +319,37 @@ void modifierSalle(char *nom_salle) {
 
   concert = 0; // On initialise la salle comme non occupé
 
-     printf("Combien y a t-il de rangée ?\n");
+     printf("Combien y a t-il de rangee ?\n");
   do{
     verif=scanf("%d",&nrangee);
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nrangee<1){
+    if (verif != 1 || nrangee<1|| nrangee >20){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || nrangee<1);
+  } while (verif != 1 || nrangee<1|| nrangee>20);
   verif=0;
   verif2=0;
   clrscr();
 
-  printf("Combien y a t-il de siège par rangée ?\n");
+  printf("Combien y a t-il de siege par rangee ?\n");
   do{
     verif=scanf("%d",&nsiege);
     do{
       verif2=scanf("%c",&c);
     }while(verif2 == 1 && c!='\n');
-    if (verif != 1 || nsiege<1){
+    if (verif != 1 || nsiege<1||nsiege >20){
       printf("saisie invalide\n");
     }
-  } while (verif != 1 || nsiege<1);
+  } while (verif != 1 || nsiege<1|| nsiege<20);
   verif=0;
   verif2=0;
   clrscr();
 
 
   // On demande le nombre de siège par catégorie
-  printf("Combien y a t-il de rangée de catégorie A ?\n");
+  printf("Combien y a t-il de rangee de categorie A ?\n");
   do{
     verif=scanf("%d",&nsiegeA);
     do{
@@ -432,7 +366,7 @@ void modifierSalle(char *nom_salle) {
 
 
 
-  printf("Combien y a t-il de rangée de catégorie B ?\n");
+  printf("Combien y a t-il de rangee de categorie B ?\n");
   do{
     verif=scanf("%d",&nsiegeB);
     do{
@@ -454,10 +388,9 @@ void modifierSalle(char *nom_salle) {
   }
 
   while ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)) { // Si la somme des sièges des 3 catégories ne sont pas égales au nombre de siège total on recommence le scan
-    printf("Il y a une erreur dans l'affectation des sièges, veuillez "
-           "réessayer\n");
+    printf("Il y a une erreur dans l'affectation des sieges, veuillez reessayer\n");
 
-    printf("Combien y a t-il de rangée de catégorie A ?\n");
+    printf("Combien y a t-il de rangee de categorie A ?\n");
     do{
       verif=scanf("%d",&nsiegeA);
       do{
@@ -471,10 +404,8 @@ void modifierSalle(char *nom_salle) {
   verif2=0;
     clrscr();
     nsiegeA *= nsiege; // On fais rangée de Catégorie A * nombre de
-                                   // siège par rangée
-
-
-    printf("Combien y a t-il de rangée de catégorie B ?\n");
+  // siège par rangée
+    printf("Combien y a t-il de rangee de categorie B ?\n");
     do{
     verif=scanf("%d",&nsiegeB);
     do{
@@ -531,7 +462,7 @@ void modifierSalle(char *nom_salle) {
   }
   // On demande le prix de chaque catégorie
   else {
-    printf("Quel est le prix d'une place de catégorie A ?\n");
+    printf("Quel est le prix d'une place de categorie A ?\n");
     do{
     verif=scanf("%f",&prixA);
     do{
@@ -546,7 +477,7 @@ void modifierSalle(char *nom_salle) {
     clrscr();
   }
   if(nsiegeB>0){
-  printf("Quel est le prix d'une place de catégorie B ?\n");
+  printf("Quel est le prix d'une place de categorie B ?\n");
   do{
     verif=scanf("%f",&prixB);
     do{
@@ -564,7 +495,7 @@ void modifierSalle(char *nom_salle) {
 
  
   if(nsiegeC >0){  
-    printf("Quel est le prix d'une place de catégorie C ?\n");
+    printf("Quel est le prix d'une place de categorie C ?\n");
     do{
     verif=scanf("%f",&prixC);
     do{
@@ -587,11 +518,11 @@ void modifierSalle(char *nom_salle) {
   }
   fprintf(fichier, "%s : Nom de la salle\n", nomsalle);
   fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", concert);
-  fprintf(fichier, "%d : Nombre de rangée\n", nrangee);
-  fprintf(fichier, "%d : Nombre de siège par rangée\n", nsiege);
-  fprintf(fichier, "%d : Nombre de siège de catégorie A\n", nsiegeA);
-  fprintf(fichier, "%d : Nombre de siège de catégorie B\n", nsiegeB);
-  fprintf(fichier, "%d : Nombre de siège de catégorie C\n", nsiegeC);
+  fprintf(fichier, "%d : Nombre de rangee\n", nrangee);
+  fprintf(fichier, "%d : Nombre de siege par rangée\n", nsiege);
+  fprintf(fichier, "%d : Nombre de siege de catégorie A\n", nsiegeA);
+  fprintf(fichier, "%d : Nombre de siege de catégorie B\n", nsiegeB);
+  fprintf(fichier, "%d : Nombre de siege de catégorie C\n", nsiegeC);
   fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", fosse);
   fprintf(fichier, "%.2f : Prix de la catégorie A\n", prixA);
   fprintf(fichier, "%.2f : Prix de la catégorie B\n", prixB);
@@ -743,7 +674,7 @@ void listeSalle(){
   char phrase[50];
   char nomsalle[21];
   int a, i=0,nr;
-  printf("Voici les salles créée\n");
+  printf("Voici les salles creee\n");
   printf("\n");
   while((a = fgetc(salles)) != EOF){
     while (a != ' ' && a != EOF && i < 20) {
@@ -772,11 +703,11 @@ void creerConcert(){
   char nom_concert[21];
   char nom_salle[21];
   int tdebut,temps,tfin;
-  printf("Quelle est le nom du concert ? (maximum 20 caractères)\n");
-  scanf("%s",nom_concert);
+  printf("Quelle est le nom du concert ? (maximum 20 caracteres)\n");
+  scanf("%20s",nom_concert);
   //demander dans quelle salle le mettre, changer la variable concert =1
-  printf("Le concert a lieu dans quelle salle ? (maximum 20 caractères)\n");
-  scanf("%s",nom_salle);
+  printf("Le concert a lieu dans quelle salle ? (maximum 20 caracteres)\n");
+  scanf("%20s",nom_salle);
   clrscr();
   verifm(nom_salle);
   tdebut=debut();
@@ -849,7 +780,7 @@ int debut(){
   long s;
   int verif=0, verif2=0;
   char c;
-  printf("En quelle année a lieu le concert ?\n");
+  printf("En quelle annee a lieu le concert ?\n");
   do{
       verif=scanf("%d",&a);
       do{
@@ -872,8 +803,8 @@ int debut(){
     }
   }while (verif != 1 || mois<1|| mois >12);
   verif=0;
-  verif2=0;//entre 0 et 11    a revoir je suis pas sur de lui !!!!!!!!!!!!!!!!!!!!
-  printf("Quel jour a lieu le concert (numériquement) ?\n");
+  verif2=0;
+  printf("Quel jour a lieu le concert (numeriquement) ?\n");
  
   if (mois == 2 && a%4 != 0){
     do{
@@ -1000,7 +931,7 @@ int duree(){
     verif=0;
     verif2=0;("%d",&min);
     if(h<=0 && min<=0){
-      printf("le concert doit durée au moins 1 min\n");
+      printf("le concert doit duree au moins 1 min\n");
     }
 }while(h<=0 && min<=0);
   s=h*3600+min*60;
@@ -1021,7 +952,7 @@ void listeSallem(){
   }
 
   if (fgetc(verifm)==EOF){
-    printf("Toute les salles sont utilisées\n");
+    printf("Toute les salles sont utilisees\n");
     manage();
   }
 
@@ -1230,10 +1161,10 @@ void libererPlace(char* nom_salle){
   fprintf(fichier, "%s : Nom de la salle\n", nom_salle);
   fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", concert);
   fprintf(fichier, "%d : Nombre de rangée\n", nr);
-  fprintf(fichier, "%d : Nombre de siège par rangée\n", ns);
-  fprintf(fichier, "%d : Nombre de siège de catégorie A\n", nsA);
-  fprintf(fichier, "%d : Nombre de siège de catégorie B\n", nsB);
-  fprintf(fichier, "%d : Nombre de siège de catégorie C\n", nsC);
+  fprintf(fichier, "%d : Nombre de siege par rangée\n", ns);
+  fprintf(fichier, "%d : Nombre de siege de catégorie A\n", nsA);
+  fprintf(fichier, "%d : Nombre de siege de catégorie B\n", nsB);
+  fprintf(fichier, "%d : Nombre de siege de catégorie C\n", nsC);
   fprintf(fichier, "%d : Est-ce qu'il y a une fosse ?\n", f);
   fprintf(fichier, "%.2f : Prix de la catégorie A\n", pA);
   fprintf(fichier, "%.2f : Prix de la catégorie B\n", pB);
@@ -1414,12 +1345,10 @@ void verifm(char *salle){
   }
   fclose(verifm);
   if (!trouve){
-    printf("Cette salle est occupé ou n'existe pas\n");
+    printf("Cette salle est occupe ou n'existe pas\n");
     manage();
   }
 }
 
 
 
-//mktime()
-//localtime()

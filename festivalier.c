@@ -24,7 +24,7 @@ void afficheSalle(char *nom_salle) {
 
   // Vérifier si la fin du fichier est atteinte sans trouver la salle
   if (!trouve) {
-    printf("La salle n'a pas été trouvée\n");
+    printf("La salle n'a pas ete trouvee\n");
     fclose(salles);
     return;
   }
@@ -129,7 +129,7 @@ void afficheSalle(char *nom_salle) {
 
   printf("-------------------------------\n");
 
-  printf("\nLégende\n");
+  printf("\nLegende\n");
   couleur("36");
   printf("O : Categorie 1 / Fosse (%.2f EURO)\n",pA);
   couleur("33");
@@ -206,10 +206,10 @@ void reserverSalle(char *salle, int y, int x) {
   else{
     printf("%c",a);
     afficheSalle(salle);
-  	printf("Erreur, la place est déjà reservée\n");
+  	printf("Erreur, la place est dejà reservee\n");
   	int r=0,c=0, verif=0, verif2=0;
   	char g=0;
-  	printf("Quelle rangée ?\n");
+  	printf("Quelle rangee ?\n");
         do{
             verif=scanf("%d",&r);
             do{
@@ -344,11 +344,11 @@ void remboursement(char *salle, int y, int x) {
   }
   else{
     afficheSalle(salle);
-  	printf("Erreur, la place n'est pas reservée\n");
+  	printf("Erreur, la place n'est pas reservee\n");
   	int r=0,c=0, verif=0, verif2=0;
   	char g=0;
     afficheSalle(salle);
-  	printf("Quelle rangée ?\n");
+  	printf("Quelle rangee ?\n");
         do{
             verif=scanf("%d",&r);
             do{
@@ -400,7 +400,7 @@ void veriff(char *salle){
   }
   fclose(veriff);
   if (!trouve){
-    printf("Cette salle n'est pas programmé pour un concert\n");
+    printf("Cette salle n'est pas programme pour un concert\n");
     festival();
   }
 }
