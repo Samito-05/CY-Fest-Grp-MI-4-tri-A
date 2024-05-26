@@ -1,6 +1,6 @@
 #include "bibli.h"
 
-void afficheSalle(char *nom_salle) {
+void afficheSalle(char *nom_salle) { //Affichage de salle
   int r = 1;
 
   // ouvrir le fichier
@@ -157,7 +157,7 @@ void afficheSalle(char *nom_salle) {
   fclose(salles);
 }
 
-void reserverSalle(char *salle, int y, int x) {
+void reserverSalle(char *salle, int y, int x) { // Reservation de salle
   char *nom = "salle.txt";
 
   // ouvrir le fichier
@@ -196,14 +196,14 @@ void reserverSalle(char *salle, int y, int x) {
   }
   int position = (x - 1) * 2;
 
-  fseek(salles, position, SEEK_CUR);
+  fseek(salles, position, SEEK_CUR); // Deplacement a la place demandé
   a=fgetc(salles);
   fseek(salles, -1, SEEK_CUR);
-  if (a=='O'){
+  if (a=='O'){ // Changent de l'etat de la place
   	fputc('X',salles);
     fclose(salles);
   }
-  else{
+  else{ // affichage de massage d'erruer, place deja reservé
     printf("%c",a);
     afficheSalle(salle);
   	printf("Erreur, la place est dejà reservee\n");
@@ -239,18 +239,18 @@ void reserverSalle(char *salle, int y, int x) {
         verif2=0; 
         clrscr();
         fclose(salles);
-        reserverSalle(salle,r,c);
+        reserverSalle(salle,r,c); // appel recursif de la fonction en cas de place deja reservée
   }
 }
 
 void listeSallef(){
-  FILE * salles= fopen("salle.txt","r");
+  FILE * salles= fopen("salle.txt","r"); // ouverture du fichier
   if (salles==NULL){
     printf("Erreur fichier");
     exit(1);
   }
 
-  FILE * veriff= fopen("veriff.txt","r");
+  FILE * veriff= fopen("veriff.txt","r"); //Etape de verification
   if (veriff==NULL){
     printf("Erreur fichier");
     exit(1);
@@ -268,7 +268,7 @@ void listeSallef(){
   int a, i=0,nr;
   printf("Voici les salles disponibles\n");
   printf("\n");
-  while((a = fgetc(salles)) != EOF){
+  while((a = fgetc(salles)) != EOF){ // parcour du fichier ligne par ligne afin d'extraire les salles dispo
     while (a != ' ' && a != EOF && i < 20) {
       nomsalle[i] = (char)a;
       i++;
@@ -346,7 +346,7 @@ void remboursement(char *salle, int y, int x) {
   	fputc('O',salles);
     fclose(salles);
   }
-  else{
+  else{ // demande de nouveau siege en cas de sierge non reservé
     afficheSalle(salle);
   	printf("Erreur, la place n'est pas reservee\n");
   	int r=0,c=0, verif=0, verif2=0;
@@ -382,11 +382,11 @@ void remboursement(char *salle, int y, int x) {
         verif2=0; 
         clrscr();
         fclose(salles);
-        remboursement(salle,r,c);
+        remboursement(salle,r,c); //Appel recursif de la fonction
   }
 }
 
-void veriff(char *salle){
+void veriff(char *salle){ // fonction de verification de salle
   FILE* veriff=fopen("veriff.txt","r");
   if (veriff==NULL){
     printf("Erreur de fichier\n");
@@ -396,8 +396,8 @@ void veriff(char *salle){
   char phrase[50];
   int trouve=0;
 
-  while(fgets(phrase,sizeof(phrase),veriff)!=NULL){
-    if (strstr(phrase,salle)!=NULL){
+  while(fgets(phrase,sizeof(phrase),veriff)!=NULL){ // Parcours de ligne 1 a 1
+    if (strstr(phrase,salle)!=NULL){ //Cherche si le nom de la salle  est dans la ligne
       trouve=1;
       break;
     }
