@@ -1,18 +1,36 @@
 # CY Fest-Grp MI-4 tri-A
+
 Projet 1ere annee CY Tech
 
     LANDIER Gabin
     PROCOPPE Sam
     CALVANO Romain
 
+Cette application permet de gerer un festival
 
+Il y a deux modes :
 
-prochaine etape :
-tout renforce 
-verfier que les chaines de caractères ne dépasse pas 20:
-verifier que le nombre de rangées et de places ne dépasse pas 20:X
-renforcer manageur :
-Commenter toutes les lignes de codes compliquée et faire les docstrings:
-( revoir ça on peut le tranformer en do while pour faire plus jollie "while ((nsiegeA + nsiegeB + nsiegeC) !=(nsiege *nrangee)) { // Si la somme des sièges des 3 catégories ": )
-tranformer les é/è en e : X
+Le premier mode est le mode manageur :
 
+Celui ci permet a quiconque ayant le mot de passe de modifier tous les aspect du festival. Que ca soit pour ajouter des salles, cree des concert ou meme suprimer des salles.
+
+    Les options sont :
+
+- Creer Salle
+- Supprimer Salle
+- Modifier Salle
+- Creer Concert
+- Supprimer Concert
+- Libeerer Salle
+- Liberer Place
+
+Le deuxieme mode  est le mode festivalier :
+
+Celui ci simule toute autre plateforme de reservation de places. On peut voir les concerts a venir, les places disponibles et de pouvoir annuler la reservation.
+
+    Les options sont : 
+
+- Afficher Salle
+- Reservation de place
+- Liste des Salles
+- Rembousement
