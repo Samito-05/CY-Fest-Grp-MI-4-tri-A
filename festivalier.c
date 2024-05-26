@@ -257,6 +257,7 @@ void listeSallef(){
   }
 
   if (fgetc(veriff)==EOF){
+    clrscr();
     printf("Aucun concert pour l'instant revenez plus tard\n");
     festival();
   }
@@ -297,6 +298,9 @@ void listeSallef(){
 void remboursement(char *salle, int y, int x) {
   char *nom = "salle.txt";
 
+  if (y==0 && x==0){
+    return;
+  }
   // ouvrir le fichier
   FILE *salles = fopen(nom, "r+");
   if (salles == NULL) {

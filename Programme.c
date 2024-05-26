@@ -4,7 +4,7 @@
 
 
 void mode(){ 
-    libererSalle();
+    libererSalle();//A chaque appel on verifie si les concerts en cour sont finis.
     int mode;
     int cle;
     int i = 0;
@@ -27,12 +27,12 @@ void mode(){
 
     
 
-    if (mode == 1)
+    if (mode == 1)// On rentre dans le mode manageur
     {
         // Vérification de la clé d'accès pour le mode manageur
         while (cle != 123456 && i < 3){
             printf("Entrez la cle d'acces : ");
-            do{
+            do{ //Permet de verifier mot de passe manageur est bon
                 verif=scanf("%d",&cle);
                 do{
                     verif2=scanf("%c",&c);
@@ -57,12 +57,12 @@ void mode(){
         clrscr();
         manage();   
     }   
-    else if (mode == 2)
+    else if (mode == 2)// On rentre dans le mode festivalier
     {
         clrscr();
         festival();
     }
-    else if (mode == 3)
+    else if (mode == 3)// On quitte le programme
     {
         exit(1);
     }
@@ -70,7 +70,7 @@ void mode(){
 
 
 void festival(){
-    libererSalle();
+    libererSalle();//A chaque appel on verifie si les concerts en cour sont finis.
     int festivalier;
     printf("Que voulez vous faire ?\n1.reserver une place\t2.annuler une reservation\t3.afficher les salles de concert\t4.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
@@ -89,16 +89,16 @@ void festival(){
     clrscr();
     
     
-    if (festivalier == 1){
+    if (festivalier == 1){// On reserve une salle
         int r,c,n;
         char salle[21];
-        listeSallef(); 
+        listeSallef(); // On verifie les salles dans lequels il y a des concerts
         printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
         scanf("%20s", salle);
         clrscr();
-        veriff(salle);
+        veriff(salle);// On verifie la salle est bien programmé
         clrscr();
-        afficheSalle(salle);
+        afficheSalle(salle);// On affiche la salle
         printf("Quelle rangee ?\n");
         do{
             verif=scanf("%d",&r);
@@ -113,7 +113,7 @@ void festival(){
         verif=0;
         verif2=0; 
         clrscr();
-        afficheSalle(salle);
+        afficheSalle(salle);// On affiche la salle
         printf("Quelle colonne ?\n");
         do{
             verif=scanf("%d",&c);
@@ -128,9 +128,9 @@ void festival(){
         verif=0;
         verif2=0; 
         clrscr();
-        reserverSalle(salle,r,c);
+        reserverSalle(salle,r,c);// On reserve la place de coordonée r,c
         afficheSalle(salle);
-        festival();
+        festival();//On reboucle le mode festivalier
     }
     clrscr();
     
@@ -140,13 +140,14 @@ void festival(){
     {
         int r,c,n;
         char salle[21];
-        listeSallef(); 
+        listeSallef(); // On verifie les salles dans lequels il y a des concerts
         printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
         scanf("%20s", salle);
         clrscr();
-        veriff(salle);
+        veriff(salle);// On verifie la salle est bien programmé
         clrscr();
         afficheSalle(salle);
+        printf("Annuler remboursement (Rangee 0, colonne 0)\n");
         printf("Quelle rangee ?\n");
         do{
             verif=scanf("%d",&r);
@@ -176,20 +177,18 @@ void festival(){
         verif=0;
         verif2=0; 
         clrscr();
-        remboursement(salle,r,c);
+        remboursement(salle,r,c);// On rembourse la salle de coordonnée r,c
         afficheSalle(salle);
-        festival();
-    
-        festival();
+        festival();// On reboucle le mode festivalier
     }
 
     if (festivalier==3){
       char salle[21];
-      listeSallef();
+      listeSallef(); // On verifie les salles dans lequels il y a des concerts
       printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
       scanf("%20s", salle);
       clrscr();
-      veriff(salle);
+      veriff(salle);// On verifie la salle est bien programmé
       afficheSalle(salle);
       festival();
     }
@@ -197,13 +196,13 @@ void festival(){
     if (festivalier == 4)
     {
         clrscr();
-        mode();
+        mode();//On sort de mode festivalier
     }
 }
 
 void manage()
 { // oublier pas d apppeler la fonction a la fin de chaque action majeur
-    libererSalle();
+    libererSalle();//A chaque appel on verifie si les concerts en cour sont finis.
     int manageur;
     printf("Que voulez vous faire ?\n1.ajouter une salle\t2.modifier une salle\t3.supprimer une salle\t4.creer un concert\t5.afficher une salle\t6.retour au choix du mode\n"); // ecris tout les choix de manageur
     int verif=0, verif2=0;
@@ -223,39 +222,39 @@ void manage()
     verif2=0;
     if (manageur == 1)
     {
-        creerSalle();
-        manage();
+        creerSalle();//On crée une salle
+        manage();//On reboucle le mode manageur
     }
     else if (manageur == 2)
     {
       int n;
       char salle[21];
-      listeSallem();
+      listeSallem();// On verifie les salles dans lequels il n'y a pas des concerts
       printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
       scanf("%20s", salle);
       clrscr();
-      verifm(salle);
+      verifm(salle);// On verifier si la salle est bien libre
       clrscr();
-      modifierSalle(salle);
-      manage();
+      modifierSalle(salle); //On modifie la salle rentrer en paramètre
+      manage();//On reboucle le mode manageur
     }
     else if (manageur == 3)
     {
       char salle[21];
-      listeSalle();
+      listeSallem();//On regarde toute les salles
       printf("Quel est le nom de la salle ? (20 caracteres maximum)\n");
       scanf("%20s", salle);
       clrscr();
-      verifm(salle);
+      verifm(salle);// On verifier si la salle est bien libre
       clrscr();
-      supprimerSalle(salle);
+      supprimerSalle(salle);//On supprime la salle en paramètre
       manage();
     }
     else if (manageur == 4)
     {
         clrscr();
-        listeSallem();
-        creerConcert();
+        listeSallem();// On verifie les salles dans lequels il n'y a pas des concerts
+        creerConcert();// On creer un concert
         manage();
     }
     else if (manageur==5){

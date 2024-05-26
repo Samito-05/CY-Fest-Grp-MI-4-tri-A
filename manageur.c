@@ -32,7 +32,7 @@ void creerSalle() {
   }
 
 
-  printf("Combien y a t-il de rangee ?\n");
+  printf("Combien y a t-il de rangee (20 maximum) ?\n");
   do{
     verif=scanf("%d",&nrangee);
     do{
@@ -46,7 +46,7 @@ void creerSalle() {
   verif2=0;
   clrscr();
 
-  printf("Combien y a t-il de siege par rangee ?\n");
+  printf("Combien y a t-il de siege par rangee (20 maximum) ?\n");
   do{
     verif=scanf("%d",&nsiege);
     do{
@@ -792,7 +792,7 @@ int debut(){
   } while (verif != 1 || a<2024);
   verif=0;
   verif2=0;
-  printf("Quel mois a lieu le concert ?\n");
+  printf("Quel mois a lieu le concert (numeriquement) ?\n");
   do{
     verif=scanf("%d",&mois);
     do{
@@ -952,6 +952,7 @@ void listeSallem(){
   }
 
   if (fgetc(verifm)==EOF){
+    clrscr();
     printf("Toute les salles sont utilisees\n");
     manage();
   }

@@ -21,7 +21,7 @@ Celui ci permet a quiconque ayant le mot de passe de modifier tous les aspect du
 - Modifier Salle
 - Creer Concert
 - Supprimer Concert
-- Libeerer Salle
+- Liberer Salle
 - Liberer Place
 
 Le deuxieme mode  est le mode festivalier :
