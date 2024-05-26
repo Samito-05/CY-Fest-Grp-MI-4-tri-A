@@ -188,7 +188,7 @@ if(nsiegeB >0){
     clrscr();
   }
 
-  char *fichiersalle = "salle.txt";
+char *fichiersalle = "salle.txt"; // Ajout de la salle dans le fichier
   FILE *fichier = fopen(fichiersalle, "a+");
   if (fichier == NULL) {
     printf("Erreur lors de l'ouverture du fichier %s\n", fichiersalle);
@@ -207,8 +207,8 @@ if(nsiegeB >0){
   fprintf(fichier, "%.2f : Prix de la catégorie C\n", prixC);
 
   
-
-  for (int i = 0; i < nsiegeA / nsiege; i++) {
+  // affichage de la Salle
+  for (int i = 0; i < nsiegeA / nsiege; i++) { 
     for (int j = 0; j < nsiege - 1; j++) {
       fprintf(fichier, "O");
       fprintf(fichier, " ");
