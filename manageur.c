@@ -516,6 +516,7 @@ void modifierSalle(char *nom_salle) {
     printf("Erreur lors de l'ouverture du fichier %s\n", fichiersalle);
     exit(1);
   }
+  // Ecritures des nouvelles données    de la salle
   fprintf(fichier, "%s : Nom de la salle\n", nomsalle);
   fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", concert);
   fprintf(fichier, "%d : Nombre de rangee\n", nrangee);
@@ -528,6 +529,7 @@ void modifierSalle(char *nom_salle) {
   fprintf(fichier, "%.2f : Prix de la catégorie B\n", prixB);
   fprintf(fichier, "%.2f : Prix de la catégorie C\n", prixC);
 
+  // Affichage de la salle dans le fichier
   for (int i = 0; i < nsiegeA / nsiege; i++) {
     for (int j = 0; j < nsiege - 1; j++) {
       fprintf(fichier, "O");
@@ -611,7 +613,7 @@ void supprimerSalle(char *nom_salle) {
     fprintf(modif, "%s", phrase);
   }
 
-  // Reccuperation de données de la salle
+  // on ignore les données de la salle souhaité
 
   int nbr_rangees;
 
@@ -666,7 +668,7 @@ void supprimerSalle(char *nom_salle) {
 }
 
 void listeSalle(){
-  FILE * salles= fopen("salle.txt","r");
+  FILE * salles= fopen("salle.txt","r"); // Ouverture du fichier
   if (salles==NULL){
     printf("Erreur fichier");
     exit(1);
@@ -677,13 +679,13 @@ void listeSalle(){
   printf("Voici les salles creee\n");
   printf("\n");
   while((a = fgetc(salles)) != EOF){
-    while (a != ' ' && a != EOF && i < 20) {
+    while (a != ' ' && a != EOF && i < 20) { // Recuperation des lettres du nom de la salle 
       nomsalle[i] = (char)a;
       i++;
       a = fgetc(salles);
     }
     nomsalle[i] = '\0'; 
-    printf("%s\n",nomsalle);
+    printf("%s\n",nomsalle); // Affichage du nom de la salle
     i=0;
     for (i=1;i<=3;i++){
       fgets(phrase, sizeof(phrase), salles);
@@ -740,7 +742,7 @@ void creerConcert(){
     return;
   }
 
-  FILE *concert = fopen("concert.txt", "a+");
+  FILE *concert = fopen("concert.txt", "a+"); // Ouverture fichier "concert.txt"
   if (concert == NULL) {
     printf("Erreur lors de l'ouverture du fichier %s\n", "concert.txt");
     exit(1);
