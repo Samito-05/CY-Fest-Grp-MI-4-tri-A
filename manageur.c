@@ -1255,7 +1255,7 @@ void supprimerConcert(char* nom_concert){
 
   rewind(concert);
 
-  while (strstr(fgets(phrase, sizeof(phrase), concert), nom_concert) == NULL) {
+  while (strstr(fgets(phrase, sizeof(phrase), concert), nom_concert) == NULL) { // Copie des autres concerts sans le concert supprimé
     fprintf(mconcert, "%s", phrase);
   }
 
