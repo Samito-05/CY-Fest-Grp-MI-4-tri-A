@@ -712,8 +712,8 @@ void creerConcert(){
   scanf("%20s",nom_salle);
   clrscr();
   verifm(nom_salle);
-  tdebut=debut();
-  temps=duree();
+  tdebut=debut(); // heure de debut
+  temps=duree(); // durée du concert
 
 
   
@@ -747,6 +747,7 @@ void creerConcert(){
     printf("Erreur lors de l'ouverture du fichier %s\n", "concert.txt");
     exit(1);
   }
+  // insertion des infos du concert
   fprintf(concert, "%s : Nom du concert\n", nom_concert);
   fprintf(concert, "%d : Heure du debut du concert\n", tdebut);
   fprintf(concert, "%d : Longueur du concert\n", temps);
@@ -783,7 +784,7 @@ int debut(){
   int verif=0, verif2=0;
   char c;
   printf("En quelle annee a lieu le concert ?\n");
-  do{
+  do{                             // Verification de la saisie de l'année
       verif=scanf("%d",&a);
       do{
         verif2=scanf("%c",&c);
@@ -795,7 +796,7 @@ int debut(){
   verif=0;
   verif2=0;
   printf("Quel mois a lieu le concert (numeriquement) ?\n");
-  do{
+  do{                             // Verification de la saisie du mois
     verif=scanf("%d",&mois);
     do{
       verif2=scanf("%c",&c);
@@ -809,7 +810,7 @@ int debut(){
   printf("Quel jour a lieu le concert (numeriquement) ?\n");
  
   if (mois == 2 && a%4 != 0){
-    do{
+    do{                          // Verification de la saisie du jour
       verif=scanf("%d",&j);
       do{
         verif2=scanf("%c",&c);
@@ -821,7 +822,7 @@ int debut(){
     verif=0;
     verif2=0;//entre 1 et 31
   }
-  if (mois == 2 && a%4 == 0){
+  if (mois == 2 && a%4 == 0){ //Année bissextile
     do{
       verif=scanf("%d",&j);
       do{
@@ -834,7 +835,7 @@ int debut(){
     verif=0;
     verif2=0;//entre 1 et 31
   }
-  if (mois == 1|| mois == 3||mois == 5||mois == 7||mois == 8||mois == 10||mois == 12){
+  if (mois == 1|| mois == 3||mois == 5||mois == 7||mois == 8||mois == 10||mois == 12){ // Mois a 31 jours
     do{
       verif=scanf("%d",&j);
       do{
@@ -848,7 +849,7 @@ int debut(){
     verif2=0;//entre 1 et 31
   }
  
- if (mois == 4|| mois == 6||mois == 9||mois == 11){
+ if (mois == 4|| mois == 6||mois == 9||mois == 11){ // Mois a 30 jours
     do{
       verif=scanf("%d",&j);
       do{
@@ -863,7 +864,7 @@ int debut(){
   }//entre 1 et 31
 
   printf("A quelle heure a lieu le concert ?\n");
-  do{
+  do{                          // Verificcation saisie de l'heure
     verif=scanf("%d",&h);
     do{
       verif2=scanf("%c",&c);
@@ -875,7 +876,7 @@ int debut(){
   verif=0;
   verif2=0;//entre 0 et 23 
   printf("A quel minute a lieu le concert ?\n");
-  do{
+  do{                          // Verificcation saisie des minutes
     verif=scanf("%d",&min);
     do{
       verif2=scanf("%c",&c);
@@ -887,7 +888,7 @@ int debut(){
   verif=0;
   verif2=0;("%d",&min);//entre 0 et 59
 
-  struct tm date;
+  struct tm date;      // Converstion en timestamp
   date.tm_sec = 0;
   date.tm_min = min;
   date.tm_hour= h;
@@ -909,7 +910,7 @@ int duree(){
   char c;
   do{
     printf("Combien d'heure dure le concert ?\n");
-    do{
+    do{                          // Verification de la durée en heures
     verif=scanf("%d",&h);
     do{
       verif2=scanf("%c",&c);
@@ -921,7 +922,7 @@ int duree(){
       verif=0;
       verif2=0;
     printf("Combien de minute dure le concert ?\n");
-    do{
+    do{                         // Verification de la durée en minutes
     verif=scanf("%d",&min);
     do{
       verif2=scanf("%c",&c);
@@ -929,19 +930,19 @@ int duree(){
     if (verif != 1 || min<0 || min>59){
       printf("saisie invalide\n");
     }
-    } while (verif != 1 || min<0|| min>59);
+    } while (verif != 1 || min<0|| min>59);   // Verification de la durée du concert
     verif=0;
     verif2=0;("%d",&min);
     if(h<=0 && min<=0){
       printf("le concert doit duree au moins 1 min\n");
     }
-}while(h<=0 && min<=0);
+}while(h<=0 && min<=0);   // Conversion en secondes
   s=h*3600+min*60;
   return s;
 }
 
-void listeSallem(){
-  FILE * salles= fopen("salle.txt","r");
+void listeSallem(){  // Liste de salles disponibles
+  FILE * salles= fopen("salle.txt","r"); // Ouverture fichier
   if (salles==NULL){
     printf("Erreur fichier");
     exit(1);
@@ -959,7 +960,7 @@ void listeSallem(){
     manage();
   }
 
-  else{
+  else{        // Affichge des salles
     char phrase[50];
     char nomsalle[21];
     int a, i=0,nr;
@@ -972,16 +973,16 @@ void listeSallem(){
         a = fgetc(salles);
       }
       nomsalle[i] = '\0';
-      fgets(phrase, sizeof(phrase), salles);
-      fgets(phrase, sizeof(phrase), salles);
+      fgets(phrase, sizeof(phrase), salles);   // Lit l'etat de la salle
+      fgets(phrase, sizeof(phrase), salles);   // Indicateur utilisé
       if (!atoi(phrase)){
         printf("%s\n",nomsalle); 
       }
       i=0;
-      fgets(phrase, sizeof(phrase), salles);
+      fgets(phrase, sizeof(phrase), salles);   // Nbr de rangées
       nr=atoi(phrase);
       for (i=1;i<=8+nr;i++){
-        fgets(phrase, sizeof(phrase), salles);
+        fgets(phrase, sizeof(phrase), salles);  // Ignores les lignes d'infos
       }
       i=0;
     }
@@ -1016,7 +1017,7 @@ void libererSalle(){
         for (int i=1;i<=4;i++){
             fgets(phrase,sizeof(phrase),concert);
         }
-        if(atoi(phrase)-time(NULL)<=0){
+        if(atoi(phrase)-time(NULL)<=0){  // Verification si le conccert est fini
             
             FILE * salles=fopen("salle.txt","r+");// On réouvre fichier salle a chaque fois
 	        if (salles==NULL){
@@ -1160,7 +1161,7 @@ void libererPlace(char* nom_salle){
   if (fichier == NULL) {
     printf("Erreur lors de l'ouverture du fichier\n" );
     exit(1);
-  }
+  } // Reinitialisation des données de la salle
   fprintf(fichier, "%s : Nom de la salle\n", nom_salle);
   fprintf(fichier, "%d : Est-ce que la salle est utilisée ?\n", concert);
   fprintf(fichier, "%d : Nombre de rangée\n", nr);
@@ -1200,7 +1201,7 @@ void libererPlace(char* nom_salle){
 
   fclose(fichier);
 
-  salles = fopen("salle.txt", "a+");
+  salles = fopen("salle.txt", "a+");  // Mise a jour du fichier avec les autres salles
   if (salles == NULL) {
     printf("Erreur lors de l'ouverture du fichier %s\n", "salle.txt");
     exit(1);
@@ -1223,7 +1224,7 @@ void supprimerConcert(char* nom_concert){
      // ouvrir le fichier
   int verif=0, verif2=0;
   char c;
-  FILE *concert = fopen("concert.txt", "r");
+  FILE *concert = fopen("concert.txt", "r"); // Ouverture fichier
   if (concert == NULL) {
     exit(1);
   }
@@ -1239,7 +1240,7 @@ void supprimerConcert(char* nom_concert){
   // Lire ligne par ligne jusqu'à la fin du fichier
   while (fgets(phrase, sizeof(phrase), concert) != NULL) {
     // Vérification de la bonne salle
-    if (strstr(phrase, nom_concert) != NULL) {
+    if (strstr(phrase, nom_concert) != NULL) {  // Recherche du concert ta supprimer
       // printf("La salle existe.\n");
       trouve = 1;
       break;
